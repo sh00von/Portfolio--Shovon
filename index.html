@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="antialiased" style="scroll-behavior: smooth;">
 
 <head>
@@ -11,7 +11,7 @@
     <meta name="keywords"
         content="full stack developer, software engineer, next.js, react, node.js, AI, minaruzzaman shovon, web development, bangladesh, artificial intelligence">
     <meta name="author" content="Minaruzzaman Shovon">
-    <meta name="theme-color" content="#111010">
+    <meta name="theme-color" content="#171717">
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -46,8 +46,8 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Space Grotesk"', 'sans-serif'],
-                        display: ['"Space Grotesk"', 'sans-serif'],
+                        sans: ['"Mulish"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                        display: ['"Mulish"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
                     },
                     colors: {
                         neutral: {
@@ -76,8 +76,8 @@
         }
     </script>
 
-    <!-- Fonts: Space Grotesk -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <!-- Fonts: Mulish -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -110,11 +110,11 @@
 
     <style>
         body {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Mulish', ui-sans-serif, system-ui, sans-serif;
             opacity: 0;
             /* Prevent FOUC */
             visibility: hidden;
-            background-color: #050505;
+            background-color: #171717;
         }
 
         /* Scrollbar */
@@ -152,23 +152,21 @@
 </head>
 
 <body
-    class="bg-[#111010] text-[#d4d4d4] min-h-screen flex flex-col font-sans selection:bg-[#333] selection:text-white antialiased">
+    class="bg-[#171717] text-[#EDEDED] min-h-screen flex flex-col font-sans selection:bg-[#333] selection:text-[#EDEDED] antialiased">
 
     <!-- Navigation -->
     <nav class="w-full max-w-2xl mx-auto px-4 py-8 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
         <!-- Logo / Name -->
-        <a href="/" class="text-white font-medium tracking-tight hover:text-gray-300 transition-colors"
+        <a href="/" class="text-[#EDEDED] font-medium tracking-tight hover:text-gray-300 transition-colors"
             aria-label="Home">
             Minaruzzaman Shovon
         </a>
 
         <!-- Links -->
         <div class="flex flex-wrap gap-4 sm:gap-6 text-sm font-medium">
-            <a href="#experience" class="hover:text-white transition-colors">experience</a>
-            <a href="#projects" class="hover:text-white transition-colors">projects</a>
-            <a href="#research" class="hover:text-white transition-colors">research</a>
-            <a href="#uses" class="hover:text-white transition-colors">uses</a>
-            <a href="#contact" class="hover:text-white transition-colors">connect</a>
+            <a href="#experience" class="hover:text-[#EDEDED] transition-colors">Experience</a>
+            <a href="#certifications" class="hover:text-[#EDEDED] transition-colors">Certifications</a>
+            <a href="#contact" class="hover:text-[#EDEDED] transition-colors">Connect</a>
         </div>
     </nav>
 
@@ -176,20 +174,20 @@
     <main id="main-content" class="flex-grow w-full max-w-2xl mx-auto px-4 pb-20">
 
         <!-- Header / Hero -->
-        <section class="mt-16 mb-16">
-            <h1 class="text-white text-4xl sm:text-5xl font-bold tracking-tighter mb-6">
-                hey, I'm Shovon 👋
+        <section class="mt-16 mb-20">
+            <h1 class="text-[#EDEDED] text-4xl sm:text-5xl font-bold tracking-tighter mb-6">
+                Hey, I'm Shovon
             </h1>
-            <p class="text-lg leading-relaxed text-[#d4d4d4] mb-8">
-                I'm <span class="text-white font-medium">Md Minaruzzaman Shovon</span>, a Full Stack Developer and Water
-                Resources Engineer. I build
-                <span class="text-white">high-performance</span> web applications, specialize in
-                <span class="text-white">AI integration</span>, and currently research
-                <span class="text-white">sustainable hydrology</span> at CUET.
+            <p class="text-base sm:text-lg leading-relaxed text-[#EDEDED] mb-8">
+                I'm <span class="text-[#EDEDED] font-medium">Md Minaruzzaman Shovon</span>, a Water Resources Engineer with
+                knowledge of hydrology, hydraulics, structures, transportation, and environmental engineering, and a
+                Full Stack Developer. I build <span class="text-[#EDEDED]">high-performance</span> web applications,
+                specialize in <span class="text-[#EDEDED]">AI integration</span>, and currently doing undergraduate in
+                Water Resources Engineering at Chittagong University of Engineering and Technology.
             </p>
 
             <!-- Minimal Social Links -->
-            <div class="flex gap-4 text-sm font-medium text-white">
+            <div class="flex flex-wrap gap-x-4 gap-y-2 text-xs sm:text-sm font-medium text-[#EDEDED]">
                 <a href="https://github.com/sh00von" target="_blank" aria-label="GitHub Profile"
                     class="flex items-center gap-2 hover:text-[#a1a1a1] transition-colors">
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -206,6 +204,28 @@
                     </svg>
                     Facebook
                 </a>
+                <a href="https://www.linkedin.com/in/minarsvn9090/" target="_blank" aria-label="LinkedIn Profile"
+                    class="flex items-center gap-2 hover:text-[#a1a1a1] transition-colors">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M4.98 3.5a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2zM3.2 8.9h3.6V20H3.2V8.9zm5.7 0h3.4v1.6h.1c.5-.9 1.6-1.9 3.3-1.9 3.5 0 4.1 2.3 4.1 5.2V20h-3.6v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H8.9V8.9z" />
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en" target="_blank"
+                    aria-label="Google Scholar Profile" class="flex items-center gap-2 hover:text-[#a1a1a1] transition-colors">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 3 2 8l10 5 8-4v6h2V8L12 3zm-6 9v3c0 2.5 2.7 4.5 6 4.5s6-2 6-4.5v-3l-6 3-6-3z" />
+                    </svg>
+                    Google Scholar
+                </a>
+                <a href="https://www.researchgate.net/profile/Md-Shovon-13" target="_blank"
+                    aria-label="ResearchGate Profile" class="flex items-center gap-2 hover:text-[#a1a1a1] transition-colors">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2a5 5 0 0 1 4.76 3.5h3.74v2h-3.74A5 5 0 0 1 12 11a5 5 0 0 1-4.76-3.5H3.5v-2h3.74A5 5 0 0 1 12 2zm0 11a5 5 0 0 1 4.76 3.5h3.74v2h-3.74A5 5 0 0 1 12 22a5 5 0 0 1-4.76-3.5H3.5v-2h3.74A5 5 0 0 1 12 13z" />
+                    </svg>
+                    ResearchGate
+                </a>
                 <a href="/resume.pdf" aria-label="View Resume"
                     class="flex items-center gap-2 hover:text-[#a1a1a1] transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -219,37 +239,69 @@
         </section>
 <script defer src="http://localhost:3000/embed/ces.js" data-token="862a21" data-label="Leave feedback" data-color="#1b1b1b" data-metric="ces" data-target="#feedback-widget"></script>
 
-        <!-- Experience (List View) -->
-        <section id="experience" class="mb-16">
-            <h2 class="text-white font-semibold text-xl mb-8 tracking-tight">Experience</h2>
+        <!-- Education -->
+        <section id="education" class="mb-20">
+            <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Education</h2>
             <div class="flex flex-col space-y-2">
 
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
-                    <span class="text-white font-medium">Logifu PTY LTD</span>
+                    <span class="text-[#EDEDED] font-medium">Chittagong University of Engineering and Technology (CUET)</span>
                     <div
                         class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
                     </div>
-                    <span class="text-sm text-[#666] tabular-nums">Senior Software Developer, 2025—Present</span>
+                    <span class="text-sm text-[#666] tabular-nums">Undergraduate, Water Resources Engineering</span>
                 </div>
 
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
-                    <span class="text-white font-medium">Blendin</span>
+                    <span class="text-[#EDEDED] font-medium">Chittagong College</span>
                     <div
                         class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
                     </div>
-                    <span class="text-sm text-[#666] tabular-nums">Web Developer, 2025</span>
+                    <span class="text-sm text-[#666] tabular-nums">College</span>
                 </div>
 
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
-                    <span class="text-white font-medium">Nexite BD</span>
+                    <span class="text-[#EDEDED] font-medium">Chattogram Cantonment Public College</span>
                     <div
                         class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
                     </div>
-                    <span class="text-sm text-[#666] tabular-nums">CEO & Dev, 2024</span>
+                    <span class="text-sm text-[#666] tabular-nums">School</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Experience (List View) -->
+        <section id="experience" class="mb-20">
+            <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Work Experience</h2>
+            <div class="flex flex-col space-y-2">
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <span class="text-[#EDEDED] font-medium">Logifu PTY LTD</span>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums">Senior Software Developer, 2025-Present</span>
                 </div>
 
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
-                    <span class="text-white font-medium">Cyber Security Club</span>
+                    <span class="text-[#EDEDED] font-medium">Blendin</span>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums">Web Developer, 2025-Present</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Volunteer Experience -->
+        <section id="volunteer-experience" class="mb-20">
+            <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Volunteer Experience</h2>
+            <div class="flex flex-col space-y-2">
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <span class="text-[#EDEDED] font-medium">Cyber Security Club</span>
                     <div
                         class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
                     </div>
@@ -257,196 +309,43 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
-                    <span class="text-white font-medium" title="Water Resources & Research Organization">WRRO</span>
+                    <span class="text-[#EDEDED] font-medium" title="Water Resources & Research Organization">WRRO</span>
                     <div
                         class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
                     </div>
-                    <span class="text-sm text-[#666] tabular-nums">Joint Research Secretary, 2025—Present</span>
+                    <span class="text-sm text-[#666] tabular-nums">Joint Research Secretary, 2025-Present</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <span class="text-[#EDEDED] font-medium">Nogorful</span>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums">ICT Director, 2024-Present</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <span class="text-[#EDEDED] font-medium">Ongko</span>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums">Founder and President, 2019-2020</span>
                 </div>
 
             </div>
         </section>
 
-        <!-- Websites -->
-        <section id="projects" class="mb-20">
-            <h2 class="text-white font-semibold text-xl mb-8 tracking-tight">Selected Work</h2>
-            <div class="flex flex-col gap-2">
-
-                <!-- Item 1 -->
-                <a href="http://authryai.com/" target="_blank"
-                    class="group block p-4 -mx-4 rounded-lg hover:bg-[#161616] transition-all">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-medium text-neutral-200 group-hover:text-white transition-colors">AuthryAI</h3>
-                        <svg class="w-4 h-4 text-neutral-500 group-hover:text-white transition-colors" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </div>
-                    <p class="text-[#888] text-sm mb-3 leading-relaxed">AI deepfake detection model designed for modern
-                        media verification.</p>
-                    <div class="flex flex-wrap gap-2 items-start mt-1">
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Python</span>
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Next.js</span>
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">ML</span>
-                    </div>
-                </a>
-
-                <!-- Item 2 -->
-                <a href="https://logiq.shovon.site/" target="_blank"
-                    class="group block p-4 -mx-4 rounded-lg hover:bg-[#161616] transition-all">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-medium text-neutral-200 group-hover:text-white transition-colors">Logiq</h3>
-                        <svg class="w-4 h-4 text-neutral-500 group-hover:text-white transition-colors" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </div>
-                    <p class="text-[#888] text-sm mb-3 leading-relaxed">Step-by-step AI solver for complex math and
-                        science problems.</p>
-                    <div class="flex flex-wrap gap-2 items-start mt-1">
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">OpenAI</span>
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Next.js</span>
-                    </div>
-                </a>
-
-                <!-- Item 3 -->
-                <a href="#" class="group block p-4 -mx-4 rounded-lg hover:bg-[#161616] transition-all">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-medium text-neutral-200 group-hover:text-white transition-colors">Flink</h3>
-                        <svg class="w-4 h-4 text-neutral-500 group-hover:text-white transition-colors" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </div>
-                    <p class="text-[#888] text-sm mb-3 leading-relaxed">A scalable, modern web application architecture
-                        template.</p>
-                    <div class="flex flex-wrap gap-2 items-start mt-1">
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Next.js</span>
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Tailwind</span>
-                    </div>
-                </a>
-
-                <!-- Item 4 (Hidden) -->
-                <a href="#"
-                    class="hidden project-hidden group block p-4 -mx-4 rounded-lg hover:bg-[#161616] transition-all">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-medium text-neutral-200 group-hover:text-white transition-colors">Nogorful</h3>
-                        <svg class="w-4 h-4 text-neutral-500 group-hover:text-white transition-colors" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </div>
-                    <p class="text-[#888] text-sm mb-3 leading-relaxed">Comprehensive management system tailored for
-                        NGOs.</p>
-                    <div class="flex flex-wrap gap-2 items-start mt-1">
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Supabase</span>
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">React</span>
-                    </div>
-                </a>
-
-                <!-- Item 5 (Hidden) -->
-                <a href="https://www.wrrocuet.org/" target="_blank"
-                    class="hidden project-hidden group block p-4 -mx-4 rounded-lg hover:bg-[#161616] transition-all">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-medium text-neutral-200 group-hover:text-white transition-colors">WRRO</h3>
-                        <svg class="w-4 h-4 text-neutral-500 group-hover:text-white transition-colors" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </div>
-                    <p class="text-[#888] text-sm mb-3 leading-relaxed">Official platform for the Water Resources &
-                        Research Organization.</p>
-                    <div class="flex flex-wrap gap-2 items-start mt-1">
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Laravel</span>
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Bootstrap</span>
-                    </div>
-                </a>
-
-                <!-- Item 6 (Hidden) -->
-                <a href="https://www.exabytebd.com/" target="_blank"
-                    class="hidden project-hidden group block p-4 -mx-4 rounded-lg hover:bg-[#161616] transition-all">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-medium text-neutral-200 group-hover:text-white transition-colors">Exabyte</h3>
-                        <svg class="w-4 h-4 text-neutral-500 group-hover:text-white transition-colors" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </div>
-                    <p class="text-[#888] text-sm mb-3 leading-relaxed">EdTech platform bridging the gap from coding
-                        basics to AI mastery.</p>
-                    <div class="flex flex-wrap gap-2 items-start mt-1">
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">MERN</span>
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Education</span>
-                    </div>
-                </a>
-
-                <!-- Item 7 (Hidden) -->
-                <a href="https://startupab.org/" target="_blank"
-                    class="hidden project-hidden group block p-4 -mx-4 rounded-lg hover:bg-[#161616] transition-all">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-medium text-neutral-200 group-hover:text-white transition-colors">SAB</h3>
-                        <svg class="w-4 h-4 text-neutral-500 group-hover:text-white transition-colors" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </div>
-                    <p class="text-[#888] text-sm mb-3 leading-relaxed">Unified digital ecosystem for Bangladeshi
-                        startups and founders.</p>
-                    <div class="flex flex-wrap gap-2 items-start mt-1">
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Next.js</span>
-                        <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Framer</span>
-                    </div>
-                </a>
-
-            </div>
-
-            <div class="mt-8">
-                <button type="button"
-                    onclick="document.querySelectorAll('.project-hidden').forEach(el => el.classList.remove('hidden')); this.closest('div').style.display='none';"
-                    class="inline-flex items-center text-sm font-medium text-[#888] hover:text-white transition-colors group cursor-pointer outline-none focus:outline-none">
-                    View more projects
-                    <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-y-1" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-            </div>
-        </section>
-
-
-<br><br><br>
         <!-- Research -->
-        <section id="research" class="mb-16">
-            <h2 class="text-white font-semibold text-xl mb-8 tracking-tight">Featured Research</h2>
+        <section id="research" class="mb-20">
+            <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Publications</h2>
+            <p class="text-[#a1a1a1] text-sm mb-6 leading-relaxed"><span class="text-[#EDEDED] font-medium">Research Interests:</span> Environmental analysis, hydrological modeling, and sustainable water infrastructure.</p>
             <div class="flex flex-col space-y-8">
 
                 <a href="https://www.researchgate.net/publication/399071973_Analysis_and_Prediction_of_Time_Series_Variations_in_Rainfall_by_Machine_Learning_Approach_A_Case_Study_of_Sylhet_and_Sreemangal?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJwcm9maWxlIiwicHJldmlvdXNQYWdlIjoiaG9tZSIsInBvc2l0aW9uIjoicGFnZUNvbnRlbnQifX0"
                     target="_blank" rel="noopener noreferrer" class="group block no-underline">
                     <div class="flex flex-col sm:flex-row sm:items-start justify-between mb-2">
                         <h3
-                            class="text-white font-medium group-hover:underline decoration-[#555] underline-offset-4 leading-snug max-w-lg">
+                            class="text-[#EDEDED] font-medium group-hover:underline decoration-[#555] underline-offset-4 leading-snug max-w-lg">
                             Analysis and Prediction of Time Series Variations in Rainfall by Machine Learning Approach:
                             A Case Study of Sylhet and Sreemangal
                         </h3>
@@ -471,7 +370,7 @@
                     target="_blank" rel="noopener noreferrer" class="group block no-underline">
                     <div class="flex flex-col sm:flex-row sm:items-start justify-between mb-2">
                         <h3
-                            class="text-white font-medium group-hover:underline decoration-[#555] underline-offset-4 leading-snug max-w-lg">
+                            class="text-[#EDEDED] font-medium group-hover:underline decoration-[#555] underline-offset-4 leading-snug max-w-lg">
                             Seasonal Anomaly Detection in the Halda River Using a Multivariate Deep Learning Framework
                         </h3>
                         <span class="text-sm text-[#666] tabular-nums flex-shrink-0 sm:ml-4 mt-1 sm:mt-0">Dec
@@ -488,54 +387,127 @@
             </div>
         </section>
 
-        <!-- Uses / Stack -->
-        <section id="uses" class="mb-16">
-            <h2 class="text-white font-semibold text-xl mb-8 tracking-tight">Uses</h2>
+        <!-- Certifications -->
+        <section id="certifications" class="mb-20">
+            <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Certifications</h2>
+            <div class="flex flex-col space-y-2">
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <span class="text-[#EDEDED] font-medium">CISSP by InfoSec</span>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums">InfoSEC, Jun 2025</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <span class="text-[#EDEDED] font-medium">Cybersecurity Attack and Defense Fundamentals</span>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums">EC-Council, Jun 2025</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <span class="text-[#EDEDED] font-medium">Microsoft Python Development</span>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums">Microsoft, Jun 2025</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <span class="text-[#EDEDED] font-medium">Google Cybersecurity Professional</span>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums">Google, Jun 2025</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <span class="text-[#EDEDED] font-medium">GIS &amp; Its Application</span>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums">Enhancing Digital Government &amp; Economy Project, Apr 2025</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="uses" class="mb-20">
+            <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Skills</h2>
             <p class="text-[#a1a1a1] mb-6 leading-relaxed">
-                Here's what I use daily to build software and stay productive.
+                Technologies and tools I use to design, build, and ship products.
             </p>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm text-[#888]">
                 <ul class="space-y-2">
-                    <li class="font-medium text-white mb-1">Editor</li>
-                    <li>VS Code</li>
-                    <li>Cursor</li>
-                    <li>Vim</li>
-                </ul>
-                <ul class="space-y-2">
-                    <li class="font-medium text-white mb-1">Stack</li>
+                    <li class="font-medium text-[#EDEDED] mb-1">Frontend</li>
                     <li>Next.js</li>
+                    <li>React</li>
+                    <li>Expo (React Native)</li>
                     <li>TypeScript</li>
-                    <li>Tailwind</li>
+                    <li>Tailwind CSS</li>
                 </ul>
                 <ul class="space-y-2">
-                    <li class="font-medium text-white mb-1">Terminal</li>
-                    <li>Warp</li>
-                    <li>Zsh</li>
-                    <li>Git</li>
+                    <li class="font-medium text-[#EDEDED] mb-1">Backend</li>
+                    <li>Node.js</li>
+                    <li>Express.js</li>
+                    <li>REST APIs</li>
+                    <li>Authentication Systems</li>
                 </ul>
                 <ul class="space-y-2">
-                    <li class="font-medium text-white mb-1">Gear</li>
-                    <li>MacBook Pro</li>
-                    <li>MX Master 3</li>
-                    <li>Keychron</li>
+                    <li class="font-medium text-[#EDEDED] mb-1">Database</li>
+                    <li>MongoDB</li>
+                    <li>Mongoose</li>
+                    <li>Firebase</li>
+                </ul>
+                <ul class="space-y-2">
+                    <li class="font-medium text-[#EDEDED] mb-1">GIS/ML Modelling</li>
+                    <li>QGIS</li>
+                    <li>ArcGIS</li>
+                    <li>ETABS</li>
+                    <li>AutoCAD</li>
+                    <li>HEC-RAS</li>
                 </ul>
             </div>
         </section>
 
         <!-- Connect -->
         <section id="contact" class="mb-20">
-            <h2 class="text-white font-semibold text-xl mb-4 tracking-tight">Connect</h2>
+            <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Connect</h2>
             <p class="text-[#a1a1a1] mb-6">
                 I'm always open to discussing new opportunities.
             </p>
-            <div class="flex gap-4">
-                <a href="mailto:hello@shovon.site" class="text-white text-sm hover:underline">hello@shovon.site</a>
+            <div class="flex flex-wrap gap-x-4 gap-y-2">
+                <a href="mailto:hello@shovon.site" class="text-[#EDEDED] text-sm hover:underline">hello@shovon.site</a>
                 <a href="https://www.facebook.com/minar.svn"
-                    class="text-[#888] text-sm hover:text-white transition-colors">Facebook</a>
+                    class="text-[#888] text-sm hover:text-[#EDEDED] transition-colors">Facebook</a>
                 <a href="https://github.com/sh00von"
-                    class="text-[#888] text-sm hover:text-white transition-colors">GitHub</a>
+                    class="text-[#888] text-sm hover:text-[#EDEDED] transition-colors">GitHub</a>
                 <a href="https://www.linkedin.com/in/minarsvn9090/"
-                    class="text-[#888] text-sm hover:text-white transition-colors">LinkedIn</a>
+                    class="inline-flex items-center gap-2 text-[#888] text-sm hover:text-[#EDEDED] transition-colors">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M4.98 3.5a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2zM3.2 8.9h3.6V20H3.2V8.9zm5.7 0h3.4v1.6h.1c.5-.9 1.6-1.9 3.3-1.9 3.5 0 4.1 2.3 4.1 5.2V20h-3.6v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H8.9V8.9z" />
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en"
+                    class="inline-flex items-center gap-2 text-[#888] text-sm hover:text-[#EDEDED] transition-colors">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 3 2 8l10 5 8-4v6h2V8L12 3zm-6 9v3c0 2.5 2.7 4.5 6 4.5s6-2 6-4.5v-3l-6 3-6-3z" />
+                    </svg>
+                    Google Scholar
+                </a>
+                <a href="https://www.researchgate.net/profile/Md-Shovon-13"
+                    class="inline-flex items-center gap-2 text-[#888] text-sm hover:text-[#EDEDED] transition-colors">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2a5 5 0 0 1 4.76 3.5h3.74v2h-3.74A5 5 0 0 1 12 11a5 5 0 0 1-4.76-3.5H3.5v-2h3.74A5 5 0 0 1 12 2zm0 11a5 5 0 0 1 4.76 3.5h3.74v2h-3.74A5 5 0 0 1 12 22a5 5 0 0 1-4.76-3.5H3.5v-2h3.74A5 5 0 0 1 12 13z" />
+                    </svg>
+                    ResearchGate
+                </a>
             </div>
         </section>
 
@@ -636,3 +608,5 @@
 </body>
 
 </html>
+
+
