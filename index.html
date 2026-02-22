@@ -109,12 +109,75 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <style>
+        :root {
+            --bg: #171717;
+            --text: #EDEDED;
+            --muted: #a1a1a1;
+            --muted-2: #888;
+            --muted-3: #666;
+            --surface: #1a1a1a;
+            --border: #333;
+            --border-soft: #2a2a2a;
+            --accent-bg: rgba(16, 185, 129, 0.18);
+            --accent-text: #86efac;
+            --accent-border: rgba(16, 185, 129, 0.35);
+        }
+
+        html.light {
+            --bg: #f7f7f7;
+            --text: #171717;
+            --muted: #374151;
+            --muted-2: #4b5563;
+            --muted-3: #6b7280;
+            --surface: #e5e7eb;
+            --border: #d1d5db;
+            --border-soft: #d1d5db;
+            --accent-bg: #dcfce7;
+            --accent-text: #166534;
+            --accent-border: #86efac;
+        }
+
         body {
             font-family: 'Mulish', ui-sans-serif, system-ui, sans-serif;
             opacity: 0;
             /* Prevent FOUC */
             visibility: hidden;
-            background-color: #171717;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+
+        html.light [class*="bg-[#171717]"] {
+            background-color: var(--bg) !important;
+        }
+
+        html.light [class*="text-[#EDEDED]"] {
+            color: var(--text) !important;
+        }
+
+        html.light [class*="text-[#d4d4d4]"],
+        html.light [class*="text-[#a1a1a1]"] {
+            color: var(--muted) !important;
+        }
+
+        html.light [class*="text-[#888]"] {
+            color: var(--muted-2) !important;
+        }
+
+        html.light [class*="text-[#666]"] {
+            color: var(--muted-3) !important;
+        }
+
+        html.light [class*="bg-[#1a1a1a]"] {
+            background-color: var(--surface) !important;
+        }
+
+        html.light [class*="border-[#333]"],
+        html.light [class*="border-[#2a2a2a]"] {
+            border-color: var(--border) !important;
+        }
+
+        html.light [class*="hover:bg-[#202020]"]:hover {
+            background-color: #e5e7eb !important;
         }
 
         /* Scrollbar */
@@ -148,6 +211,22 @@
             /* neutral-700 */
             background-color: #0a0a0a;
         }
+
+        .theme-toggle {
+            border-color: var(--border);
+            color: var(--text);
+            background: transparent;
+        }
+
+        .theme-toggle:hover {
+            background: var(--surface);
+        }
+
+        .badge-featured {
+            background: var(--accent-bg);
+            color: var(--accent-text);
+            border-color: var(--accent-border);
+        }
     </style>
 </head>
 
@@ -167,6 +246,26 @@
             <a href="#experience" class="hover:text-[#EDEDED] transition-colors">Experience</a>
             <a href="#certifications" class="hover:text-[#EDEDED] transition-colors">Certifications</a>
             <a href="#contact" class="hover:text-[#EDEDED] transition-colors">Connect</a>
+            <button id="theme-toggle" type="button"
+                class="theme-toggle inline-flex items-center justify-center rounded-md border px-2 py-1 text-xs sm:text-sm transition-colors"
+                aria-label="Toggle theme" aria-pressed="false">
+                <svg data-theme-icon="sun" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+                <svg data-theme-icon="moon" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
+                </svg>
+            </button>
         </div>
     </nav>
 
@@ -361,7 +460,7 @@
                             class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Conference
                             Paper</span>
                         <span
-                            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-900/20 text-green-400 border border-green-900/30">Most
+                            class="badge-featured inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border">Most
                             read in the last month</span>
                     </div>
                 </a>
@@ -520,6 +619,39 @@
 
     <!-- GSAP (Bare minimal fade in) -->
     <script>
+        (() => {
+            const root = document.documentElement;
+            const toggleButton = document.getElementById("theme-toggle");
+            const themeMeta = document.querySelector('meta[name="theme-color"]');
+            const storageKey = "theme";
+
+            const applyTheme = (theme) => {
+                const isLight = theme === "light";
+                root.classList.toggle("light", isLight);
+                if (themeMeta) {
+                    themeMeta.setAttribute("content", isLight ? "#f7f7f7" : "#171717");
+                }
+                if (toggleButton) {
+                    const sunIcon = toggleButton.querySelector('[data-theme-icon="sun"]');
+                    const moonIcon = toggleButton.querySelector('[data-theme-icon="moon"]');
+                    if (sunIcon) sunIcon.classList.toggle("hidden", !isLight);
+                    if (moonIcon) moonIcon.classList.toggle("hidden", isLight);
+                    toggleButton.setAttribute("aria-pressed", String(isLight));
+                }
+            };
+
+            const savedTheme = localStorage.getItem(storageKey);
+            applyTheme(savedTheme === "light" ? "light" : "dark");
+
+            if (toggleButton) {
+                toggleButton.addEventListener("click", () => {
+                    const nextTheme = root.classList.contains("light") ? "dark" : "light";
+                    localStorage.setItem(storageKey, nextTheme);
+                    applyTheme(nextTheme);
+                });
+            }
+        })();
+
         document.addEventListener("DOMContentLoaded", (event) => {
             gsap.registerPlugin(ScrollTrigger);
 
