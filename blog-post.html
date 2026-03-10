@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased" style="scroll-behavior: smooth;">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicting Rainfall Patterns Using LSTM Networks | Minaruzzaman Shovon</title>
+    <meta name="description"
+        content="How we combined hydrological domain expertise with deep learning to build a real-time rainfall prediction system for the Sylhet and Sreemangal region.">
+    <meta name="keywords"
+        content="LSTM, rainfall prediction, deep learning, hydrology, Sylhet, machine learning, time series, Minaruzzaman Shovon">
+    <meta name="author" content="Minaruzzaman Shovon">
+    <meta name="theme-color" content="#171717">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://shovon.bd/blog-post">
+    <meta property="og:title" content="Predicting Rainfall Patterns Using LSTM Networks | Minaruzzaman Shovon">
+    <meta property="og:description"
+        content="How we combined hydrological domain expertise with deep learning to build a real-time rainfall prediction system for the Sylhet and Sreemangal region.">
+    <meta property="og:image" content="https://shovon.bd/og.png">
+    <meta property="article:published_time" content="2026-02-28T00:00:00+06:00">
+    <meta property="article:author" content="Minaruzzaman Shovon">
+    <meta property="article:section" content="Research">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="Hydrology">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shovon.bd/blog-post">
+    <meta property="twitter:title" content="Predicting Rainfall Patterns Using LSTM Networks">
+    <meta property="twitter:description"
+        content="How we combined hydrological domain expertise with deep learning to build a real-time rainfall prediction system.">
+    <meta property="twitter:image" content="https://shovon.bd/og.png">
+    <meta name="twitter:creator" content="@sh00von">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://shovon.bd/blog-post">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Mulish"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                        display: ['"Mulish"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        neutral: {
+                            850: '#1f1f1f',
+                            900: '#171717',
+                            950: '#0a0a0a',
+                        },
+                        brand: {
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    },
+                    typography: {
+                        DEFAULT: {
+                            css: {
+                                color: '#d4d4d4',
+                                maxWidth: 'none',
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts: Mulish + JetBrains Mono for code -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Structured Data: Article -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Predicting Rainfall Patterns Using LSTM Networks: A Deep Dive into Our Sylhet Case Study",
+      "author": {
+        "@type": "Person",
+        "name": "Md Minaruzzaman Shovon",
+        "url": "https://shovon.bd"
+      },
+      "datePublished": "2026-02-28",
+      "dateModified": "2026-02-28",
+      "description": "How we combined hydrological domain expertise with deep learning to build a real-time rainfall prediction system for the Sylhet and Sreemangal region.",
+      "keywords": ["LSTM", "rainfall prediction", "deep learning", "hydrology", "Sylhet"],
+      "publisher": {
+        "@type": "Person",
+        "name": "Md Minaruzzaman Shovon"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: #171717;
+            --text: #EDEDED;
+            --muted: #a1a1a1;
+            --muted-2: #888;
+            --muted-3: #666;
+            --surface: #1a1a1a;
+            --border: #333;
+            --border-soft: #2a2a2a;
+            --accent-bg: rgba(16, 185, 129, 0.18);
+            --accent-text: #86efac;
+            --accent-border: rgba(16, 185, 129, 0.35);
+            --code-bg: #0d0d0d;
+            --inline-code-bg: #252525;
+        }
+
+        html.light {
+            --bg: #f7f7f7;
+            --text: #171717;
+            --muted: #374151;
+            --muted-2: #4b5563;
+            --muted-3: #6b7280;
+            --surface: #e5e7eb;
+            --border: #d1d5db;
+            --border-soft: #d1d5db;
+            --accent-bg: #dcfce7;
+            --accent-text: #166534;
+            --accent-border: #86efac;
+            --code-bg: #f0f0f0;
+            --inline-code-bg: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Mulish', ui-sans-serif, system-ui, sans-serif;
+            opacity: 0;
+            visibility: hidden;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+
+        html.light [class*="bg-[#171717]"] {
+            background-color: var(--bg) !important;
+        }
+
+        html.light [class*="text-[#EDEDED]"] {
+            color: var(--text) !important;
+        }
+
+        html.light [class*="text-[#d4d4d4]"],
+        html.light [class*="text-[#a1a1a1]"] {
+            color: var(--muted) !important;
+        }
+
+        html.light [class*="text-[#888]"] {
+            color: var(--muted-2) !important;
+        }
+
+        html.light [class*="text-[#666]"] {
+            color: var(--muted-3) !important;
+        }
+
+        html.light [class*="bg-[#1a1a1a]"] {
+            background-color: var(--surface) !important;
+        }
+
+        html.light [class*="border-[#333]"],
+        html.light [class*="border-[#2a2a2a]"] {
+            border-color: var(--border) !important;
+        }
+
+        html.light [class*="hover:bg-[#202020]"]:hover {
+            background-color: #e5e7eb !important;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #262626;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #404040;
+        }
+
+        .theme-toggle {
+            border-color: var(--border);
+            color: var(--text);
+            background: transparent;
+        }
+
+        .theme-toggle:hover {
+            background: var(--surface);
+        }
+
+        .badge-featured {
+            background: var(--accent-bg);
+            color: var(--accent-text);
+            border-color: var(--accent-border);
+        }
+
+        /* Reading Progress Bar */
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6366f1 0%, #10b981 100%);
+            z-index: 9999;
+            transition: width 0.1s linear;
+            width: 0%;
+        }
+
+        /* Article Prose Styles */
+        .prose {
+            line-height: 1.85;
+            font-size: 1rem;
+        }
+
+        .prose h2 {
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.375rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+            scroll-margin-top: 5rem;
+        }
+
+        .prose h3 {
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.015em;
+            scroll-margin-top: 5rem;
+        }
+
+        .prose p {
+            color: #d4d4d4;
+            margin-bottom: 1.25rem;
+        }
+
+        html.light .prose p {
+            color: #374151;
+        }
+
+        .prose a {
+            color: #818cf8;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s ease;
+        }
+
+        .prose a:hover {
+            color: #a5b4fc;
+        }
+
+        html.light .prose a {
+            color: #4f46e5;
+        }
+
+        html.light .prose a:hover {
+            color: #6366f1;
+        }
+
+        .prose strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .prose ul,
+        .prose ol {
+            color: #d4d4d4;
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        html.light .prose ul,
+        html.light .prose ol {
+            color: #374151;
+        }
+
+        .prose ul {
+            list-style-type: disc;
+        }
+
+        .prose ol {
+            list-style-type: decimal;
+        }
+
+        .prose li {
+            margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
+        }
+
+        .prose li::marker {
+            color: var(--muted-3);
+        }
+
+        .prose blockquote {
+            border-left: 3px solid #6366f1;
+            padding: 0.75rem 1.25rem;
+            margin: 1.5rem 0;
+            background: rgba(99, 102, 241, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .prose blockquote p {
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 0;
+        }
+
+        .prose code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            background: var(--inline-code-bg);
+            padding: 0.15em 0.4em;
+            border-radius: 4px;
+            color: #e5a2f0;
+        }
+
+        html.light .prose code {
+            color: #7c3aed;
+        }
+
+        .prose pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .prose pre code {
+            background: none;
+            padding: 0;
+            font-size: 0.875rem;
+            color: #d4d4d4;
+            line-height: 1.7;
+        }
+
+        html.light .prose pre code {
+            color: #1f2937;
+        }
+
+        .prose hr {
+            border: none;
+            border-top: 1px solid var(--border-soft);
+            margin: 2.5rem 0;
+        }
+
+        .prose figure {
+            margin: 2rem 0;
+        }
+
+        .prose figcaption {
+            text-align: center;
+            color: var(--muted-3);
+            font-size: 0.8125rem;
+            margin-top: 0.75rem;
+        }
+
+        .prose img {
+            border-radius: 10px;
+            border: 1px solid var(--border-soft);
+        }
+
+        .prose table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .prose th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-bottom: 2px solid var(--border);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .prose td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-soft);
+            color: var(--muted);
+        }
+
+        /* Code block language badge */
+        .code-lang {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.75rem;
+            font-size: 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--muted-3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            user-select: none;
+        }
+
+        /* Copy button */
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 3.5rem;
+            background: transparent;
+            border: 1px solid var(--border-soft);
+            color: var(--muted-3);
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .prose pre:hover .copy-btn {
+            opacity: 1;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        /* Table of Contents */
+        .toc-link {
+            color: var(--muted-3);
+            font-size: 0.8125rem;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+            display: block;
+            padding: 0.3rem 0;
+        }
+
+        .toc-link:hover {
+            color: var(--text);
+        }
+
+        .toc-link.active {
+            color: var(--text);
+            padding-left: 0.5rem;
+            border-left: 2px solid #6366f1;
+            margin-left: -2px;
+        }
+
+        /* Share button styles */
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid var(--border-soft);
+            color: var(--muted-3);
+            transition: all 0.25s ease;
+        }
+
+        .share-btn:hover {
+            border-color: var(--border);
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        html.light .share-btn:hover {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        /* Related post card */
+        .related-card {
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            border-color: #404040;
+            background: rgba(255, 255, 255, 0.02);
+            transform: translateY(-2px);
+        }
+
+        html.light .related-card:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        /* Back-to-top */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--surface);
+            border: 1px solid var(--border-soft);
+            color: var(--muted-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #back-to-top:hover {
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        /* Callout box */
+        .callout {
+            background: rgba(99, 102, 241, 0.06);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .callout-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #818cf8;
+            margin-bottom: 0.5rem;
+        }
+
+        html.light .callout-title {
+            color: #4f46e5;
+        }
+
+        .callout p {
+            color: var(--muted) !important;
+            font-size: 0.875rem;
+            margin-bottom: 0 !important;
+        }
+
+        /* Author card */
+        .author-card {
+            background: var(--surface);
+            border: 1px solid var(--border-soft);
+            border-radius: 12px;
+        }
+
+        html.light .author-card {
+            background: #ffffff;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-[#171717] text-[#EDEDED] min-h-screen flex flex-col font-sans selection:bg-[#333] selection:text-[#EDEDED] antialiased">
+
+    <!-- Reading Progress -->
+    <div id="reading-progress" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav class="w-full max-w-2xl mx-auto px-4 py-8 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+        <a href="/" class="text-[#EDEDED] font-medium tracking-tight hover:text-gray-300 transition-colors"
+            aria-label="Home">
+            Minaruzzaman Shovon
+        </a>
+        <div class="flex flex-wrap gap-4 sm:gap-6 text-sm font-medium">
+            <a href="/" class="hover:text-[#EDEDED] transition-colors">Home</a>
+            <a href="/blog.html" class="text-[#EDEDED] transition-colors">Blog</a>
+            <a href="/#contact" class="hover:text-[#EDEDED] transition-colors">Connect</a>
+            <button id="theme-toggle" type="button"
+                class="theme-toggle inline-flex items-center justify-center rounded-md border px-2 py-1 text-xs sm:text-sm transition-colors"
+                aria-label="Toggle theme" aria-pressed="false">
+                <svg data-theme-icon="sun" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+                <svg data-theme-icon="moon" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" class="flex-grow w-full max-w-2xl mx-auto px-4 pb-20">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="mt-8 mb-10">
+            <ol class="flex items-center gap-2 text-xs text-[#666]">
+                <li><a href="/" class="hover:text-[#EDEDED] transition-colors">Home</a></li>
+                <li>
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </li>
+                <li><a href="/blog.html" class="hover:text-[#EDEDED] transition-colors">Blog</a></li>
+                <li>
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </li>
+                <li class="text-[#a1a1a1] truncate max-w-[200px]">Predicting Rainfall Patterns</li>
+            </ol>
+        </nav>
+
+        <!-- Article Header -->
+        <header class="mb-12">
+            <!-- Category & Date -->
+            <div class="flex flex-wrap items-center gap-3 mb-5">
+                <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Research</span>
+                <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">AI
+                    & ML</span>
+                <span class="w-1 h-1 rounded-full bg-[#333]"></span>
+                <span class="text-[#666] text-xs tabular-nums">February 28, 2026</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-[#EDEDED] text-3xl sm:text-4xl font-bold tracking-tighter mb-5 leading-[1.15]">
+                Predicting Rainfall Patterns Using LSTM Networks: A Deep Dive into Our Sylhet Case Study
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-[#a1a1a1] text-base sm:text-lg leading-relaxed mb-8">
+                How we combined hydrological domain expertise with deep learning to build a real-time rainfall
+                prediction system for the Sylhet and Sreemangal region, and what the results tell us about
+                climate variability.
+            </p>
+
+            <!-- Meta row -->
+            <div class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-[#2a2a2a]">
+                <!-- Author & Read Time -->
+                <div class="flex items-center gap-4">
+                    <div
+                        class="w-9 h-9 rounded-full bg-[#1a1a1a] border border-[#333] flex items-center justify-center text-sm font-bold text-[#EDEDED]">
+                        MS
+                    </div>
+                    <div>
+                        <p class="text-[#EDEDED] text-sm font-medium leading-tight">Minaruzzaman Shovon</p>
+                        <p class="text-[#666] text-xs">8 min read</p>
+                    </div>
+                </div>
+
+                <!-- Share Buttons -->
+                <div class="flex items-center gap-2">
+                    <button onclick="shareTwitter()" class="share-btn" aria-label="Share on Twitter"
+                        title="Share on Twitter">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                    </button>
+                    <button onclick="shareLinkedIn()" class="share-btn" aria-label="Share on LinkedIn"
+                        title="Share on LinkedIn">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M4.98 3.5a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2zM3.2 8.9h3.6V20H3.2V8.9zm5.7 0h3.4v1.6h.1c.5-.9 1.6-1.9 3.3-1.9 3.5 0 4.1 2.3 4.1 5.2V20h-3.6v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H8.9V8.9z" />
+                        </svg>
+                    </button>
+                    <button onclick="copyLink()" class="share-btn" aria-label="Copy link" title="Copy link"
+                        id="copy-link-btn">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Table of Contents -->
+        <aside class="mb-12 p-5 rounded-xl border border-[#2a2a2a] bg-[#1a1a1a]/30" id="toc-container">
+            <h2 class="text-[#EDEDED] text-sm font-semibold mb-3 flex items-center gap-2">
+                <svg class="w-4 h-4 text-[#666]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7">
+                    </path>
+                </svg>
+                Table of Contents
+            </h2>
+            <nav aria-label="Table of Contents">
+                <ul class="space-y-0.5">
+                    <li><a href="#background" class="toc-link" data-toc="background">Background & Motivation</a></li>
+                    <li><a href="#dataset" class="toc-link" data-toc="dataset">The Dataset</a></li>
+                    <li><a href="#methodology" class="toc-link" data-toc="methodology">Methodology</a></li>
+                    <li><a href="#model-architecture" class="toc-link" data-toc="model-architecture">Model
+                            Architecture</a></li>
+                    <li><a href="#results" class="toc-link" data-toc="results">Results & Discussion</a></li>
+                    <li><a href="#lessons" class="toc-link" data-toc="lessons">Lessons Learned</a></li>
+                    <li><a href="#whats-next" class="toc-link" data-toc="whats-next">What's Next</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Article Body -->
+        <article class="prose mb-16" id="article-body">
+
+            <h2 id="background">Background & Motivation</h2>
+            <p>
+                Bangladesh is one of the most climate-vulnerable countries in the world. Unpredictable monsoon patterns,
+                flash floods, and changing rainfall distributions continue to pose significant challenges for
+                agriculture, infrastructure, and human settlements. The <strong>Sylhet</strong> and
+                <strong>Sreemangal</strong> regions are particularly affected — receiving some of the highest annual
+                rainfall in the country.
+            </p>
+            <p>
+                Our research started with a simple question: <em>can we build a system that reliably predicts short-term
+                    and medium-term rainfall patterns using historically available meteorological data?</em> Traditional
+                statistical methods (ARIMA, exponential smoothing) fall short when rainfall exhibits non-linear
+                behaviors. This led us to explore deep learning — specifically <strong>Long Short-Term Memory
+                    (LSTM)</strong> networks.
+            </p>
+
+            <blockquote>
+                <p>"The question is not whether climate will change — it already has. The question is whether our tools
+                    can keep pace."</p>
+            </blockquote>
+
+            <h2 id="dataset">The Dataset</h2>
+            <p>
+                We worked with <strong>40+ years</strong> of daily rainfall data from the Bangladesh Meteorological
+                Department (BMD), specifically from two stations: Sylhet (1980–2023) and Sreemangal (1980–2023). After
+                cleaning and preprocessing, our dataset contained:
+            </p>
+            <ul>
+                <li><strong>Features:</strong> daily precipitation (mm), temperature, humidity, wind speed</li>
+                <li><strong>Target variable:</strong> 7-day and 30-day cumulative rainfall</li>
+                <li><strong>Total samples:</strong> ~31,000+ daily records per station</li>
+                <li><strong>Missing data rate:</strong> 3.2% (imputed using temporal interpolation)</li>
+            </ul>
+
+            <div class="callout">
+                <div class="callout-title">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Data Note
+                </div>
+                <p>The BMD data required significant preprocessing. Station-level inconsistencies (equipment changes,
+                    recording gaps during political events) meant we had to build a custom validation pipeline before
+                    training.</p>
+            </div>
+
+            <h2 id="methodology">Methodology</h2>
+            <p>
+                Our pipeline followed a four-stage approach:
+            </p>
+            <ol>
+                <li><strong>Data preprocessing</strong> — cleaning, normalization (MinMaxScaler), and windowed sequence
+                    generation</li>
+                <li><strong>Feature engineering</strong> — lag features, rolling means, seasonal decomposition</li>
+                <li><strong>Model training</strong> — LSTM with attention, trained on 80/10/10 splits</li>
+                <li><strong>Evaluation</strong> — RMSE, MAE, and R² as primary metrics</li>
+            </ol>
+            <p>
+                For sequence generation, we used a <code>lookback_window</code> of 60 days — meaning the model sees the
+                past 60 days of data to predict the next 7 or 30 days.
+            </p>
+
+            <h2 id="model-architecture">Model Architecture</h2>
+            <p>
+                The architecture uses a stacked LSTM with an attention layer. Here's the simplified structure:
+            </p>
+
+            <pre><code><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button># Model definition (simplified)
+import tensorflow as tf
+from tensorflow.keras.layers import LSTM, Dense, Dropout, Attention
+
+model = tf.keras.Sequential([
+    LSTM(128, return_sequences=True,
+         input_shape=(lookback, n_features)),
+    Dropout(0.2),
+    LSTM(64, return_sequences=False),
+    Dropout(0.2),
+    Dense(32, activation='relu'),
+    Dense(forecast_horizon)
+])
+
+model.compile(
+    optimizer='adam',
+    loss='mse',
+    metrics=['mae']
+)
+
+model.fit(
+    X_train, y_train,
+    epochs=100,
+    batch_size=32,
+    validation_data=(X_val, y_val),
+    callbacks=[early_stopping, lr_scheduler]
+)</code></pre>
+
+            <h3>Hyperparameter Choices</h3>
+            <p>
+                We experimented with several configurations before settling on the final architecture:
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>LSTM layers</td>
+                        <td>2 (stacked)</td>
+                        <td>3 layers showed overfitting</td>
+                    </tr>
+                    <tr>
+                        <td>Hidden units</td>
+                        <td>128 → 64</td>
+                        <td>Diminishing returns above 128</td>
+                    </tr>
+                    <tr>
+                        <td>Dropout</td>
+                        <td>0.2</td>
+                        <td>0.3 hurt convergence speed</td>
+                    </tr>
+                    <tr>
+                        <td>Lookback window</td>
+                        <td>60 days</td>
+                        <td>Best balance for seasonal capture</td>
+                    </tr>
+                    <tr>
+                        <td>Learning rate</td>
+                        <td>1e-3 → 1e-5</td>
+                        <td>Cosine annealing scheduler</td>
+                    </tr>
+                    <tr>
+                        <td>Batch size</td>
+                        <td>32</td>
+                        <td>GPU memory constrained</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="results">Results & Discussion</h2>
+            <p>
+                The model achieved strong performance on both stations, with the 7-day forecast outperforming the 30-day
+                horizon as expected:
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Sylhet (7-day)</th>
+                        <th>Sylhet (30-day)</th>
+                        <th>Sreemangal (7-day)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>RMSE</td>
+                        <td>12.4 mm</td>
+                        <td>38.7 mm</td>
+                        <td>10.8 mm</td>
+                    </tr>
+                    <tr>
+                        <td>MAE</td>
+                        <td>8.1 mm</td>
+                        <td>24.3 mm</td>
+                        <td>7.2 mm</td>
+                    </tr>
+                    <tr>
+                        <td>R²</td>
+                        <td>0.91</td>
+                        <td>0.78</td>
+                        <td>0.93</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                The R² of <strong>0.91</strong> for 7-day Sylhet predictions is particularly encouraging. The model
+                captures pre-monsoon build-up patterns well, though it struggles with extreme outlier events (e.g., the
+                2022 flash flood anomaly in Sylhet).
+            </p>
+
+            <blockquote>
+                <p>Interestingly, the Sreemangal station data produced better results despite having more missing
+                    values. We attribute this to Sreemangal's more consistent seasonal cycle compared to Sylhet's
+                    erratic urban heat island effects.</p>
+            </blockquote>
+
+            <h2 id="lessons">Lessons Learned</h2>
+            <p>
+                A few key takeaways from this research:
+            </p>
+            <ul>
+                <li><strong>Domain knowledge matters more than architecture.</strong> The biggest accuracy gains came
+                    from better feature engineering (seasonal decomposition, humidity-rainfall lag correlations), not
+                    from making the model larger.</li>
+                <li><strong>Data quality is non-negotiable.</strong> We spent 60% of our project time on data cleaning.
+                    BMD station data has legitimate gaps and instrument changes that naive imputation can't handle.</li>
+                <li><strong>Simpler models can surprise you.</strong> A well-tuned GRU model with the same features
+                    achieved R² = 0.88 — only slightly behind our LSTM. The marginal gain from LSTM wasn't always worth
+                    the training cost.</li>
+                <li><strong>Evaluation on extreme events is critical.</strong> Standard metrics like RMSE paint an
+                    optimistic picture. We added a custom "extreme event capture rate" metric and saw our model only
+                    caught 62% of anomalous rainfall events.</li>
+            </ul>
+
+            <h2 id="whats-next">What's Next</h2>
+            <p>
+                We're currently working on three extensions of this research:
+            </p>
+            <ol>
+                <li><strong>Multi-station fusion</strong> — combining data from 10+ BMD stations using a graph neural
+                    network to capture spatial dependencies</li>
+                <li><strong>Satellite data integration</strong> — incorporating CHIRPS and GPM satellite precipitation
+                    data for regions without ground stations</li>
+                <li><strong>Real-time dashboard</strong> — a Next.js + Python FastAPI app that serves live predictions
+                    with uncertainty intervals</li>
+            </ol>
+            <p>
+                If you're interested in collaborating on any of these directions, feel free to <a href="/#contact">reach
+                    out</a>. The full conference paper is available on <a
+                    href="https://www.researchgate.net/profile/Md-Shovon-13" target="_blank"
+                    rel="noopener noreferrer">ResearchGate</a>.
+            </p>
+
+            <hr>
+
+            <p>
+                <em>Thanks for reading. If you found this useful, share it with someone who'd appreciate the
+                    intersection of hydrology and deep learning.</em>
+            </p>
+
+        </article>
+
+        <!-- Tags -->
+        <section class="mb-12 pb-8 border-b border-[#2a2a2a]">
+            <div class="flex flex-wrap gap-2">
+                <span class="text-[#666] text-xs mr-2 py-1">Tags:</span>
+                <a href="/blog.html"
+                    class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333] hover:text-[#EDEDED] hover:border-[#555] transition-colors">LSTM</a>
+                <a href="/blog.html"
+                    class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333] hover:text-[#EDEDED] hover:border-[#555] transition-colors">Rainfall
+                    Prediction</a>
+                <a href="/blog.html"
+                    class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333] hover:text-[#EDEDED] hover:border-[#555] transition-colors">Deep
+                    Learning</a>
+                <a href="/blog.html"
+                    class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333] hover:text-[#EDEDED] hover:border-[#555] transition-colors">Hydrology</a>
+                <a href="/blog.html"
+                    class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-[#1a1a1a] text-[#888] border border-[#333] hover:text-[#EDEDED] hover:border-[#555] transition-colors">Bangladesh</a>
+            </div>
+        </section>
+
+        <!-- Author Card -->
+        <section class="mb-14">
+            <div class="author-card p-6 flex flex-col sm:flex-row gap-5 items-start">
+                <div
+                    class="w-14 h-14 rounded-full bg-[#252525] border border-[#333] flex-shrink-0 flex items-center justify-center text-lg font-bold text-[#EDEDED]">
+                    MS
+                </div>
+                <div>
+                    <h3 class="text-[#EDEDED] font-semibold text-sm mb-1">Written by Minaruzzaman Shovon</h3>
+                    <p class="text-[#888] text-sm leading-relaxed mb-3">
+                        Water Resources Engineering undergraduate at CUET and Full Stack Developer. Interested in
+                        hydrology, machine learning, and building tools that bridge the gap between domain science and
+                        software.
+                    </p>
+                    <div class="flex gap-3 text-xs">
+                        <a href="https://github.com/sh00von" target="_blank"
+                            class="text-[#666] hover:text-[#EDEDED] transition-colors">GitHub</a>
+                        <a href="https://www.linkedin.com/in/minarsvn9090/" target="_blank"
+                            class="text-[#666] hover:text-[#EDEDED] transition-colors">LinkedIn</a>
+                        <a href="https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en" target="_blank"
+                            class="text-[#666] hover:text-[#EDEDED] transition-colors">Google Scholar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Posts -->
+        <section class="mb-20">
+            <h2 class="text-[#EDEDED] font-semibold text-lg mb-6 tracking-tight">Related Articles</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                <a href="#" class="related-card block p-5 group no-underline">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span
+                            class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">Research</span>
+                        <span class="text-[#666] text-[10px] tabular-nums">Dec 2025</span>
+                    </div>
+                    <h3
+                        class="text-[#d4d4d4] font-semibold text-sm mb-2 leading-snug group-hover:text-[#EDEDED] transition-colors">
+                        Seasonal Anomaly Detection in the Halda River
+                    </h3>
+                    <p class="text-[#888] text-xs leading-relaxed line-clamp-2">
+                        Building a multivariate deep learning framework for detecting anomalous patterns in one of
+                        Bangladesh's key rivers.
+                    </p>
+                </a>
+
+                <a href="#" class="related-card block p-5 group no-underline">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span
+                            class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-[#1a1a1a] text-[#888] border border-[#333]">AI
+                            & ML</span>
+                        <span class="text-[#666] text-[10px] tabular-nums">Dec 2025</span>
+                    </div>
+                    <h3
+                        class="text-[#d4d4d4] font-semibold text-sm mb-2 leading-snug group-hover:text-[#EDEDED] transition-colors">
+                        Machine Learning for Rainfall Prediction: Feature Engineering to Deployment
+                    </h3>
+                    <p class="text-[#888] text-xs leading-relaxed line-clamp-2">
+                        Behind the scenes of building an ML pipeline for time-series rainfall prediction from raw data.
+                    </p>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Post Navigation -->
+        <section class="mb-20">
+            <div class="flex flex-col sm:flex-row justify-between gap-4 border-t border-[#2a2a2a] pt-8">
+                <a href="#"
+                    class="group flex items-center gap-3 text-sm text-[#888] hover:text-[#EDEDED] transition-colors">
+                    <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+                    </svg>
+                    <div>
+                        <span class="block text-[#666] text-[10px] uppercase tracking-wider mb-0.5">Previous</span>
+                        <span class="font-medium">HEC-RAS for Flood Simulation</span>
+                    </div>
+                </a>
+                <a href="#"
+                    class="group flex items-center gap-3 text-sm text-[#888] hover:text-[#EDEDED] transition-colors text-right sm:ml-auto">
+                    <div>
+                        <span class="block text-[#666] text-[10px] uppercase tracking-wider mb-0.5">Next</span>
+                        <span class="font-medium">Building High-Performance APIs</span>
+                    </div>
+                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" aria-label="Back to top" title="Back to top">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+        </svg>
+    </button>
+
+    <footer
+        class="max-w-2xl mx-auto px-4 pb-10 text-[#555] text-sm flex flex-col sm:flex-row justify-between items-center">
+        <span>&copy; 2026 Minaruzzaman Shovon</span>
+    </footer>
+
+    <script>
+            // --- Theme Toggle ---
+            (() => {
+                const root = document.documentElement;
+                const toggleButton = document.getElementById("theme-toggle");
+                const themeMeta = document.querySelector('meta[name="theme-color"]');
+                const storageKey = "theme";
+
+                const applyTheme = (theme) => {
+                    const isLight = theme === "light";
+                    root.classList.toggle("light", isLight);
+                    if (themeMeta) themeMeta.setAttribute("content", isLight ? "#f7f7f7" : "#171717");
+                    if (toggleButton) {
+                        const sunIcon = toggleButton.querySelector('[data-theme-icon="sun"]');
+                        const moonIcon = toggleButton.querySelector('[data-theme-icon="moon"]');
+                        if (sunIcon) sunIcon.classList.toggle("hidden", !isLight);
+                        if (moonIcon) moonIcon.classList.toggle("hidden", isLight);
+                        toggleButton.setAttribute("aria-pressed", String(isLight));
+                    }
+                };
+
+                const savedTheme = localStorage.getItem(storageKey);
+                applyTheme(savedTheme === "light" ? "light" : "dark");
+
+                if (toggleButton) {
+                    toggleButton.addEventListener("click", () => {
+                        const nextTheme = root.classList.contains("light") ? "dark" : "light";
+                        localStorage.setItem(storageKey, nextTheme);
+                        applyTheme(nextTheme);
+                    });
+                }
+            })();
+
+        // --- Reading Progress Bar ---
+        (() => {
+            const progressBar = document.getElementById('reading-progress');
+            const article = document.getElementById('article-body');
+            if (!progressBar || !article) return;
+
+            const updateProgress = () => {
+                const articleRect = article.getBoundingClientRect();
+                const articleHeight = article.offsetHeight;
+                const windowHeight = window.innerHeight;
+                const scrolled = Math.max(0, -articleRect.top);
+                const total = articleHeight - windowHeight;
+                const progress = Math.min(100, Math.max(0, (scrolled / total) * 100));
+                progressBar.style.width = progress + '%';
+            };
+
+            window.addEventListener('scroll', updateProgress, { passive: true });
+            updateProgress();
+        })();
+
+        // --- Table of Contents Highlight ---
+        (() => {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const headings = [];
+
+            tocLinks.forEach(link => {
+                const id = link.getAttribute('data-toc');
+                const heading = document.getElementById(id);
+                if (heading) headings.push({ id, el: heading, link });
+            });
+
+            const updateToc = () => {
+                let activeId = headings[0]?.id;
+
+                headings.forEach(({ id, el }) => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top <= 120) activeId = id;
+                });
+
+                tocLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('data-toc') === activeId);
+                });
+            };
+
+            window.addEventListener('scroll', updateToc, { passive: true });
+            updateToc();
+        })();
+
+        // --- Back to Top ---
+        (() => {
+            const btn = document.getElementById('back-to-top');
+            if (!btn) return;
+
+            window.addEventListener('scroll', () => {
+                btn.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+
+        // --- Share Functions ---
+        function shareTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(document.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=550,height=420');
+        }
+
+        function shareLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=550,height=420');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const btn = document.getElementById('copy-link-btn');
+                const original = btn.innerHTML;
+                btn.innerHTML = `<svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+                setTimeout(() => { btn.innerHTML = original; }, 2000);
+            });
+        }
+
+        // --- Copy Code Blocks ---
+        function copyCode(btn) {
+            const codeBlock = btn.closest('pre').querySelector('code');
+            const text = codeBlock.innerText.replace(/^(python|javascript|bash|html|css)\n?/i, '');
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = 'Copied!';
+                setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+            });
+        }
+
+        // --- GSAP Animations ---
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Prevent FOUC
+            gsap.to("body", { autoAlpha: 1, duration: 0.5 });
+
+            // Navbar
+            gsap.from("nav a, nav button", {
+                y: -20,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.1,
+                ease: "power3.out",
+                delay: 0.2
+            });
+
+            // Breadcrumb
+            gsap.from("nav[aria-label='Breadcrumb']", {
+                x: -15,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: 0.5
+            });
+
+            // Header elements
+            const headerTl = gsap.timeline({ delay: 0.6 });
+            headerTl
+                .from("header .flex-wrap", {
+                    y: 15,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                })
+                .from("header h1", {
+                    y: 25,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out"
+                }, "-=0.6")
+                .from("header > p", {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                }, "-=0.7")
+                .from("header > .flex", {
+                    y: 15,
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: "power3.out"
+                }, "-=0.5");
+
+            // Table of Contents
+            gsap.from("#toc-container", {
+                y: 20,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: 1.2
+            });
+
+            // Article content - animate headings and paragraphs on scroll
+            gsap.utils.toArray(".prose h2, .prose h3").forEach(heading => {
+                gsap.from(heading, {
+                    scrollTrigger: {
+                        trigger: heading,
+                        start: "top 88%",
+                    },
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+
+            // Callout
+            gsap.utils.toArray(".callout").forEach(callout => {
+                gsap.from(callout, {
+                    scrollTrigger: {
+                        trigger: callout,
+                        start: "top 88%",
+                    },
+                    x: -15,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+
+            // Code blocks
+            gsap.utils.toArray(".prose pre").forEach(block => {
+                gsap.from(block, {
+                    scrollTrigger: {
+                        trigger: block,
+                        start: "top 88%",
+                    },
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+
+            // Tables
+            gsap.utils.toArray(".prose table").forEach(table => {
+                gsap.from(table, {
+                    scrollTrigger: {
+                        trigger: table,
+                        start: "top 88%",
+                    },
+                    y: 15,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+
+            // Related posts
+            gsap.utils.toArray(".related-card").forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 90%",
+                    },
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: "power2.out"
+                });
+            });
+
+            // Author card
+            gsap.from(".author-card", {
+                scrollTrigger: {
+                    trigger: ".author-card",
+                    start: "top 90%",
+                },
+                y: 20,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+
+</html>
