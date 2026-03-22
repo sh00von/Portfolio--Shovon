@@ -1,7 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="antialiased" style="scroll-behavior: smooth;">
 
 <head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJF34HQPL9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-JJF34HQPL9');
+    </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,43 +91,93 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
 
-    <!-- Structured Data -->
+    <!-- Structured Data: ProfilePage -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Md Minaruzzaman Shovon",
-      "jobTitle": "Water Resources Engineering Undergraduate and Full Stack Developer",
-      "url": "https://shovon.bd",
-      "image": "https://shovon.bd/og.png",
-      "sameAs": [
-        "https://github.com/sh00von",
-        "https://twitter.com/sh00von",
-        "https://www.linkedin.com/in/minarsvn9090/",
-        "https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en",
-        "https://www.researchgate.net/profile/Md-Shovon-13"
-      ],
-      "affiliation": {
-        "@type": "CollegeOrUniversity",
-        "name": "Chittagong University of Engineering and Technology (CUET)"
-      },
-      "knowsAbout": [
-        "Hydrology",
-        "Hydrological Modeling",
-        "Hydraulics",
-        "Environmental Engineering",
-        "Water Resources Engineering",
-        "Full Stack Development",
-        "AI Integration"
-      ],
-      "knowsLanguage": [
-        "English",
-        "Bengali"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "Bangladesh"
+      "@type": "ProfilePage",
+      "dateCreated": "2024-01-01T00:00:00+06:00",
+      "dateModified": "2026-03-20T15:10:00+06:00",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Md Minaruzzaman Shovon",
+        "alternateName": "Shovon",
+        "jobTitle": "Water Resources Engineering Undergraduate and Full Stack Developer",
+        "url": "https://shovon.bd",
+        "image": "https://shovon.bd/shovon.jpg",
+        "description": "Water Resources Engineering undergraduate at CUET focused on hydrological modeling, environmental analysis, and AI-powered web applications.",
+        "interactionStatistic": [
+          {
+            "@type": "InteractionCounter",
+            "interactionType": "https://schema.org/FollowAction",
+            "userInteractionCount": 0
+          },
+          {
+            "@type": "InteractionCounter",
+            "interactionType": "https://schema.org/LikeAction",
+            "userInteractionCount": 0
+          }
+        ],
+        "agentInteractionStatistic": {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/WriteAction",
+          "userInteractionCount": 2
+        },
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Chittagong University of Engineering and Technology (CUET)"
+        },
+        "knowsAbout": [
+          "Hydrology",
+          "Hydrological Modeling",
+          "Hydraulics",
+          "Environmental Engineering",
+          "Water Resources Engineering",
+          "Full Stack Development",
+          "AI Integration"
+        ],
+        "knowsLanguage": ["English", "Bengali"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "Bangladesh"
+        },
+        "sameAs": [
+          "https://github.com/sh00von",
+          "https://twitter.com/sh00von",
+          "https://www.linkedin.com/in/minarsvn9090/",
+          "https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en",
+          "https://www.researchgate.net/profile/Md-Shovon-13",
+          "https://www.facebook.com/minar.svn"
+        ]
       }
+    }
+    </script>
+
+    <!-- Structured Data: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://shovon.bd/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Publications",
+          "item": "https://shovon.bd/#research"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Experience",
+          "item": "https://shovon.bd/#experience"
+        }
+      ]
     }
     </script>
 
@@ -252,39 +311,88 @@
     class="bg-[#171717] text-[#EDEDED] min-h-screen flex flex-col font-sans selection:bg-[#333] selection:text-[#EDEDED] antialiased">
 
     <!-- Navigation -->
-    <nav class="w-full max-w-2xl mx-auto px-4 py-8 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-        <!-- Logo / Name -->
-        <a href="/" class="text-[#EDEDED] font-medium tracking-tight hover:text-gray-300 transition-colors"
-            aria-label="Home">
-            Minaruzzaman Shovon
-        </a>
+    <nav class="w-full max-w-2xl mx-auto px-4 py-6" aria-label="Main navigation">
+        <div class="flex justify-between items-center">
+            <!-- Logo / Name -->
+            <a href="/" class="text-[#EDEDED] font-medium tracking-tight hover:text-gray-300 transition-colors"
+                aria-label="Home">
+                Minaruzzaman Shovon
+            </a>
 
-        <!-- Links -->
-        <div class="flex flex-wrap gap-4 sm:gap-6 text-sm font-medium">
-            <a href="#experience" class="hover:text-[#EDEDED] transition-colors">Experience</a>
-            <a href="#certifications" class="hover:text-[#EDEDED] transition-colors">Certifications</a>
-            <a href="/blog.html" class="hover:text-[#EDEDED] transition-colors">Blog</a>
-            <a href="#contact" class="hover:text-[#EDEDED] transition-colors">Connect</a>
-            <button id="theme-toggle" type="button"
-                class="theme-toggle inline-flex items-center justify-center rounded-md border px-2 py-1 text-xs sm:text-sm transition-colors"
-                aria-label="Toggle theme" aria-pressed="false">
-                <svg data-theme-icon="sun" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <circle cx="12" cy="12" r="4"></circle>
-                    <path d="M12 2v2"></path>
-                    <path d="M12 20v2"></path>
-                    <path d="m4.93 4.93 1.41 1.41"></path>
-                    <path d="m17.66 17.66 1.41 1.41"></path>
-                    <path d="M2 12h2"></path>
-                    <path d="M20 12h2"></path>
-                    <path d="m6.34 17.66-1.41 1.41"></path>
-                    <path d="m19.07 4.93-1.41 1.41"></path>
-                </svg>
-                <svg data-theme-icon="moon" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
-                </svg>
-            </button>
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="#experience" class="hover:text-[#EDEDED] transition-colors">Experience</a>
+                <a href="#certifications" class="hover:text-[#EDEDED] transition-colors">Certifications</a>
+                <a href="#achievements" class="hover:text-[#EDEDED] transition-colors">Achievements</a>
+                <a href="#contact" class="hover:text-[#EDEDED] transition-colors">Connect</a>
+                <button id="theme-toggle" type="button"
+                    class="theme-toggle inline-flex items-center justify-center rounded-md border px-2 py-1 text-sm transition-colors"
+                    aria-label="Toggle theme" aria-pressed="false">
+                    <svg data-theme-icon="sun" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2"></path>
+                        <path d="M12 20v2"></path>
+                        <path d="m4.93 4.93 1.41 1.41"></path>
+                        <path d="m17.66 17.66 1.41 1.41"></path>
+                        <path d="M2 12h2"></path>
+                        <path d="M20 12h2"></path>
+                        <path d="m6.34 17.66-1.41 1.41"></path>
+                        <path d="m19.07 4.93-1.41 1.41"></path>
+                    </svg>
+                    <svg data-theme-icon="moon" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile: theme toggle + hamburger -->
+            <div class="flex md:hidden items-center gap-2">
+                <button id="theme-toggle-mobile" type="button"
+                    class="theme-toggle inline-flex items-center justify-center rounded-md border px-2 py-1 text-sm transition-colors"
+                    aria-label="Toggle theme" aria-pressed="false">
+                    <svg data-theme-icon="sun" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2"></path>
+                        <path d="M12 20v2"></path>
+                        <path d="m4.93 4.93 1.41 1.41"></path>
+                        <path d="m17.66 17.66 1.41 1.41"></path>
+                        <path d="M2 12h2"></path>
+                        <path d="M20 12h2"></path>
+                        <path d="m6.34 17.66-1.41 1.41"></path>
+                        <path d="m19.07 4.93-1.41 1.41"></path>
+                    </svg>
+                    <svg data-theme-icon="moon" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
+                    </svg>
+                </button>
+                <button id="mobile-menu-btn" type="button"
+                    class="theme-toggle inline-flex flex-col justify-center items-center w-9 h-9 rounded-md border gap-1.5 transition-colors"
+                    aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="block w-5 h-0.5 bg-current transition-all duration-300" id="bar1"></span>
+                    <span class="block w-5 h-0.5 bg-current transition-all duration-300" id="bar2"></span>
+                    <span class="block w-5 h-0.5 bg-current transition-all duration-300" id="bar3"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="md:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
+            <div class="flex flex-col gap-4 pt-5 pb-2 text-sm font-medium border-t border-[#2a2a2a] mt-4">
+                <a href="#experience" class="hover:text-[#EDEDED] transition-colors mobile-nav-link">Experience</a>
+                <a href="#certifications"
+                    class="hover:text-[#EDEDED] transition-colors mobile-nav-link">Certifications</a>
+                <a href="#achievements" class="hover:text-[#EDEDED] transition-colors mobile-nav-link">Achievements</a>
+                <a href="#contact" class="hover:text-[#EDEDED] transition-colors mobile-nav-link">Connect</a>
+            </div>
         </div>
     </nav>
 
@@ -306,61 +414,25 @@
             </p>
 
             <!-- Minimal Social Links -->
-            <div class="flex flex-wrap gap-x-4 gap-y-2 text-xs sm:text-sm font-medium text-[#EDEDED]">
-                <a href="https://github.com/sh00von" target="_blank" aria-label="GitHub Profile"
-                    class="flex items-center gap-2 hover:text-[#a1a1a1] transition-colors">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0112 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2z" />
-                    </svg>
-                    GitHub
-                </a>
-                <a href="https://www.facebook.com/minar.svn" target="_blank" aria-label="Facebook Profile"
-                    class="flex items-center gap-2 hover:text-[#a1a1a1] transition-colors">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                    </svg>
-                    Facebook
-                </a>
-                <a href="https://www.linkedin.com/in/minarsvn9090/" target="_blank" aria-label="LinkedIn Profile"
-                    class="flex items-center gap-2 hover:text-[#a1a1a1] transition-colors">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M4.98 3.5a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2zM3.2 8.9h3.6V20H3.2V8.9zm5.7 0h3.4v1.6h.1c.5-.9 1.6-1.9 3.3-1.9 3.5 0 4.1 2.3 4.1 5.2V20h-3.6v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H8.9V8.9z" />
-                    </svg>
-                    LinkedIn
-                </a>
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#666]">
+                <a href="https://github.com/sh00von" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-[#EDEDED] transition-colors">GitHub</a>
+                <span aria-hidden="true">·</span>
+                <a href="https://www.facebook.com/minar.svn" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-[#EDEDED] transition-colors">Facebook</a>
+                <span aria-hidden="true">·</span>
+                <a href="https://www.linkedin.com/in/minarsvn9090/" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-[#EDEDED] transition-colors">LinkedIn</a>
+                <span aria-hidden="true">·</span>
                 <a href="https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en" target="_blank"
-                    aria-label="Google Scholar Profile"
-                    class="flex items-center gap-2 hover:text-[#a1a1a1] transition-colors">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 3 2 8l10 5 8-4v6h2V8L12 3zm-6 9v3c0 2.5 2.7 4.5 6 4.5s6-2 6-4.5v-3l-6 3-6-3z" />
-                    </svg>
-                    Google Scholar
-                </a>
-                <a href="https://www.researchgate.net/profile/Md-Shovon-13" target="_blank"
-                    aria-label="ResearchGate Profile"
-                    class="flex items-center gap-2 hover:text-[#a1a1a1] transition-colors">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12 2a5 5 0 0 1 4.76 3.5h3.74v2h-3.74A5 5 0 0 1 12 11a5 5 0 0 1-4.76-3.5H3.5v-2h3.74A5 5 0 0 1 12 2zm0 11a5 5 0 0 1 4.76 3.5h3.74v2h-3.74A5 5 0 0 1 12 22a5 5 0 0 1-4.76-3.5H3.5v-2h3.74A5 5 0 0 1 12 13z" />
-                    </svg>
-                    ResearchGate
-                </a>
-                <a href="/resume.pdf" aria-label="View Resume"
-                    class="flex items-center gap-2 hover:text-[#a1a1a1] transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                        </path>
-                    </svg>
-                    Resume
-                </a>
+                    rel="noopener noreferrer" class="hover:text-[#EDEDED] transition-colors">Google Scholar</a>
+                <span aria-hidden="true">·</span>
+                <a href="https://www.researchgate.net/profile/Md-Shovon-13" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-[#EDEDED] transition-colors">ResearchGate</a>
+                <span aria-hidden="true">·</span>
+                <a href="/resume.pdf" class="hover:text-[#EDEDED] transition-colors">Resume</a>
             </div>
         </section>
-        <script defer src="http://localhost:3000/embed/ces.js" data-token="862a21" data-label="Leave feedback"
-            data-color="#1b1b1b" data-metric="ces" data-target="#feedback-widget"></script>
 
         <!-- Education -->
         <section id="education" class="mb-20">
@@ -401,19 +473,22 @@
             <div class="flex flex-col space-y-2">
 
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
-                    <span class="text-[#EDEDED] font-medium">Logifu PTY LTD</span>
+                    <a href="https://blendin247.com/" target="_blank" rel="noopener noreferrer"
+                        class="text-[#EDEDED] font-medium hover:underline decoration-[#555] underline-offset-4">Blendin</a>
                     <div
                         class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
                     </div>
-                    <span class="text-sm text-[#666] tabular-nums">Senior Software Developer, 2025-Present</span>
+                    <span class="text-sm text-[#666] tabular-nums">Web Developer, 2025–Present</span>
                 </div>
 
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
-                    <span class="text-[#EDEDED] font-medium">Blendin</span>
+                    <a href="https://www.logifu.com/" target="_blank" rel="noopener noreferrer"
+                        class="text-[#EDEDED] font-medium hover:underline decoration-[#555] underline-offset-4">Logifu
+                        PTY LTD</a>
                     <div
                         class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
                     </div>
-                    <span class="text-sm text-[#666] tabular-nums">Web Developer, 2025-Present</span>
+                    <span class="text-sm text-[#666] tabular-nums">Senior Software Developer, 2025–2026</span>
                 </div>
 
             </div>
@@ -425,7 +500,19 @@
             <div class="flex flex-col space-y-2">
 
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
-                    <span class="text-[#EDEDED] font-medium">Cyber Security Club</span>
+                    <a href="https://www.facebook.com/wrro.cuet" target="_blank" rel="noopener noreferrer"
+                        class="text-[#EDEDED] font-medium hover:underline decoration-[#555] underline-offset-4"
+                        title="Water Resources &amp; Research Organization">WRRO</a>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums">Joint Research Secretary, 2025–Present</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <a href="https://www.facebook.com/cybersec.cuet" target="_blank" rel="noopener noreferrer"
+                        class="text-[#EDEDED] font-medium hover:underline decoration-[#555] underline-offset-4">Cyber
+                        Security Club, CUET</a>
                     <div
                         class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
                     </div>
@@ -433,23 +520,17 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
-                    <span class="text-[#EDEDED] font-medium" title="Water Resources & Research Organization">WRRO</span>
+                    <a href="https://nogorful.org/" target="_blank" rel="noopener noreferrer"
+                        class="text-[#EDEDED] font-medium hover:underline decoration-[#555] underline-offset-4">Nogorful</a>
                     <div
                         class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
                     </div>
-                    <span class="text-sm text-[#666] tabular-nums">Joint Research Secretary, 2025-Present</span>
+                    <span class="text-sm text-[#666] tabular-nums">ICT Director, 2024–Present</span>
                 </div>
 
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
-                    <span class="text-[#EDEDED] font-medium">Nogorful</span>
-                    <div
-                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
-                    </div>
-                    <span class="text-sm text-[#666] tabular-nums">ICT Director, 2024-Present</span>
-                </div>
-
-                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
-                    <span class="text-[#EDEDED] font-medium">Ongko</span>
+                    <a href="https://www.facebook.com/ongko.org/" target="_blank" rel="noopener noreferrer"
+                        class="text-[#EDEDED] font-medium hover:underline decoration-[#555] underline-offset-4">Ongko</a>
                     <div
                         class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
                     </div>
@@ -601,41 +682,117 @@
             </div>
         </section>
 
+        <!-- Achievements -->
+        <section id="achievements" class="mb-20">
+            <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Achievements</h2>
+            <div class="flex flex-col space-y-4">
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <div>
+                        <span class="text-[#EDEDED] font-medium">Ranked 11th — NextGen Hackathon</span>
+                        <p class="text-[#888] text-sm mt-0.5">International Islamic University Chittagong</p>
+                    </div>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums flex-shrink-0">2025</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <div>
+                        <span class="text-[#EDEDED] font-medium">Finalist — BCS ICT FEST 2025 (Top 21 of 150+
+                            Teams)</span>
+                        <p class="text-[#888] text-sm mt-0.5">Bangladesh Computer Society</p>
+                    </div>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums flex-shrink-0">2025</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <div>
+                        <span class="text-[#EDEDED] font-medium">Ranked 246th out of 760 Participants — KnightCTF
+                            2025</span>
+                        <p class="text-[#888] text-sm mt-0.5">Organized by Knight Squad</p>
+                    </div>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums flex-shrink-0">2025</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <div>
+                        <span class="text-[#EDEDED] font-medium">2nd Runner-Up — IEEE CS Hackathon</span>
+                        <p class="text-[#888] text-sm mt-0.5">IEEE Computer Society, Bangladesh University of
+                            Engineering and Technology</p>
+                    </div>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums flex-shrink-0">2024</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <div>
+                        <span class="text-[#EDEDED] font-medium">Local Qualifier — NASA Space Apps Challenge 2024</span>
+                        <p class="text-[#888] text-sm mt-0.5">Earth Science Division, Science Mission Directorate, NASA
+                        </p>
+                    </div>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums flex-shrink-0">2024</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <div>
+                        <span class="text-[#EDEDED] font-medium">Ranked 26th out of 106 Teams — SMP CTF 2024</span>
+                        <p class="text-[#888] text-sm mt-0.5">Organized by SMP Cyber Security</p>
+                    </div>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums flex-shrink-0">2024</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between group">
+                    <div>
+                        <span class="text-[#EDEDED] font-medium">1st Place — AutoCAD Design Competition</span>
+                        <p class="text-[#888] text-sm mt-0.5">Department of Water Resources Engineering, Chittagong
+                            University of Engineering and Technology</p>
+                    </div>
+                    <div
+                        class="border-b border-[#333] flex-grow mx-4 hidden sm:block group-hover:border-[#555] transition-colors">
+                    </div>
+                    <span class="text-sm text-[#666] tabular-nums flex-shrink-0">2023</span>
+                </div>
+
+            </div>
+        </section>
+
         <!-- Connect -->
         <section id="contact" class="mb-20">
             <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Connect</h2>
             <p class="text-[#a1a1a1] mb-6">
                 I'm always open to discussing new opportunities.
             </p>
-            <div class="flex flex-wrap gap-x-4 gap-y-2">
-                <a href="mailto:hello@shovon.bd" class="text-[#EDEDED] text-sm hover:underline">hello@shovon.bd</a>
-                <a href="https://www.facebook.com/minar.svn"
-                    class="text-[#888] text-sm hover:text-[#EDEDED] transition-colors">Facebook</a>
-                <a href="https://github.com/sh00von"
-                    class="text-[#888] text-sm hover:text-[#EDEDED] transition-colors">GitHub</a>
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#666]">
+                <a href="mailto:hello@shovon.bd" class="text-[#EDEDED] font-medium hover:underline">hello@shovon.bd</a>
+                <span aria-hidden="true">·</span>
+                <a href="https://www.facebook.com/minar.svn" class="hover:text-[#EDEDED] transition-colors">Facebook</a>
+                <span aria-hidden="true">·</span>
+                <a href="https://github.com/sh00von" class="hover:text-[#EDEDED] transition-colors">GitHub</a>
+                <span aria-hidden="true">·</span>
                 <a href="https://www.linkedin.com/in/minarsvn9090/"
-                    class="inline-flex items-center gap-2 text-[#888] text-sm hover:text-[#EDEDED] transition-colors">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M4.98 3.5a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2zM3.2 8.9h3.6V20H3.2V8.9zm5.7 0h3.4v1.6h.1c.5-.9 1.6-1.9 3.3-1.9 3.5 0 4.1 2.3 4.1 5.2V20h-3.6v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H8.9V8.9z" />
-                    </svg>
-                    LinkedIn
-                </a>
+                    class="hover:text-[#EDEDED] transition-colors">LinkedIn</a>
+                <span aria-hidden="true">·</span>
                 <a href="https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en"
-                    class="inline-flex items-center gap-2 text-[#888] text-sm hover:text-[#EDEDED] transition-colors">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 3 2 8l10 5 8-4v6h2V8L12 3zm-6 9v3c0 2.5 2.7 4.5 6 4.5s6-2 6-4.5v-3l-6 3-6-3z" />
-                    </svg>
-                    Google Scholar
-                </a>
+                    class="hover:text-[#EDEDED] transition-colors">Google Scholar</a>
+                <span aria-hidden="true">·</span>
                 <a href="https://www.researchgate.net/profile/Md-Shovon-13"
-                    class="inline-flex items-center gap-2 text-[#888] text-sm hover:text-[#EDEDED] transition-colors">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12 2a5 5 0 0 1 4.76 3.5h3.74v2h-3.74A5 5 0 0 1 12 11a5 5 0 0 1-4.76-3.5H3.5v-2h3.74A5 5 0 0 1 12 2zm0 11a5 5 0 0 1 4.76 3.5h3.74v2h-3.74A5 5 0 0 1 12 22a5 5 0 0 1-4.76-3.5H3.5v-2h3.74A5 5 0 0 1 12 13z" />
-                    </svg>
-                    ResearchGate
-                </a>
+                    class="hover:text-[#EDEDED] transition-colors">ResearchGate</a>
             </div>
         </section>
 
@@ -651,8 +808,18 @@
             (() => {
                 const root = document.documentElement;
                 const toggleButton = document.getElementById("theme-toggle");
+                const toggleButtonMobile = document.getElementById("theme-toggle-mobile");
                 const themeMeta = document.querySelector('meta[name="theme-color"]');
                 const storageKey = "theme";
+
+                const syncButton = (btn, isLight) => {
+                    if (!btn) return;
+                    const sunIcon = btn.querySelector('[data-theme-icon="sun"]');
+                    const moonIcon = btn.querySelector('[data-theme-icon="moon"]');
+                    if (sunIcon) sunIcon.classList.toggle("hidden", !isLight);
+                    if (moonIcon) moonIcon.classList.toggle("hidden", isLight);
+                    btn.setAttribute("aria-pressed", String(isLight));
+                };
 
                 const applyTheme = (theme) => {
                     const isLight = theme === "light";
@@ -660,25 +827,62 @@
                     if (themeMeta) {
                         themeMeta.setAttribute("content", isLight ? "#f7f7f7" : "#171717");
                     }
-                    if (toggleButton) {
-                        const sunIcon = toggleButton.querySelector('[data-theme-icon="sun"]');
-                        const moonIcon = toggleButton.querySelector('[data-theme-icon="moon"]');
-                        if (sunIcon) sunIcon.classList.toggle("hidden", !isLight);
-                        if (moonIcon) moonIcon.classList.toggle("hidden", isLight);
-                        toggleButton.setAttribute("aria-pressed", String(isLight));
-                    }
+                    syncButton(toggleButton, isLight);
+                    syncButton(toggleButtonMobile, isLight);
                 };
 
                 const savedTheme = localStorage.getItem(storageKey);
                 applyTheme(savedTheme === "light" ? "light" : "dark");
 
-                if (toggleButton) {
-                    toggleButton.addEventListener("click", () => {
-                        const nextTheme = root.classList.contains("light") ? "dark" : "light";
-                        localStorage.setItem(storageKey, nextTheme);
-                        applyTheme(nextTheme);
-                    });
+                const handleThemeClick = () => {
+                    const nextTheme = root.classList.contains("light") ? "dark" : "light";
+                    localStorage.setItem(storageKey, nextTheme);
+                    applyTheme(nextTheme);
+                };
+
+                if (toggleButton) toggleButton.addEventListener("click", handleThemeClick);
+                if (toggleButtonMobile) toggleButtonMobile.addEventListener("click", handleThemeClick);
+
+                // Hamburger menu
+                const menuBtn = document.getElementById("mobile-menu-btn");
+                const mobileMenu = document.getElementById("mobile-menu");
+                const bar1 = document.getElementById("bar1");
+                const bar2 = document.getElementById("bar2");
+                const bar3 = document.getElementById("bar3");
+                let menuOpen = false;
+
+                const openMenu = () => {
+                    menuOpen = true;
+                    mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+                    mobileMenu.style.opacity = "1";
+                    menuBtn.setAttribute("aria-expanded", "true");
+                    menuBtn.setAttribute("aria-label", "Close menu");
+                    // Animate to X
+                    bar1.style.transform = "translateY(8px) rotate(45deg)";
+                    bar2.style.opacity = "0";
+                    bar3.style.transform = "translateY(-8px) rotate(-45deg)";
+                };
+
+                const closeMenu = () => {
+                    menuOpen = false;
+                    mobileMenu.style.maxHeight = "0";
+                    mobileMenu.style.opacity = "0";
+                    menuBtn.setAttribute("aria-expanded", "false");
+                    menuBtn.setAttribute("aria-label", "Open menu");
+                    // Reset bars
+                    bar1.style.transform = "";
+                    bar2.style.opacity = "1";
+                    bar3.style.transform = "";
+                };
+
+                if (menuBtn) {
+                    menuBtn.addEventListener("click", () => menuOpen ? closeMenu() : openMenu());
                 }
+
+                // Close menu when a mobile nav link is clicked
+                document.querySelectorAll(".mobile-nav-link").forEach(link => {
+                    link.addEventListener("click", closeMenu);
+                });
             })();
 
         document.addEventListener("DOMContentLoaded", (event) => {
