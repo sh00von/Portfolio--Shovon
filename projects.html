@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased" style="scroll-behavior: smooth;">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJF34HQPL9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-JJF34HQPL9');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Portfolio | Minaruzzaman Shovon - Engineering & Full-stack Developer</title>
+    <meta name="description" content="Explore a curated list of engineering, GIS, and software development projects by Minaruzzaman Shovon. Featuring AuthryAI deepfake detection and structural tools.">
+    <meta name="keywords" content="Minaruzzaman Shovon, Portfolio, Software Engineer, Engineering Projects, GIS, Hydrology, Full-stack Developer, AuthryAI, Deepfake Detection, CUET">
+    <meta name="author" content="Minaruzzaman Shovon">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shovon.bd/projects.html">
+    <meta property="og:title" content="Projects & Portfolio | Minaruzzaman Shovon">
+    <meta property="og:description" content="A showcase of AI, GIS, and full-stack engineering applications built by Minaruzzaman Shovon.">
+    <meta property="og:image" content="https://shovon.bd/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shovon.bd/projects.html">
+    <meta property="twitter:title" content="Projects & Portfolio | Minaruzzaman Shovon">
+    <meta property="twitter:description" content="A showcase of AI, GIS, and full-stack engineering applications built by Minaruzzaman Shovon.">
+    <meta property="twitter:image" content="https://shovon.bd/og-image.jpg">
+
+    <meta name="theme-color" content="#171717">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://shovon.bd/projects.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Mulish"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #171717;
+            --text: #EDEDED;
+            --muted: #a1a1a1;
+            --muted-2: #888;
+            --muted-3: #555;
+            --surface: #1c1c1c;
+            --border: #2a2a2a;
+            --border-hover: #444;
+        }
+
+        html.light {
+            --bg: #f7f7f7;
+            --text: #171717;
+            --muted: #374151;
+            --muted-2: #4b5563;
+            --muted-3: #9ca3af;
+            --surface: #ebebeb;
+            --border: #d1d5db;
+            --border-hover: #9ca3af;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Mulish', ui-sans-serif, system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2e2e2e;
+            border-radius: 4px;
+        }
+
+        /* ── Theme toggle ── */
+        .theme-btn {
+            border: 1px solid var(--border);
+            color: var(--text);
+            background: transparent;
+            transition: background 0.2s;
+        }
+
+        .theme-btn:hover {
+            background: var(--surface);
+        }
+
+        /* ── Back link ── */
+        .back-link {
+            color: var(--muted-2);
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        /* ── Project row ── */
+        .project-row {
+            display: grid;
+            grid-template-columns: 48px 1fr auto;
+            align-items: center;
+            gap: 20px;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            transition: background 0.2s;
+        }
+
+        .project-row:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .project-num {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--muted-3);
+            letter-spacing: 0.08em;
+            font-variant-numeric: tabular-nums;
+            user-select: none;
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 6px;
+            transition: color 0.2s;
+        }
+
+        .project-desc {
+            font-size: 13px;
+            color: var(--muted-2);
+            line-height: 1.6;
+            max-width: 480px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 3px;
+            border: 1px solid var(--border);
+            color: var(--muted-2);
+            background: transparent;
+        }
+
+        /* Floating preview image */
+        .project-preview {
+            position: fixed;
+            width: 240px;
+            aspect-ratio: 16/10;
+            border-radius: 8px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transform: scale(0.92) rotate(-1deg);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            border: 1px solid #333;
+        }
+
+        .project-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-preview.active {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* Arrow icon */
+        .project-arrow {
+            color: var(--muted-3);
+            transition: transform 0.25s ease, color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .project-row:hover .project-arrow {
+            transform: translate(4px, -4px);
+            color: var(--text);
+        }
+
+        .project-row:hover .project-title {
+            color: var(--muted);
+        }
+
+        /* ── Filter pills ── */
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 36px;
+        }
+
+        .pill {
+            padding: 5px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            color: var(--muted-2);
+            background: transparent;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            letter-spacing: 0.02em;
+        }
+
+        .pill:hover,
+        .pill.active {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+
+        /* ── Section label ── */
+        .section-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted-3);
+            margin-bottom: 4px;
+        }
+
+        /* ── Stat pill ── */
+        .stat-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted-2);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 3px 12px;
+            letter-spacing: 0.04em;
+        }
+
+        /* ── Mobile: hide preview ── */
+        @media (max-width: 640px) {
+            .project-preview {
+                display: none;
+            }
+
+            .project-row {
+                grid-template-columns: 36px 1fr auto;
+                gap: 12px;
+                padding: 22px 0;
+            }
+
+            .project-title {
+                font-size: 15px;
+            }
+        }
+
+        /* ── Lightbox ── */
+        #lightbox {
+            transition: opacity 0.3s ease;
+        }
+
+        #lightbox-img {
+            transition: transform 0.3s ease;
+        }
+
+        /* light mode overrides */
+        html.light .project-preview {
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+            border-color: #d1d5db;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- Nav -->
+    <nav class="w-full max-w-2xl mx-auto px-4 py-6">
+        <div class="flex justify-between items-center">
+            <a href="/"
+                style="color: var(--text); font-weight: 500; text-decoration: none; letter-spacing: -0.01em; transition: color 0.2s;">
+                Minaruzzaman Shovon
+            </a>
+            <div class="hidden md:flex items-center gap-6" style="font-size: 14px; font-weight: 500;">
+                <a href="/#experience" style="color: var(--muted-2); text-decoration:none; transition: color 0.2s;"
+                    onmouseover="this.style.color='var(--text)'"
+                    onmouseout="this.style.color='var(--muted-2)'">Experience</a>
+                <a href="/#certifications" style="color: var(--muted-2); text-decoration:none; transition: color 0.2s;"
+                    onmouseover="this.style.color='var(--text)'"
+                    onmouseout="this.style.color='var(--muted-2)'">Certifications</a>
+                <a href="/projects.html" aria-current="page"
+                    style="color: var(--text); text-decoration:none; border-bottom: 1px solid var(--border-hover); padding-bottom: 1px;">Projects</a>
+                <a href="/#contact" style="color: var(--muted-2); text-decoration:none; transition: color 0.2s;"
+                    onmouseover="this.style.color='var(--text)'"
+                    onmouseout="this.style.color='var(--muted-2)'">Connect</a>
+                <button id="theme-toggle" type="button" class="theme-btn rounded-md px-2 py-1 text-sm"
+                    aria-label="Toggle theme" aria-pressed="false" style="cursor:pointer;">
+                    <svg data-theme-icon="sun" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path
+                            d="M12 2v2M12 20v2m-7.07-14.07 1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2m-4.34 5.66 1.41 1.41M4.93 4.93l1.41 1.41">
+                        </path>
+                    </svg>
+                    <svg data-theme-icon="moon" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex md:hidden items-center gap-2">
+                <button id="theme-toggle-mobile" type="button" class="theme-btn rounded-md px-2 py-1 text-sm"
+                    aria-label="Toggle theme" style="cursor:pointer;">
+                    <svg data-theme-icon="sun" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path
+                            d="M12 2v2M12 20v2m-7.07-14.07 1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2m-4.34 5.66 1.41 1.41M4.93 4.93l1.41 1.41">
+                        </path>
+                    </svg>
+                    <svg data-theme-icon="moon" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
+                    </svg>
+                </button>
+                <button id="mobile-menu-btn" type="button"
+                    class="theme-btn flex flex-col justify-center items-center w-9 h-9 rounded-md gap-1.5"
+                    aria-label="Open menu" aria-expanded="false" style="cursor:pointer;">
+                    <span class="block w-5 bg-current transition-all duration-300" style="height:2px" id="bar1"></span>
+                    <span class="block w-5 bg-current transition-all duration-300" style="height:2px" id="bar2"></span>
+                    <span class="block w-5 bg-current transition-all duration-300" style="height:2px" id="bar3"></span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden overflow-hidden transition-all duration-300 ease-in-out"
+            style="max-height:0;opacity:0;">
+            <div class="flex flex-col gap-4 pt-5 pb-2 text-sm font-medium mt-4"
+                style="border-top: 1px solid var(--border);">
+                <a href="/#experience" style="color:var(--muted-2);text-decoration:none;"
+                    class="mobile-nav-link">Experience</a>
+                <a href="/#certifications" style="color:var(--muted-2);text-decoration:none;"
+                    class="mobile-nav-link">Certifications</a>
+                <a href="/projects.html" style="color:var(--text);text-decoration:none;" class="mobile-nav-link">Projects</a>
+                <a href="/#contact" style="color:var(--muted-2);text-decoration:none;"
+                    class="mobile-nav-link">Connect</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <main class="flex-grow w-full max-w-2xl mx-auto px-4 pb-24">
+        <h1 class="sr-only">Project Portfolio of Minaruzzaman Shovon</h1>
+
+
+
+        <!-- Filter pills -->
+        <div class="filter-pills" id="filter-pills">
+            <button class="pill active" data-filter="all">All</button>
+            <button class="pill" data-filter="Engineering">Engineering</button>
+            <button class="pill" data-filter="GIS">GIS</button>
+            <button class="pill" data-filter="Full Stack">Full Stack</button>
+            <button class="pill" data-filter="AI">AI</button>
+            <button class="pill" data-filter="Cybersecurity">Cybersecurity</button>
+            <button class="pill" data-filter="WordPress">WordPress</button>
+        </div>
+
+        <!-- Project List (rendered from projects.json) -->
+        <div id="project-list"></div>
+
+    </main>
+
+    <footer
+        style="max-width:672px; margin: 0 auto; padding: 0 1rem 2.5rem; display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted-3);">
+        <span>&copy; 2026 Minaruzzaman Shovon</span>
+        <a href="/" class="back-link">← Home</a>
+    </footer>
+
+    <!-- Floating preview -->
+    <div class="project-preview" id="preview-bubble">
+        <img id="preview-img" src="" alt="Project preview">
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox"
+        style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(10,10,10,0.92);backdrop-filter:blur(8px);opacity:0;pointer-events:none;">
+        <button id="lightbox-close"
+            style="position:absolute;top:20px;right:20px;color:#EDEDED;background:none;border:none;cursor:pointer;transition:color 0.2s;"
+            aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <img id="lightbox-img" src="" alt="Project screenshot"
+            style="max-width:92vw;max-height:90vh;object-fit:contain;border-radius:8px;box-shadow:0 32px 64px rgba(0,0,0,0.7);transform:scale(0.93);transition:transform 0.3s ease;">
+    </div>
+
+    <script>
+            (() => {
+                // ── Theme ──
+                const root = document.documentElement;
+                const storageKey = "theme";
+                const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+                const syncBtn = (btn, isLight) => {
+                    if (!btn) return;
+                    btn.querySelector('[data-theme-icon="sun"]')?.classList.toggle("hidden", !isLight);
+                    btn.querySelector('[data-theme-icon="moon"]')?.classList.toggle("hidden", isLight);
+                    btn.setAttribute("aria-pressed", String(isLight));
+                };
+                const applyTheme = (theme) => {
+                    const isLight = theme === "light";
+                    root.classList.toggle("light", isLight);
+                    if (themeMeta) themeMeta.setAttribute("content", isLight ? "#f7f7f7" : "#171717");
+                    syncBtn(document.getElementById("theme-toggle"), isLight);
+                    syncBtn(document.getElementById("theme-toggle-mobile"), isLight);
+                };
+                applyTheme(localStorage.getItem(storageKey) === "light" ? "light" : "dark");
+                const handleToggle = () => {
+                    const next = root.classList.contains("light") ? "dark" : "light";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                };
+                document.getElementById("theme-toggle")?.addEventListener("click", handleToggle);
+                document.getElementById("theme-toggle-mobile")?.addEventListener("click", handleToggle);
+
+                // ── Hamburger ──
+                const menuBtn = document.getElementById("mobile-menu-btn");
+                const mobileMenu = document.getElementById("mobile-menu");
+                const bar1 = document.getElementById("bar1");
+                const bar2 = document.getElementById("bar2");
+                const bar3 = document.getElementById("bar3");
+                let menuOpen = false;
+                const openMenu = () => {
+                    menuOpen = true;
+                    mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+                    mobileMenu.style.opacity = "1";
+                    menuBtn.setAttribute("aria-expanded", "true");
+                    bar1.style.transform = "translateY(8px) rotate(45deg)";
+                    bar2.style.opacity = "0";
+                    bar3.style.transform = "translateY(-8px) rotate(-45deg)";
+                };
+                const closeMenu = () => {
+                    menuOpen = false;
+                    mobileMenu.style.maxHeight = "0";
+                    mobileMenu.style.opacity = "0";
+                    menuBtn.setAttribute("aria-expanded", "false");
+                    bar1.style.transform = "";
+                    bar2.style.opacity = "1";
+                    bar3.style.transform = "";
+                };
+                menuBtn?.addEventListener("click", () => menuOpen ? closeMenu() : openMenu());
+                document.querySelectorAll(".mobile-nav-link").forEach(l => l.addEventListener("click", closeMenu));
+            })();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.to("body", { autoAlpha: 1, duration: 0.4 });
+            gsap.from("#filter-pills .pill", { y: 10, opacity: 0, duration: 0.5, stagger: 0.06, ease: "power2.out", delay: 0.2 });
+
+            // ── Lightbox setup ──
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightbox-img");
+            const lightboxClose = document.getElementById("lightbox-close");
+            const preview = document.getElementById("preview-bubble");
+            const previewImg = document.getElementById("preview-img");
+
+            const openLightbox = (src) => {
+                lightboxImg.src = src;
+                lightbox.style.opacity = "1";
+                lightbox.style.pointerEvents = "auto";
+                requestAnimationFrame(() => { lightboxImg.style.transform = "scale(1)"; });
+                document.body.style.overflow = "hidden";
+                preview.classList.remove("active");
+            };
+            const closeLightbox = () => {
+                lightbox.style.opacity = "0";
+                lightbox.style.pointerEvents = "none";
+                lightboxImg.style.transform = "scale(0.93)";
+                document.body.style.overflow = "";
+                setTimeout(() => { lightboxImg.src = ""; }, 300);
+            };
+            lightboxClose.addEventListener("click", closeLightbox);
+            lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+            document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
+
+            // ── Floating preview mouse tracking ──
+            document.addEventListener("mousemove", (e) => {
+                let left = e.clientX + 32;
+                let top = e.clientY - 80;
+                if (left + 250 > window.innerWidth) left = e.clientX - 260;
+                if (top < 10) top = 10;
+                if (top + 180 > window.innerHeight) top = window.innerHeight - 185;
+                preview.style.left = left + "px";
+                preview.style.top = top + "px";
+            });
+
+            // ── Project data (inline — edit here to add/update projects) ──
+            const list = document.getElementById("project-list");
+            const projects = [
+                {
+                    "id": "authryai",
+                    "num": "01",
+                    "title": "AuthryAI",
+                    "description": "Premium AI-driven platform for enterprise-grade deepfake detection in text, images, and video using BERT and custom computer vision models.",
+                    "image": "",
+                    "categories": ["AI", "Full Stack"],
+                    "tags": ["Next.js", "Node.js", "Flask", "PostgreSQL", "BERT"],
+                    "link": "https://authryai.com/"
+                },
+                {
+                    "id": "lst-high-res",
+                    "num": "02",
+                    "title": "1 km resolution LST to 10 m using Sentinel and MODIS",
+                    "description": "Downscaling Land Surface Temperature from 1 km (MODIS) to 10 m resolution using Sentinel-2 imagery and GIS processing pipelines.",
+                    "image": "images/lst_high_res.png",
+                    "categories": ["GIS", "Engineering"],
+                    "tags": ["GIS", "Remote Sensing", "MODIS", "Sentinel"],
+                    "link": "https://www.linkedin.com/posts/minarsvn9090_from-big-1km-lst-blocks-to-finer-10m-detail-activity-7442260240588443648-xppb"
+                },
+                {
+                    "id": "truss-solver",
+                    "num": "03",
+                    "title": "Truss Solver",
+                    "description": "Structural analysis tool that solves 2D truss problems using the method of joints, with an interactive visual force diagram.",
+                    "image": "images/truss_solver.png",
+                    "categories": ["Engineering"],
+                    "tags": ["Structural", "JavaScript", "Engineering"],
+                    "link": "https://www.linkedin.com/posts/minarsvn9090_structuralanalysis-python-fea-activity-7350527946845016065-7MZf"
+                },
+                {
+                    "id": "exabytebd",
+                    "num": "04",
+                    "title": "ExabyteBD",
+                    "description": "Tech platform for Bangladeshi developers providing resources, tools, and community-driven content with a modern full-stack architecture.",
+                    "image": "images/exabytebd.png",
+                    "categories": ["Full Stack"],
+                    "tags": ["Next.js", "Full Stack", "MongoDB"],
+                    "link": "https://exabytebd.com/"
+                },
+                {
+                    "id": "math-solver",
+                    "num": "05",
+                    "title": "Math Solver",
+                    "description": "AI-powered solver that parses handwritten math equations and returns step-by-step solutions using a React + Node.js stack.",
+                    "image": "images/math_solver.png",
+                    "categories": ["AI", "Full Stack"],
+                    "tags": ["AI", "React", "Node.js"],
+                    "link": "http://logiq.shovon.site/"
+                },
+                {
+                    "id": "nogorful",
+                    "num": "06",
+                    "title": "Nogorful",
+                    "description": "A fully custom WordPress theme built from scratch for a local news & community portal in Bangladesh.",
+                    "image": "",
+                    "categories": ["WordPress", "Full Stack"],
+                    "tags": ["WordPress", "PHP", "Custom Theme"],
+                    "link": "https://nogorful.org/"
+                },
+                {
+                    "id": "barakasbr",
+                    "num": "07",
+                    "title": "BarakasBR",
+                    "description": "Full-stack business website built with Next.js, featuring a modern UI, content management, and dynamic pages.",
+                    "image": "",
+                    "categories": ["Full Stack"],
+                    "tags": ["Next.js", "Full Stack", "Tailwind CSS"],
+                    "link": "https://www.barakasbr.com/"
+                },
+                {
+                    "id": "wrro-cuet",
+                    "num": "08",
+                    "title": "WRRO CUET",
+                    "description": "Official website for the Water Resources Research Organization at CUET, built with Next.js and MongoDB.",
+                    "image": "",
+                    "categories": ["Full Stack"],
+                    "tags": ["Next.js", "MongoDB", "Organization"],
+                    "link": "https://www.wrrocuet.org/"
+                },
+                {
+                    "id": "freelance-grain-crm",
+                    "num": "09",
+                    "title": "Freelance Grain CRM",
+                    "description": "Solo CRM tool for freelancers — manage clients, generate invoices, and track payments from one clean dashboard.",
+                    "image": "",
+                    "categories": ["Full Stack", "AI"],
+                    "tags": ["Next.js", "CRM", "Invoice"],
+                    "link": "https://freelance-grain-crm.vercel.app/"
+                },
+                {
+                    "id": "nextjs-wordpress-starter",
+                    "num": "10",
+                    "title": "Next.js WordPress Starter",
+                    "description": "An open-source starter template that connects Next.js with WordPress as a headless CMS for blazing-fast sites.",
+                    "image": "",
+                    "categories": ["WordPress", "Full Stack"],
+                    "tags": ["Next.js", "WordPress", "Headless CMS"],
+                    "link": "https://next-wordpress-starter-kappa.vercel.app/"
+                }
+
+            ];
+
+            list.innerHTML = projects.map((p) => `
+                <article class="project-row" 
+                    data-categories="${p.categories.join(",")}" 
+                    data-img="${p.image}" 
+                    data-link="${p.link}"
+                    tabindex="0"
+                    role="link"
+                    aria-label="View Project: ${p.title} (${p.categories.join(", ")})">
+                    <span class="project-num" aria-hidden="true">${p.num}</span>
+                    <div>
+                        <h2 class="project-title">${p.title}</h2>
+                        <p class="project-desc">${p.description}</p>
+                        <div class="project-tags">
+                            ${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+                        </div>
+                    </div>
+                    <svg class="project-arrow w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </article>
+            `).join("");
+
+            // ── Attach row interactions ──
+            const handleRowClick = (row) => {
+                const img = row.dataset.img;
+                const link = row.dataset.link;
+                if (link) window.open(link, "_blank", "noopener,noreferrer");
+                else if (img) openLightbox(img);
+            };
+
+            document.querySelectorAll(".project-row").forEach((row, i) => {
+                const img = row.dataset.img;
+                if (img) {
+                    row.addEventListener("mouseenter", () => { previewImg.src = img; preview.classList.add("active"); });
+                    row.addEventListener("mouseleave", () => { preview.classList.remove("active"); });
+                }
+                
+                row.addEventListener("click", () => handleRowClick(row));
+                row.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleRowClick(row);
+                    }
+                });
+
+                gsap.from(row, {
+                    scrollTrigger: { trigger: row, start: "top 92%" },
+                    x: -12, opacity: 0, duration: 0.55, delay: i < 3 ? i * 0.05 : 0, ease: "power2.out"
+                });
+            });
+
+            // ── Filters ──
+            const pills = document.querySelectorAll(".pill");
+            pills.forEach(pill => {
+                pill.addEventListener("click", () => {
+                    pills.forEach(p => p.classList.remove("active"));
+                    pill.classList.add("active");
+                    const filter = pill.dataset.filter;
+                    document.querySelectorAll(".project-row").forEach(row => {
+                        const cats = row.dataset.categories || "";
+                        row.style.display = (filter === "all" || cats.includes(filter)) ? "grid" : "none";
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

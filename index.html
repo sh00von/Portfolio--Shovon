@@ -153,33 +153,6 @@
     }
     </script>
 
-    <!-- Structured Data: BreadcrumbList -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://shovon.bd/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Publications",
-          "item": "https://shovon.bd/#research"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Experience",
-          "item": "https://shovon.bd/#experience"
-        }
-      ]
-    }
-    </script>
 
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -323,7 +296,7 @@
             <div class="hidden md:flex items-center gap-6 text-sm font-medium">
                 <a href="#experience" class="hover:text-[#EDEDED] transition-colors">Experience</a>
                 <a href="#certifications" class="hover:text-[#EDEDED] transition-colors">Certifications</a>
-                <a href="#achievements" class="hover:text-[#EDEDED] transition-colors">Achievements</a>
+                <a href="/projects.html" class="hover:text-[#EDEDED] transition-colors">Projects</a>
                 <a href="#contact" class="hover:text-[#EDEDED] transition-colors">Connect</a>
                 <button id="theme-toggle" type="button"
                     class="theme-toggle inline-flex items-center justify-center rounded-md border px-2 py-1 text-sm transition-colors"
@@ -390,7 +363,7 @@
                 <a href="#experience" class="hover:text-[#EDEDED] transition-colors mobile-nav-link">Experience</a>
                 <a href="#certifications"
                     class="hover:text-[#EDEDED] transition-colors mobile-nav-link">Certifications</a>
-                <a href="#achievements" class="hover:text-[#EDEDED] transition-colors mobile-nav-link">Achievements</a>
+                <a href="/projects.html" class="hover:text-[#EDEDED] transition-colors mobile-nav-link">Projects</a>
                 <a href="#contact" class="hover:text-[#EDEDED] transition-colors mobile-nav-link">Connect</a>
             </div>
         </div>
@@ -643,45 +616,6 @@
             </div>
         </section>
 
-        <!-- Skills -->
-        <section id="uses" class="mb-20">
-            <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Skills</h2>
-            <p class="text-[#a1a1a1] mb-6 leading-relaxed">
-                Technologies and tools I use to design, build, and ship products.
-            </p>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm text-[#888]">
-                <ul class="space-y-2">
-                    <li class="font-medium text-[#EDEDED] mb-1">Frontend</li>
-                    <li>Next.js</li>
-                    <li>React</li>
-                    <li>Expo (React Native)</li>
-                    <li>TypeScript</li>
-                    <li>Tailwind CSS</li>
-                </ul>
-                <ul class="space-y-2">
-                    <li class="font-medium text-[#EDEDED] mb-1">Backend</li>
-                    <li>Node.js</li>
-                    <li>Express.js</li>
-                    <li>REST APIs</li>
-                    <li>Authentication Systems</li>
-                </ul>
-                <ul class="space-y-2">
-                    <li class="font-medium text-[#EDEDED] mb-1">Database</li>
-                    <li>MongoDB</li>
-                    <li>Mongoose</li>
-                    <li>Firebase</li>
-                </ul>
-                <ul class="space-y-2">
-                    <li class="font-medium text-[#EDEDED] mb-1">GIS/ML Modelling</li>
-                    <li>QGIS</li>
-                    <li>ArcGIS</li>
-                    <li>ETABS</li>
-                    <li>AutoCAD</li>
-                    <li>HEC-RAS</li>
-                </ul>
-            </div>
-        </section>
-
         <!-- Achievements -->
         <section id="achievements" class="mb-20">
             <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Achievements</h2>
@@ -769,6 +703,105 @@
                     <span class="text-sm text-[#666] tabular-nums flex-shrink-0">2023</span>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery" class="mb-20">
+            <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Gallery</h2>
+            <p class="text-[#a1a1a1] mb-6 leading-relaxed">
+                A visual journey through my interests in engineering, development, and the environment.
+            </p>
+            <div class="columns-2 sm:columns-3 gap-4 sm:gap-6">
+
+                <div
+                    class="break-inside-avoid mb-4 sm:mb-6 overflow-hidden rounded-xl border border-[#333] group spotlight-card bg-[#1a1a1a]">
+                    <img src="images/lst_high_res.png" alt="High Resolution LST"
+                        class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                        loading="lazy">
+                </div>
+
+                <div
+                    class="break-inside-avoid mb-4 sm:mb-6 overflow-hidden rounded-xl border border-[#333] group spotlight-card bg-[#1a1a1a]">
+                    <img src="images/padma_pulse.png" alt="Padma Pulse"
+                        class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                        loading="lazy">
+                </div>
+
+                <div
+                    class="break-inside-avoid mb-4 sm:mb-6 overflow-hidden rounded-xl border border-[#333] group spotlight-card bg-[#1a1a1a]">
+                    <img src="images/seminar_ccsc.png" alt="seminar CCSC"
+                        class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                        loading="lazy">
+                </div>
+
+                <div
+                    class="break-inside-avoid mb-4 sm:mb-6 overflow-hidden rounded-xl border border-[#333] group spotlight-card bg-[#1a1a1a]">
+                    <img src="images/truss_solver.png" alt="Truss Solver"
+                        class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                        loading="lazy">
+                </div>
+
+                <div
+                    class="break-inside-avoid mb-4 sm:mb-6 overflow-hidden rounded-xl border border-[#333] group spotlight-card bg-[#1a1a1a]">
+                    <img src="images/uap_ccsc.png" alt="UAP CCSC"
+                        class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                        loading="lazy">
+                </div>
+
+                <div
+                    class="break-inside-avoid mb-4 sm:mb-6 overflow-hidden rounded-xl border border-[#333] group spotlight-card bg-[#1a1a1a]">
+                    <img src="images/exabytebd.png" alt="ExabyteBD"
+                        class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                        loading="lazy">
+                </div>
+
+                <div
+                    class="break-inside-avoid mb-4 sm:mb-6 overflow-hidden rounded-xl border border-[#333] group spotlight-card bg-[#1a1a1a]">
+                    <img src="images/math_solver.png" alt="Math Solver"
+                        class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                        loading="lazy">
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="uses" class="mb-20">
+            <h2 class="text-[#EDEDED] font-semibold text-xl mb-6 tracking-tight">Skills</h2>
+            <p class="text-[#a1a1a1] mb-6 leading-relaxed">
+                Technologies and tools I use to design, build, and ship products.
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm text-[#888]">
+                <ul class="space-y-2">
+                    <li class="font-medium text-[#EDEDED] mb-1">Frontend</li>
+                    <li>Next.js</li>
+                    <li>React</li>
+                    <li>Expo (React Native)</li>
+                    <li>TypeScript</li>
+                    <li>Tailwind CSS</li>
+                </ul>
+                <ul class="space-y-2">
+                    <li class="font-medium text-[#EDEDED] mb-1">Backend</li>
+                    <li>Node.js</li>
+                    <li>Express.js</li>
+                    <li>REST APIs</li>
+                    <li>Authentication Systems</li>
+                </ul>
+                <ul class="space-y-2">
+                    <li class="font-medium text-[#EDEDED] mb-1">Database</li>
+                    <li>MongoDB</li>
+                    <li>Mongoose</li>
+                    <li>Firebase</li>
+                </ul>
+                <ul class="space-y-2">
+                    <li class="font-medium text-[#EDEDED] mb-1">GIS/ML Modelling</li>
+                    <li>QGIS</li>
+                    <li>ArcGIS</li>
+                    <li>ETABS</li>
+                    <li>AutoCAD</li>
+                    <li>HEC-RAS</li>
+                </ul>
             </div>
         </section>
 
@@ -939,7 +972,23 @@
                 });
             });
 
-            // 5. Specific Stagger for Projects & Experience Items
+            // 5. Specific Stagger for Gallery, Projects & Experience Items
+
+            // Gallery Items
+            gsap.utils.toArray("#gallery .break-inside-avoid").forEach((item, i) => {
+                gsap.from(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 90%",
+                    },
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: "power2.out"
+                });
+            });
+
             // Experience Items
             gsap.utils.toArray("#experience .group").forEach((item, i) => {
                 gsap.from(item, {
@@ -967,6 +1016,72 @@
                     duration: 0.8,
                     ease: "power2.out"
                 });
+            });
+        });
+    </script>
+
+    <!-- Lightbox -->
+    <div id="lightbox"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0a]/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <button id="lightbox-close"
+            class="absolute top-4 right-4 text-[#EDEDED] hover:text-[#a1a1a1] pointer-events-auto transition-colors"
+            aria-label="Close lightbox">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <div class="relative max-w-[95vw] max-h-[95vh] pointer-events-none">
+            <img id="lightbox-img" src="" alt="Lightbox image"
+                class="max-w-full max-h-[95vh] object-contain rounded-md shadow-2xl pointer-events-auto cursor-default transform scale-95 transition-transform duration-300">
+        </div>
+    </div>
+
+    <!-- Lightbox Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightbox-img");
+            const lightboxClose = document.getElementById("lightbox-close");
+            const galleryImages = document.querySelectorAll("#gallery img");
+
+            const openLightbox = (src) => {
+                lightboxImg.src = src;
+                lightbox.classList.remove("opacity-0", "pointer-events-none");
+                // slight delay to allow display before scaling
+                requestAnimationFrame(() => {
+                    lightboxImg.classList.remove("scale-95");
+                });
+                document.body.style.overflow = "hidden"; // Prevent background scrolling
+            };
+
+            const closeLightbox = () => {
+                lightbox.classList.add("opacity-0", "pointer-events-none");
+                lightboxImg.classList.add("scale-95");
+                document.body.style.overflow = ""; // Restore scrolling
+                // Wait for transition before clearing src to prevent visual flash
+                setTimeout(() => { lightboxImg.src = ""; }, 300);
+            };
+
+            galleryImages.forEach(img => {
+                img.style.cursor = "zoom-in";
+                img.addEventListener("click", () => openLightbox(img.src));
+            });
+
+            lightboxClose.addEventListener("click", closeLightbox);
+
+            // Close when clicking outside the image
+            lightbox.addEventListener("click", (e) => {
+                if (e.target === lightbox || e.target.parentElement === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Close on escape key
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && !lightbox.classList.contains("opacity-0")) {
+                    closeLightbox();
+                }
             });
         });
     </script>
