@@ -45,7 +45,7 @@ export default async function BlogPage({
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#171717] text-[#EDEDED]">
+    <div className="flex min-h-screen flex-col">
       <Script
         id="blog-list-json-ld"
         type="application/ld+json"

@@ -179,7 +179,21 @@ html.light [class*="border-[#363636]"] {
   transition: background 0.2s;
 }
 
-.project-row:first-child {
+/* Reset native button styles when project-row is a <button> */
+button.project-row {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  padding-inline: 0;
+}
+
+button.project-row:first-child {
   border-top: 1px solid var(--border);
 }
 

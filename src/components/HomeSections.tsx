@@ -148,6 +148,7 @@ export function PublicationsSection({
             href={publication.href}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`${publication.title} (opens in new tab)`}
             className="group block no-underline"
           >
             <div className="mb-2 flex flex-col justify-between sm:flex-row sm:items-start">
@@ -250,12 +251,14 @@ export function SkillsSection({
       ) : (
         <div className="grid grid-cols-2 gap-4 text-sm text-[#888] sm:grid-cols-4">
           {items.map(([heading, ...groupItems]) => (
-            <ul key={heading} className="space-y-2">
-              <li className="mb-1 font-medium text-[#EDEDED]">{heading}</li>
-              {groupItems.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
+            <div key={heading}>
+              <p className="mb-2 font-medium text-[#EDEDED]">{heading}</p>
+              <ul className="space-y-2">
+                {groupItems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       )}

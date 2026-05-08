@@ -96,6 +96,13 @@ export function Navigation({
       className="sticky top-0 z-40 mx-auto w-full max-w-2xl border-b border-[#2a2a2a]/80 bg-[#171717]/90 px-4 py-4 backdrop-blur-md lg:max-w-[60vw] lg:py-5"
       aria-label="Main navigation"
     >
+      {/* Issue #8: Skip-to-content link for keyboard/screen reader users */}
+      <a
+        href="#main-content"
+        className="absolute -top-full left-4 z-50 rounded-md bg-[#EDEDED] px-4 py-2 text-sm font-medium text-[#171717] focus:top-4 transition-[top]"
+      >
+        Skip to main content
+      </a>
       <div className="flex items-center justify-between">
         <Link
           href={homePath}

@@ -49,7 +49,7 @@ export default async function ProjectsPage({
   return (
     <div className="flex min-h-screen flex-col">
       <Navigation active="projects" homePath={homePath} fromVariant={fromVariant} />
-      <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]">
+      <main id="main-content" className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]">
         <h1 className="sr-only">Project Portfolio of Minaruzzaman Shovon</h1>
         <ProjectsClient />
       </main>

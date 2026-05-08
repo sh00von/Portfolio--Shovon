@@ -78,7 +78,7 @@ export function HomePage({ variant, homePath }: { variant: HomeVariant; homePath
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#171717] text-[#EDEDED] antialiased">
+    <div className="flex min-h-screen flex-col antialiased">
       <Script
         id={`profile-json-ld-${variant}`}
         type="application/ld+json"

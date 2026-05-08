@@ -10,9 +10,6 @@ export const metadata: Metadata = {
     follow: false,
     nocache: true,
   },
-  alternates: {
-    canonical: "https://shovon.bd/404",
-  },
   openGraph: {
     title: "404 - Page Not Found | Minaruzzaman Shovon",
     description:

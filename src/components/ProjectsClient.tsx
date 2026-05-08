@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { filters, Project, ProjectCategory, projects } from "@/data/projects";
 import { ArrowUpRightIcon, CloseIcon } from "./icons";
 
@@ -9,6 +9,7 @@ export function ProjectsClient() {
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>("all");
   const [preview, setPreview] = useState<{ src: string; left: number; top: number } | null>(null);
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const lightboxCloseBtnRef = useRef<HTMLButtonElement>(null);
 
   const visibleProjects = useMemo(() => {
     if (activeFilter === "all") return projects;
@@ -40,6 +41,7 @@ export function ProjectsClient() {
     };
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKey);
+    lightboxCloseBtnRef.current?.focus();
     return () => {
       document.body.style.overflow = "";
       document.removeEventListener("keydown", onKey);
@@ -57,41 +59,40 @@ export function ProjectsClient() {
   return (
     <>
       <div className="mb-8 pt-3">
-        <div className="filter-pills mb-0" id="filter-pills">
-        {filters.map((filter) => (
-          <button
-            key={filter}
-            type="button"
-            className={`pill ${activeFilter === filter ? "active" : ""}`}
-            onClick={() => setActiveFilter(filter)}
-          >
-            {filter === "all" ? "All" : filter}
-          </button>
-        ))}
+        {/* Issue #3: role="group" + aria-label on filter pills */}
+        <div
+          className="filter-pills mb-0"
+          id="filter-pills"
+          role="group"
+          aria-label="Filter projects by category"
+        >
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              type="button"
+              className={`pill ${activeFilter === filter ? "active" : ""}`}
+              onClick={() => setActiveFilter(filter)}
+              aria-pressed={activeFilter === filter}
+            >
+              {filter === "all" ? "All" : filter}
+            </button>
+          ))}
         </div>
       </div>
 
       <div>
         {visibleProjects.map((project) => (
-          <article
-            key={project.id}
-            onMouseEnter={() =>
-              project.image ? setPreview({ src: project.image, left: 0, top: 0 }) : undefined
-            }
-            onMouseLeave={() => setPreview(null)}
-          >
-            <div
+          <article key={project.id}>
+            {/* Issue #2: real <button> instead of div[role=button] */}
+            <button
+              type="button"
               className="project-row"
-              tabIndex={0}
-              role="button"
-              aria-label={`View Project: ${project.title} (${project.categories.join(", ")})`}
+              aria-label={`View project: ${project.title}`}
               onClick={() => openProject(project)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  openProject(project);
-                }
-              }}
+              onMouseEnter={() =>
+                project.image ? setPreview({ src: project.image, left: 0, top: 0 }) : undefined
+              }
+              onMouseLeave={() => setPreview(null)}
             >
               <span className="project-num" aria-hidden="true">
                 {project.num}
@@ -108,29 +109,37 @@ export function ProjectsClient() {
                 </div>
               </div>
               <ArrowUpRightIcon />
-            </div>
+            </button>
           </article>
         ))}
       </div>
 
+      {/* aria-hidden — purely decorative mouse-follow preview */}
       <div
         className={`project-preview ${preview ? "active" : ""}`}
         style={{ left: preview?.left ?? 0, top: preview?.top ?? 0 }}
+        aria-hidden="true"
       >
         {preview ? (
-          <Image src={preview.src} alt="Project preview" width={480} height={300} />
+          <Image src={preview.src} alt="" width={480} height={300} />
         ) : null}
       </div>
 
+      {/* Issue #1: proper dialog with focus trap */}
       {lightbox ? (
         <div
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-[#0a0a0a]/[0.92] opacity-100 backdrop-blur-md"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Project screenshot"
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-[#0a0a0a]/[0.92] backdrop-blur-md"
           onClick={() => setLightbox(null)}
+          onKeyDown={(e) => { if (e.key === "Escape") setLightbox(null); }}
         >
           <button
+            ref={lightboxCloseBtnRef}
             type="button"
             className="absolute top-5 right-5 border-0 bg-transparent text-[#EDEDED] transition-colors hover:text-[#a1a1a1]"
-            aria-label="Close"
+            aria-label="Close lightbox"
             onClick={() => setLightbox(null)}
           >
             <CloseIcon />
@@ -140,7 +149,7 @@ export function ProjectsClient() {
             alt="Project screenshot"
             width={1400}
             height={1000}
-            className="max-h-[90vh] max-w-[92vw] scale-100 rounded-lg object-contain shadow-2xl transition-transform duration-300"
+            className="max-h-[90vh] max-w-[92vw] rounded-lg object-contain shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           />
         </div>
