@@ -11,7 +11,7 @@ type SwitcherState = {
 
 const routes: Array<{ href: HomePath; label: string; variant: HomeVariant }> = [
   { href: "/dev", label: "Developer", variant: "dev" },
-  { href: "/academic", label: "Engineer", variant: "academic" },
+  { href: "/academic", label: "Academic", variant: "academic" },
 ];
 
 const getVariantFromPathname = (pathname: string | null): HomeVariant =>
@@ -106,9 +106,8 @@ export function VersionSwitcher() {
             role="tab"
             aria-selected={active}
             onClick={() => navigate(item.href)}
-            className={`variant-switcher-option relative z-10 rounded-full px-5 py-2 transition-colors duration-300 ${
-              active ? "is-active" : ""
-            }`}
+            className={`variant-switcher-option relative z-10 rounded-full px-5 py-2 transition-colors duration-300 ${active ? "is-active" : ""
+              }`}
           >
             {item.label}
           </button>
