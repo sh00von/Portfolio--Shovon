@@ -22,6 +22,7 @@ export function VersionSwitcher() {
   const pathname = usePathname();
   const currentVariant = getVariantFromPathname(pathname);
   const [indicator, setIndicator] = useState<SwitcherState>({ left: 0, width: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Record<HomeVariant, HTMLButtonElement | null>>({
     dev: null,
     wre: null,
@@ -31,9 +32,12 @@ export function VersionSwitcher() {
     const measure = () => {
       const activeNode = itemRefs.current[currentVariant];
       if (!activeNode) return;
+      const containerPadding = containerRef.current
+        ? parseFloat(getComputedStyle(containerRef.current).paddingLeft)
+        : 0;
 
       setIndicator({
-        left: activeNode.offsetLeft,
+        left: activeNode.offsetLeft - containerPadding,
         width: activeNode.offsetWidth,
       });
     };
@@ -48,8 +52,11 @@ export function VersionSwitcher() {
     if (!activeNode || typeof ResizeObserver === "undefined") return;
 
     const observer = new ResizeObserver(() => {
+      const containerPadding = containerRef.current
+        ? parseFloat(getComputedStyle(containerRef.current).paddingLeft)
+        : 0;
       setIndicator({
-        left: activeNode.offsetLeft,
+        left: activeNode.offsetLeft - containerPadding,
         width: activeNode.offsetWidth,
       });
     });
@@ -73,6 +80,7 @@ export function VersionSwitcher() {
 
   return (
     <div
+      ref={containerRef}
       className="variant-switcher relative inline-flex items-center px-1.5 py-1"
       role="tablist"
       aria-label="Homepage version"
