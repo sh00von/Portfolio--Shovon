@@ -112,7 +112,9 @@ html.light [class*="text-[#555]"] {
   color: var(--muted-3) !important;
 }
 
-html.light [class*="bg-[#1a1a1a]"] {
+html.light [class*="bg-[#1a1a1a]"],
+html.light [class*="bg-[#141414]"],
+html.light [class*="bg-[#242424]"] {
   background-color: var(--surface) !important;
 }
 
@@ -130,8 +132,11 @@ html.light [class*="border-[#2a2a2a]"],
 html.light [class*="border-[#2e2e2e]"],
 html.light [class*="border-[#252525]"],
 html.light [class*="border-[#2f2f2f]"],
-html.light [class*="border-[#363636]"] {
+html.light [class*="border-[#363636]"],
+html.light [class*="border-[#555]"],
+html.light [class*="decoration-[#555]"] {
   border-color: var(--border) !important;
+  text-decoration-color: var(--border) !important;
 }
 
 .theme-toggle,
