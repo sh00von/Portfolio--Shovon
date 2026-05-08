@@ -41,11 +41,6 @@ html {
 body {
   background: var(--bg);
   color: var(--text);
-  opacity: 0;
-  visibility: hidden;
-}
-
-body.ready {
   opacity: 1;
   visibility: visible;
 }

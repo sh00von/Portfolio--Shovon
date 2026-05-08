@@ -8,6 +8,7 @@ const navItems = [
   { href: "/#experience", label: "Experience" },
   { href: "/#certifications", label: "Certifications" },
   { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
   { href: "/#contact", label: "Connect" },
 ];
 
@@ -47,7 +48,7 @@ function ThemeButton() {
   );
 }
 
-export function Navigation({ active }: { active?: "projects" }) {
+export function Navigation({ active }: { active?: "projects" | "blog" }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -66,9 +67,15 @@ export function Navigation({ active }: { active?: "projects" }) {
             <Link
               key={item.href}
               href={item.href}
-              aria-current={active === "projects" && item.label === "Projects" ? "page" : undefined}
+              aria-current={
+                (active === "projects" && item.label === "Projects") ||
+                (active === "blog" && item.label === "Blog")
+                  ? "page"
+                  : undefined
+              }
               className={
-                active === "projects" && item.label === "Projects"
+                (active === "projects" && item.label === "Projects") ||
+                (active === "blog" && item.label === "Blog")
                   ? "border-b border-[#444] pb-px text-[#EDEDED]"
                   : "text-[#888] transition-colors hover:text-[#EDEDED]"
               }
@@ -116,7 +123,8 @@ export function Navigation({ active }: { active?: "projects" }) {
               key={item.href}
               href={item.href}
               className={
-                active === "projects" && item.label === "Projects"
+                (active === "projects" && item.label === "Projects") ||
+                (active === "blog" && item.label === "Blog")
                   ? "text-[#EDEDED]"
                   : "text-[#888] transition-colors hover:text-[#EDEDED]"
               }
