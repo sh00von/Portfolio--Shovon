@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { Footer, Navigation } from "@/components/SiteChrome";
 import { StrapiArticle } from "@/components/StrapiArticle";
 import { getPostBySlug, getPostSlugs } from "@/strapi/posts";
@@ -67,9 +68,29 @@ export default async function BlogPostPage({ params }: Props) {
 
   const imageUrl = post.image?.url || null;
   const hasBody = typeof post.body === "string" ? post.body.length > 0 : Array.isArray(post.body) && post.body.length > 0;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    image: imageUrl ? [imageUrl] : undefined,
+    datePublished: post.publishedAt,
+    author: post.author
+      ? {
+          "@type": "Person",
+          name: post.author,
+        }
+      : undefined,
+    mainEntityOfPage: `https://shovon.bd/blog/${post.slug}`,
+  };
 
   return (
     <div className="flex min-h-screen flex-col bg-[#171717] text-[#EDEDED]">
+      <Script
+        id="blog-post-json-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navigation active="blog" />
       <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]">
         <article className="mt-16">
@@ -120,6 +141,34 @@ export default async function BlogPostPage({ params }: Props) {
               <p className="text-[#a1a1a1]">This post does not have body content yet.</p>
             )}
           </div>
+
+          {post.author ? (
+            <aside className="mt-12 rounded-2xl border border-[#333] bg-[#1a1a1a] p-6">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+                {post.authorImage?.url ? (
+                  <Image
+                    src={post.authorImage.url}
+                    alt={post.authorImage.alt || post.author}
+                    width={64}
+                    height={64}
+                    className="h-16 w-16 rounded-full border border-[#333] object-cover"
+                  />
+                ) : null}
+                <div>
+                  <p className="text-sm uppercase tracking-[0.18em] text-[#666]">Written by</p>
+                  <h2 className="mt-1 text-xl font-semibold text-[#EDEDED]">{post.author}</h2>
+                  {post.authorBio ? <p className="mt-2 max-w-2xl leading-7 text-[#a1a1a1]">{post.authorBio}</p> : null}
+                  {post.authorEmail ? (
+                    <p className="mt-3 text-sm text-[#888]">
+                      <a className="transition-colors hover:text-[#EDEDED]" href={`mailto:${post.authorEmail}`}>
+                        {post.authorEmail}
+                      </a>
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+            </aside>
+          ) : null}
         </article>
       </main>
       <Footer backHome />

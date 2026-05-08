@@ -34,6 +34,8 @@ type StrapiPostAttributes = {
   author?: StrapiEntity<{
     name?: string;
     title?: string;
+    bio?: string;
+    email?: string;
     avatar?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
     image?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
     picture?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
@@ -41,6 +43,8 @@ type StrapiPostAttributes = {
     data?: StrapiEntity<{
       name?: string;
       title?: string;
+      bio?: string;
+      email?: string;
       avatar?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
       image?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
       picture?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
@@ -69,6 +73,8 @@ export type BlogPostListItem = {
     url: string;
     alt?: string;
   };
+  authorBio?: string;
+  authorEmail?: string;
 };
 
 export type RichTextNode = {
@@ -146,6 +152,8 @@ function normalizePost(entity: StrapiEntity<StrapiPostAttributes>): BlogPost {
     image,
     author: author?.name || author?.title,
     authorImage,
+    authorBio: author?.bio,
+    authorEmail: author?.email,
     body: post.blocks || post.body || post.content,
   };
 }

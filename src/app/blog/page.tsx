@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { BlogCard } from "@/components/BlogCard";
 import { Footer, Navigation } from "@/components/SiteChrome";
 import { getPosts } from "@/strapi/posts";
@@ -22,9 +23,26 @@ export const metadata: Metadata = {
 
 export default async function BlogPage() {
   const posts = await getPosts();
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Shovon Blog",
+    url: "https://shovon.bd/blog",
+    hasPart: posts.map((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `https://shovon.bd/blog/${post.slug}`,
+      name: post.title,
+    })),
+  };
 
   return (
     <div className="flex min-h-screen flex-col bg-[#171717] text-[#EDEDED]">
+      <Script
+        id="blog-list-json-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navigation active="blog" />
       <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]">
         <section className="mt-16 mb-14">

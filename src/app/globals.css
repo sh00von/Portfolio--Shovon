@@ -13,21 +13,27 @@
   --accent-bg: rgba(16, 185, 129, 0.18);
   --accent-text: #86efac;
   --accent-border: rgba(16, 185, 129, 0.35);
+  --bg-image:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.05), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 24rem);
 }
 
 html.light {
-  --bg: #f7f7f7;
-  --text: #171717;
-  --muted: #374151;
-  --muted-2: #4b5563;
-  --muted-3: #6b7280;
-  --surface: #e5e7eb;
-  --border: #d1d5db;
-  --border-soft: #d1d5db;
-  --border-hover: #9ca3af;
-  --accent-bg: #dcfce7;
-  --accent-text: #166534;
-  --accent-border: #86efac;
+  --bg: #f3f0ea;
+  --text: #151515;
+  --muted: #45423d;
+  --muted-2: #67625c;
+  --muted-3: #8a837c;
+  --surface: #ece7df;
+  --border: #d6cec4;
+  --border-soft: #ded6cb;
+  --border-hover: #b6ab9d;
+  --accent-bg: #e2f2e6;
+  --accent-text: #1d5d35;
+  --accent-border: #9cd1ae;
+  --bg-image:
+    radial-gradient(circle at top left, rgba(191, 160, 122, 0.16), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
 }
 
 * {
@@ -39,7 +45,8 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: var(--bg-image);
   color: var(--text);
   opacity: 1;
   visibility: visible;
@@ -91,6 +98,11 @@ html.light [class*="text-[#555]"] {
 
 html.light [class*="bg-[#1a1a1a]"] {
   background-color: var(--surface) !important;
+}
+
+html.light .spotlight-card:hover {
+  background-color: #e4ddd3;
+  border-color: #b6ab9d;
 }
 
 html.light [class*="border-[#333]"],
