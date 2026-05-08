@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   achievements,
@@ -66,18 +65,33 @@ function LineItem({
 
 export function HeroSection() {
   return (
-    <section className="mt-16 mb-20">
-      <h1 className="mb-6 text-4xl font-bold tracking-tighter text-[#EDEDED] sm:text-5xl">
-        Hey, I&apos;m Shovon
-      </h1>
-      <p className="mb-8 text-base leading-relaxed text-[#EDEDED] sm:text-lg">
-        I&apos;m <span className="font-medium text-[#EDEDED]">Md Minaruzzaman Shovon</span>, a Water Resources Engineer
-        with knowledge of hydrology, hydraulics, structures, transportation, and environmental engineering, and a Full
-        Stack Developer. I build <span className="text-[#EDEDED]">high-performance</span> web applications, specialize
-        in <span className="text-[#EDEDED]">AI integration</span>, and currently doing undergraduate in Water Resources
-        Engineering at Chittagong University of Engineering and Technology.
-      </p>
-      <DotLinks links={socials} />
+    <section className="mt-14 mb-20">
+      <div className="max-w-4xl">
+        <h1 className="mb-6 max-w-4xl text-4xl font-bold tracking-tighter text-[#EDEDED] sm:text-5xl lg:text-[3.7rem]">
+          Building fast, thoughtful web products.
+        </h1>
+        <p className="mb-8 max-w-3xl text-base leading-8 text-[#d4d4d4] sm:text-lg">
+          I&apos;m <span className="font-medium text-[#EDEDED]">Md Minaruzzaman Shovon</span>, a full-stack developer focused
+          on Next.js, TypeScript, modern UI systems, and AI-powered product experiences, with a background in water
+          resources engineering and GIS.
+        </p>
+        <div className="mb-8 flex flex-wrap gap-2 text-xs text-[#888]">
+          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">Next.js</span>
+          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">TypeScript</span>
+          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">UI Engineering</span>
+          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">AI Apps</span>
+          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">GIS</span>
+          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">Data Visualization</span>
+        </div>
+        <div className="rounded-2xl border border-[#2e2e2e] bg-[#1a1a1a]/80 p-5 sm:p-6">
+          <p className="mb-3 text-sm font-medium text-[#EDEDED]">Based in Chattogram, building for the web.</p>
+          <p className="mb-4 max-w-2xl text-sm leading-7 text-[#8d8d8d]">
+            Recent work spans developer-focused interfaces, portfolio systems, interactive maps, blog architecture, and
+            practical software for engineering-heavy use cases.
+          </p>
+          <DotLinks links={socials} />
+        </div>
+      </div>
     </section>
   );
 }

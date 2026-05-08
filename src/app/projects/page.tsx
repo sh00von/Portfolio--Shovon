@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Footer, Navigation } from "@/components/SiteChrome";
-import { PageAnimations } from "@/components/PageAnimations";
 import { ProjectsClient } from "@/components/ProjectsClient";
 
 export const metadata: Metadata = {
@@ -40,9 +39,8 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <PageAnimations projects />
       <Navigation active="projects" />
-      <main className="mx-auto w-full max-w-2xl flex-grow px-4 pt-6 pb-24 lg:max-w-[60vw] lg:pt-8">
+      <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]">
         <h1 className="sr-only">Project Portfolio of Minaruzzaman Shovon</h1>
         <ProjectsClient />
       </main>

@@ -166,11 +166,19 @@ export function Footer({ backHome = false }: { backHome?: boolean }) {
   return (
     <footer className="mx-auto flex w-full max-w-2xl flex-col items-center justify-between px-4 pb-10 text-sm text-[#555] sm:flex-row lg:max-w-[60vw]">
       <span>&copy; 2026 Minaruzzaman Shovon</span>
-      {backHome ? (
-        <Link href="/" className="back-link">
-          &larr; Home
+      <div className="flex items-center gap-4">
+        <Link href="/sitemap.xml" className="back-link">
+          Sitemap
         </Link>
-      ) : null}
+        <Link href="/feed.xml" className="back-link">
+          Feed
+        </Link>
+        {backHome ? (
+          <Link href="/" className="back-link">
+            &larr; Home
+          </Link>
+        ) : null}
+      </div>
     </footer>
   );
 }

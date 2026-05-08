@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Footer, Navigation } from "@/components/SiteChrome";
-import { PageAnimations } from "@/components/PageAnimations";
 import {
   AchievementsSection,
   ContactSection,
@@ -70,7 +69,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <PageAnimations />
       <Navigation />
       <main id="main-content" className="mx-auto w-full max-w-2xl flex-grow px-4 pb-20 lg:max-w-[60vw]">
         <HeroSection />

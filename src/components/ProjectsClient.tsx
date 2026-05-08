@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { filters, Project, ProjectCategory, projects } from "@/data/projects";
 import { ArrowUpRightIcon, CloseIcon } from "./icons";
 
@@ -17,22 +15,6 @@ export function ProjectsClient() {
     return projects.filter((project) =>
       project.categories.some((category) => category === (activeFilter as ProjectCategory)),
     );
-  }, [activeFilter]);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const rows = gsap.utils.toArray<HTMLElement>(".project-row");
-    rows.forEach((row, i) => {
-      gsap.from(row, {
-        scrollTrigger: { trigger: row, start: "top 92%" },
-        x: -12,
-        opacity: 0,
-        duration: 0.55,
-        delay: i < 3 ? i * 0.05 : 0,
-        ease: "power2.out",
-      });
-    });
-    return () => ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   }, [activeFilter]);
 
   useEffect(() => {
@@ -74,7 +56,8 @@ export function ProjectsClient() {
 
   return (
     <>
-      <div className="filter-pills" id="filter-pills">
+      <div className="mb-8 pt-3">
+        <div className="filter-pills mb-0" id="filter-pills">
         {filters.map((filter) => (
           <button
             key={filter}
@@ -85,6 +68,7 @@ export function ProjectsClient() {
             {filter === "all" ? "All" : filter}
           </button>
         ))}
+        </div>
       </div>
 
       <div>
