@@ -97,10 +97,12 @@ html.light [class*="text-[#EDEDED]"] {
 }
 
 html.light [class*="text-[#d4d4d4]"],
+html.light [class*="text-[#a9a9a9]"],
 html.light [class*="text-[#a1a1a1]"] {
   color: var(--muted) !important;
 }
 
+html.light [class*="text-[#8d8d8d]"],
 html.light [class*="text-[#888]"] {
   color: var(--muted-2) !important;
 }
@@ -114,13 +116,21 @@ html.light [class*="bg-[#1a1a1a]"] {
   background-color: var(--surface) !important;
 }
 
+html.light [class*="bg-[#202020]"] {
+  background-color: #e7e0d6 !important;
+}
+
 html.light .spotlight-card:hover {
   background-color: #e4ddd3;
   border-color: #b6ab9d;
 }
 
 html.light [class*="border-[#333]"],
-html.light [class*="border-[#2a2a2a]"] {
+html.light [class*="border-[#2a2a2a]"],
+html.light [class*="border-[#2e2e2e]"],
+html.light [class*="border-[#252525]"],
+html.light [class*="border-[#2f2f2f]"],
+html.light [class*="border-[#363636]"] {
   border-color: var(--border) !important;
 }
 
@@ -305,6 +315,61 @@ html.light [class*="border-[#2a2a2a]"] {
 
 .back-link:hover {
   color: var(--text);
+}
+
+.variant-switcher {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(24, 24, 24, 0.94);
+  color: var(--muted-2);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 10px 24px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(12px);
+}
+
+.variant-switcher-indicator {
+  background: #242424;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.variant-switcher-option {
+  color: var(--muted-2);
+  letter-spacing: 0;
+}
+
+.variant-switcher-option:hover {
+  color: var(--text);
+}
+
+.variant-switcher-option.is-active {
+  color: #f3f0ea;
+}
+
+html.light .variant-switcher {
+  background: rgba(236, 231, 223, 0.98);
+  box-shadow: 0 10px 24px rgba(100, 82, 57, 0.12);
+}
+
+html.light .variant-switcher-indicator {
+  background: #2f2b28;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 8px 18px rgba(92, 74, 49, 0.16);
+}
+
+html.light .variant-switcher-option {
+  color: #5f5a53;
+}
+
+html.light .variant-switcher-option:hover {
+  color: #1f1d1a;
+}
+
+html.light .variant-switcher-option.is-active {
+  color: #f5f0e8;
 }
 
 html.light .project-preview {

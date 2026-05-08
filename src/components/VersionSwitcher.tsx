@@ -1,0 +1,111 @@
+"use client";
+
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import type { HomePath, HomeVariant } from "@/lib/homeVariants";
+
+type SwitcherState = {
+  left: number;
+  width: number;
+};
+
+const routes: Array<{ href: HomePath; label: string; variant: HomeVariant }> = [
+  { href: "/dev", label: "Dev", variant: "dev" },
+  { href: "/wre", label: "Engineer", variant: "wre" },
+];
+
+const getVariantFromPathname = (pathname: string | null): HomeVariant =>
+  pathname?.startsWith("/wre") ? "wre" : "dev";
+
+export function VersionSwitcher() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const currentVariant = getVariantFromPathname(pathname);
+  const [indicator, setIndicator] = useState<SwitcherState>({ left: 0, width: 0 });
+  const itemRefs = useRef<Record<HomeVariant, HTMLButtonElement | null>>({
+    dev: null,
+    wre: null,
+  });
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const activeNode = itemRefs.current[currentVariant];
+      if (!activeNode) return;
+
+      setIndicator({
+        left: activeNode.offsetLeft,
+        width: activeNode.offsetWidth,
+      });
+    };
+
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [currentVariant]);
+
+  useEffect(() => {
+    const activeNode = itemRefs.current[currentVariant];
+    if (!activeNode || typeof ResizeObserver === "undefined") return;
+
+    const observer = new ResizeObserver(() => {
+      setIndicator({
+        left: activeNode.offsetLeft,
+        width: activeNode.offsetWidth,
+      });
+    });
+
+    observer.observe(activeNode);
+    return () => observer.disconnect();
+  }, [currentVariant]);
+
+  useEffect(() => {
+    router.prefetch("/dev");
+    router.prefetch("/wre");
+  }, [router]);
+
+  const navigate = (href: HomePath) => {
+    if (pathname === href) {
+      return;
+    }
+
+    router.push(href);
+  };
+
+  return (
+    <div
+      className="variant-switcher relative inline-flex items-center p-1"
+      role="tablist"
+      aria-label="Homepage version"
+    >
+      <span
+        aria-hidden="true"
+        className="variant-switcher-indicator absolute top-1 bottom-1 rounded-full transition-[transform,width] duration-300 ease-out"
+        style={{
+          width: indicator.width,
+          transform: `translateX(${indicator.left}px)`,
+        }}
+      />
+      {routes.map((item) => {
+        const active = item.variant === currentVariant;
+
+        return (
+          <button
+            key={item.href}
+            ref={(node) => {
+              itemRefs.current[item.variant] = node;
+            }}
+            type="button"
+            role="tab"
+            aria-selected={active}
+            onClick={() => navigate(item.href)}
+            className={`variant-switcher-option relative z-10 rounded-full px-4 py-2 transition-colors duration-300 ${
+              active ? "is-active" : ""
+            }`}
+          >
+            {item.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
