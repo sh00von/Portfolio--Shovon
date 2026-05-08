@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer, Navigation } from "@/components/SiteChrome";
 import { ProjectsClient } from "@/components/ProjectsClient";
+import { resolveFromVariant, resolveHomePath } from "@/lib/homeVariants";
 
 export const metadata: Metadata = {
   title: "Projects & Portfolio",
@@ -36,15 +37,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>;
+}) {
+  const { from } = await searchParams;
+  const homePath = resolveHomePath(from);
+  const fromVariant = resolveFromVariant(homePath);
+
   return (
     <div className="flex min-h-screen flex-col">
-      <Navigation active="projects" />
+      <Navigation active="projects" homePath={homePath} fromVariant={fromVariant} />
       <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]">
         <h1 className="sr-only">Project Portfolio of Minaruzzaman Shovon</h1>
         <ProjectsClient />
       </main>
-      <Footer backHome />
+      <Footer backHome homePath={homePath} />
     </div>
   );
 }

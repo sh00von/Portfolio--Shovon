@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState, useSyncExternalStore } from "react";
-import type { HomePath } from "@/lib/homeVariants";
+import { resolveFromVariant, withFromParam, type HomePath, type SharedFrom } from "@/lib/homeVariants";
 import { MoonIcon, SunIcon } from "./icons";
 
-const navItems = [
+const defaultNavItems = [
   { anchor: "#experience", label: "Experience" },
   { anchor: "#certifications", label: "Certifications" },
   { href: "/projects", label: "Projects" },
@@ -71,12 +71,25 @@ function ThemeButton() {
 
 export function Navigation({
   active,
-  homePath = "/",
+  homePath = "/dev",
+  fromVariant,
 }: {
   active?: "projects" | "blog";
   homePath?: HomePath;
+  fromVariant?: SharedFrom;
 }) {
   const [open, setOpen] = useState(false);
+  const currentVariant = fromVariant ?? resolveFromVariant(homePath);
+  const navItems =
+    currentVariant === "wre"
+      ? [
+          { anchor: "#research", label: "Research" },
+          defaultNavItems[1],
+          defaultNavItems[2],
+          defaultNavItems[3],
+          defaultNavItems[4],
+        ]
+      : defaultNavItems;
 
   return (
     <nav
@@ -94,27 +107,28 @@ export function Navigation({
 
         <div className="hidden items-center gap-6 text-sm font-medium md:flex">
           {navItems.map((item) => {
-            const href = "anchor" in item ? `${homePath}${item.anchor}` : item.href;
+            const href =
+              "anchor" in item ? `${homePath}${item.anchor}` : withFromParam(item.href, currentVariant);
 
             return (
-            <Link
-              key={href}
-              href={href}
-              aria-current={
-                (active === "projects" && item.label === "Projects") ||
-                (active === "blog" && item.label === "Blog")
-                  ? "page"
-                  : undefined
-              }
-              className={
-                (active === "projects" && item.label === "Projects") ||
-                (active === "blog" && item.label === "Blog")
-                  ? "border-b border-[#444] pb-px text-[#EDEDED]"
-                  : "text-[#888] transition-colors hover:text-[#EDEDED]"
-              }
-            >
-              {item.label}
-            </Link>
+              <Link
+                key={href}
+                href={href}
+                aria-current={
+                  (active === "projects" && item.label === "Projects") ||
+                  (active === "blog" && item.label === "Blog")
+                    ? "page"
+                    : undefined
+                }
+                className={
+                  (active === "projects" && item.label === "Projects") ||
+                  (active === "blog" && item.label === "Blog")
+                    ? "border-b border-[#444] pb-px text-[#EDEDED]"
+                    : "text-[#888] transition-colors hover:text-[#EDEDED]"
+                }
+              >
+                {item.label}
+              </Link>
             );
           })}
           <ThemeButton />
@@ -153,22 +167,23 @@ export function Navigation({
       >
         <div className="mt-4 flex flex-col gap-4 border-t border-[#2a2a2a] pt-5 pb-2 text-sm font-medium">
           {navItems.map((item) => {
-            const href = "anchor" in item ? `${homePath}${item.anchor}` : item.href;
+            const href =
+              "anchor" in item ? `${homePath}${item.anchor}` : withFromParam(item.href, currentVariant);
 
             return (
-            <Link
-              key={href}
-              href={href}
-              className={
-                (active === "projects" && item.label === "Projects") ||
-                (active === "blog" && item.label === "Blog")
-                  ? "text-[#EDEDED]"
-                  : "text-[#888] transition-colors hover:text-[#EDEDED]"
-              }
-              onClick={() => setOpen(false)}
-            >
-              {item.label}
-            </Link>
+              <Link
+                key={href}
+                href={href}
+                className={
+                  (active === "projects" && item.label === "Projects") ||
+                  (active === "blog" && item.label === "Blog")
+                    ? "text-[#EDEDED]"
+                    : "text-[#888] transition-colors hover:text-[#EDEDED]"
+                }
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
             );
           })}
         </div>
@@ -177,7 +192,7 @@ export function Navigation({
   );
 }
 
-export function Footer({ backHome = false }: { backHome?: boolean }) {
+export function Footer({ backHome = false, homePath = "/dev" }: { backHome?: boolean; homePath?: HomePath }) {
   return (
     <footer className="mx-auto flex w-full max-w-2xl flex-col items-center justify-between px-4 pb-10 text-sm text-[#555] sm:flex-row lg:max-w-[60vw]">
       <span>&copy; 2026 Minaruzzaman Shovon</span>
@@ -189,7 +204,7 @@ export function Footer({ backHome = false }: { backHome?: boolean }) {
           Feed
         </Link>
         {backHome ? (
-          <Link href="/" className="back-link">
+          <Link href={homePath} className="back-link">
             &larr; Home
           </Link>
         ) : null}

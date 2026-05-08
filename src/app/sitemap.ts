@@ -6,16 +6,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: "https://shovon.bd/",
-      lastModified: new Date("2026-05-08"),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
       url: "https://shovon.bd/dev",
       lastModified: new Date("2026-05-08"),
       changeFrequency: "weekly",
-      priority: 0.9,
+      priority: 1,
     },
     {
       url: "https://shovon.bd/wre",
