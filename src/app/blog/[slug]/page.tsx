@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Footer, Navigation } from "@/components/SiteChrome";
-import { PortableArticle } from "@/components/PortableArticle";
-import { getPostBySlug, getPostSlugs } from "@/sanity/lib/posts";
-import { urlFor } from "@/sanity/lib/image";
+import { StrapiArticle } from "@/components/StrapiArticle";
+import { getPostBySlug, getPostSlugs } from "@/strapi/posts";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -35,9 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const imageUrl = post.mainImage
-    ? urlFor(post.mainImage).width(1200).height(630).fit("crop").url()
-    : "/og.png";
+  const imageUrl = post.image?.url || "/og.png";
 
   return {
     title: post.title,
@@ -68,9 +65,8 @@ export default async function BlogPostPage({ params }: Props) {
 
   if (!post) notFound();
 
-  const imageUrl = post.mainImage
-    ? urlFor(post.mainImage).width(1200).height(675).fit("crop").url()
-    : null;
+  const imageUrl = post.image?.url || null;
+  const hasBody = typeof post.body === "string" ? post.body.length > 0 : Array.isArray(post.body) && post.body.length > 0;
 
   return (
     <div className="flex min-h-screen flex-col bg-[#171717] text-[#EDEDED]">
@@ -95,7 +91,7 @@ export default async function BlogPostPage({ params }: Props) {
           {imageUrl ? (
             <Image
               src={imageUrl}
-              alt={post.mainImage?.alt || post.title}
+              alt={post.image?.alt || post.title}
               width={1200}
               height={675}
               priority
@@ -104,8 +100,8 @@ export default async function BlogPostPage({ params }: Props) {
           ) : null}
 
           <div className="border-t border-[#333] pt-10">
-            {post.body?.length ? (
-              <PortableArticle value={post.body} />
+            {hasBody ? (
+              <StrapiArticle value={post.body} />
             ) : (
               <p className="text-[#a1a1a1]">This post does not have body content yet.</p>
             )}

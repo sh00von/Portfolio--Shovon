@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { BlogPostListItem } from "@/sanity/lib/posts";
-import { urlFor } from "@/sanity/lib/image";
+import type { BlogPostListItem } from "@/strapi/posts";
 
 function formatDate(date?: string) {
   if (!date) return "Draft";
@@ -13,9 +12,7 @@ function formatDate(date?: string) {
 }
 
 export function BlogCard({ post }: { post: BlogPostListItem }) {
-  const imageUrl = post.mainImage
-    ? urlFor(post.mainImage).width(960).height(540).fit("crop").url()
-    : null;
+  const imageUrl = post.image?.url || null;
 
   return (
     <Link href={`/blog/${post.slug}`} className="group block border-b border-[#333] py-8 first:border-t">
@@ -23,7 +20,7 @@ export function BlogCard({ post }: { post: BlogPostListItem }) {
         <div className="spotlight-card mb-5 overflow-hidden rounded-xl border border-[#333] bg-[#1a1a1a]">
           <Image
             src={imageUrl}
-            alt={post.mainImage?.alt || post.title}
+            alt={post.image?.alt || post.title}
             width={960}
             height={540}
             className="aspect-[16/9] w-full object-cover opacity-90 transition duration-500 group-hover:scale-[1.02] group-hover:opacity-100"

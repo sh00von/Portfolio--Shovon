@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { BlogCard } from "@/components/BlogCard";
 import { Footer, Navigation } from "@/components/SiteChrome";
-import { getPosts } from "@/sanity/lib/posts";
-import { hasSanityConfig } from "@/sanity/env";
+import { getPosts } from "@/strapi/posts";
+import { hasStrapiConfig } from "@/strapi/env";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -37,16 +37,16 @@ export default async function BlogPage() {
         {posts.length ? (
           <section aria-label="Blog posts">
             {posts.map((post) => (
-              <BlogCard key={post._id} post={post} />
+              <BlogCard key={post.id} post={post} />
             ))}
           </section>
         ) : (
           <section className="border-y border-[#333] py-10">
             <h2 className="mb-3 text-xl font-semibold tracking-tight text-[#EDEDED]">No posts yet</h2>
             <p className="max-w-xl text-sm leading-relaxed text-[#a1a1a1]">
-              {hasSanityConfig
-                ? "Publish your first Sanity post and it will appear here automatically."
-                : "Connect Sanity by setting NEXT_PUBLIC_SANITY_PROJECT_ID and NEXT_PUBLIC_SANITY_DATASET, then publish your first post."}
+              {hasStrapiConfig
+                ? "Publish your first Strapi post and it will appear here automatically."
+                : "Connect Strapi by setting STRAPI_URL, then publish your first post."}
             </p>
           </section>
         )}

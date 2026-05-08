@@ -1,11 +1,23 @@
 import type { NextConfig } from "next";
 
+const strapiHost = process.env.STRAPI_URL
+  ? new URL(process.env.STRAPI_URL).hostname
+  : undefined;
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
+      ...(strapiHost
+        ? [
+            {
+              protocol: "https" as const,
+              hostname: strapiHost,
+            },
+          ]
+        : []),
       {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
+        protocol: "http",
+        hostname: "localhost",
       },
     ],
   },
