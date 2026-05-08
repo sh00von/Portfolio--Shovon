@@ -72,7 +72,7 @@ export function Navigation({ active }: { active?: "projects" | "blog" }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="mx-auto w-full max-w-2xl px-4 py-6" aria-label="Main navigation">
+    <nav className="mx-auto w-full max-w-2xl px-4 py-6 lg:max-w-[60vw]" aria-label="Main navigation">
       <div className="flex items-center justify-between">
         <Link
           href="/"
@@ -161,7 +161,7 @@ export function Navigation({ active }: { active?: "projects" | "blog" }) {
 
 export function Footer({ backHome = false }: { backHome?: boolean }) {
   return (
-    <footer className="mx-auto flex w-full max-w-2xl flex-col items-center justify-between px-4 pb-10 text-sm text-[#555] sm:flex-row">
+    <footer className="mx-auto flex w-full max-w-2xl flex-col items-center justify-between px-4 pb-10 text-sm text-[#555] sm:flex-row lg:max-w-[60vw]">
       <span>&copy; 2026 Minaruzzaman Shovon</span>
       {backHome ? (
         <Link href="/" className="back-link">

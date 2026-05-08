@@ -71,12 +71,25 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <div className="flex min-h-screen flex-col bg-[#171717] text-[#EDEDED]">
       <Navigation active="blog" />
-      <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24">
+      <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]">
         <article className="mt-16">
           <div className="mb-8">
             <p className="mb-4 text-sm tabular-nums text-[#666]">{formatDate(post.publishedAt)}</p>
             <h1 className="mb-5 text-4xl font-bold tracking-tighter text-[#EDEDED] sm:text-5xl">{post.title}</h1>
-            {post.author ? <p className="mb-4 text-sm text-[#666]">By {post.author}</p> : null}
+            {post.author ? (
+              <div className="mb-4 flex items-center gap-3 text-sm text-[#666]">
+                {post.authorImage?.url ? (
+                  <Image
+                    src={post.authorImage.url}
+                    alt={post.authorImage.alt || post.author}
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 rounded-full border border-[#333] object-cover"
+                  />
+                ) : null}
+                <span>By {post.author}</span>
+              </div>
+            ) : null}
             {post.excerpt ? <p className="text-lg leading-relaxed text-[#a1a1a1]">{post.excerpt}</p> : null}
             {post.categories?.length ? (
               <div className="mt-5 flex flex-wrap gap-2">

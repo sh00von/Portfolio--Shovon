@@ -72,7 +72,7 @@ export default function Home() {
       />
       <PageAnimations />
       <Navigation />
-      <main id="main-content" className="mx-auto w-full max-w-2xl flex-grow px-4 pb-20">
+      <main id="main-content" className="mx-auto w-full max-w-2xl flex-grow px-4 pb-20 lg:max-w-[60vw]">
         <HeroSection />
         <SimpleListSection id="education" title="Education" items={homeLists.education} />
         <SimpleListSection id="experience" title="Work Experience" items={homeLists.experience} />

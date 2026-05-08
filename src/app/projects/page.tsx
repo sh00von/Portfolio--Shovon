@@ -42,7 +42,7 @@ export default function ProjectsPage() {
     <div className="flex min-h-screen flex-col">
       <PageAnimations projects />
       <Navigation active="projects" />
-      <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24">
+      <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]">
         <h1 className="sr-only">Project Portfolio of Minaruzzaman Shovon</h1>
         <ProjectsClient />
       </main>

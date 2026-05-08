@@ -26,7 +26,7 @@ export default async function BlogPage() {
   return (
     <div className="flex min-h-screen flex-col bg-[#171717] text-[#EDEDED]">
       <Navigation active="blog" />
-      <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24">
+      <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]">
         <section className="mt-16 mb-14">
           <h1 className="mb-5 text-4xl font-bold tracking-tighter text-[#EDEDED] sm:text-5xl">Blog</h1>
           <p className="max-w-xl text-base leading-relaxed text-[#a1a1a1] sm:text-lg">

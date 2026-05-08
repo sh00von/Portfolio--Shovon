@@ -15,35 +15,66 @@ export function BlogCard({ post }: { post: BlogPostListItem }) {
   const imageUrl = post.image?.url || null;
 
   return (
-    <Link href={`/blog/${post.slug}`} className="group block border-b border-[#333] py-8 first:border-t">
-      {imageUrl ? (
-        <div className="spotlight-card mb-5 overflow-hidden rounded-xl border border-[#333] bg-[#1a1a1a]">
-          <Image
-            src={imageUrl}
-            alt={post.image?.alt || post.title}
-            width={960}
-            height={540}
-            className="aspect-[16/9] w-full object-cover opacity-90 transition duration-500 group-hover:scale-[1.02] group-hover:opacity-100"
-          />
+    <Link href={`/blog/${post.slug}`} className="group block border-b border-[#333] py-8 first:border-t lg:py-10">
+      <article className="grid gap-6 lg:grid-cols-[20rem_minmax(0,1fr)] lg:gap-8">
+        <div className="spotlight-card overflow-hidden rounded-xl border border-[#333] bg-[#1a1a1a]">
+          {imageUrl ? (
+            <Image
+              src={imageUrl}
+              alt={post.image?.alt || post.title}
+              width={960}
+              height={540}
+              className="aspect-[4/3] w-full object-cover opacity-90 transition duration-500 group-hover:scale-[1.02] group-hover:opacity-100"
+            />
+          ) : (
+            <div className="flex aspect-[4/3] items-end bg-[radial-gradient(circle_at_top_left,_#2a2a2a,_#171717_70%)] p-5">
+              {post.categories?.[0] ? <span className="tag">{post.categories[0]}</span> : null}
+            </div>
+          )}
         </div>
-      ) : null}
-      <div className="mb-2 flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline">
-        <h2 className="text-xl font-semibold leading-tight tracking-tight text-[#EDEDED] underline-offset-4 group-hover:underline decoration-[#555]">
-          {post.title}
-        </h2>
-        <span className="flex-shrink-0 text-sm tabular-nums text-[#666]">{formatDate(post.publishedAt)}</span>
-      </div>
-      {post.author ? <p className="mb-2 text-xs text-[#666]">By {post.author}</p> : null}
-      {post.excerpt ? <p className="max-w-xl text-sm leading-relaxed text-[#a1a1a1]">{post.excerpt}</p> : null}
-      {post.categories?.length ? (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {post.categories.map((category) => (
-            <span key={category} className="tag">
-              {category}
-            </span>
-          ))}
+
+        <div className="flex min-w-0 flex-col justify-between">
+          <div>
+            <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-[#666]">
+              <span className="tabular-nums">{formatDate(post.publishedAt)}</span>
+              {post.author ? (
+                <div className="flex items-center gap-2">
+                  {post.authorImage?.url ? (
+                    <Image
+                      src={post.authorImage.url}
+                      alt={post.authorImage.alt || post.author}
+                      width={28}
+                      height={28}
+                      className="h-7 w-7 rounded-full border border-[#333] object-cover"
+                    />
+                  ) : null}
+                  <span>By {post.author}</span>
+                </div>
+              ) : null}
+            </div>
+
+            <h2 className="mb-3 text-2xl font-semibold leading-tight tracking-tight text-[#EDEDED] transition-colors group-hover:text-white sm:text-[2rem]">
+              {post.title}
+            </h2>
+
+            {post.excerpt ? (
+              <p className="max-w-3xl text-[15px] leading-7 text-[#a1a1a1] sm:text-base">
+                {post.excerpt}
+              </p>
+            ) : null}
+          </div>
+
+          {post.categories?.length ? (
+            <div className="mt-5 flex flex-wrap gap-2">
+              {post.categories.map((category) => (
+                <span key={category} className="tag">
+                  {category}
+                </span>
+              ))}
+            </div>
+          ) : null}
         </div>
-      ) : null}
+      </article>
     </Link>
   );
 }
