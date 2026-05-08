@@ -4,10 +4,12 @@ import { notFound } from "next/navigation";
 import Script from "next/script";
 import { Footer, Navigation } from "@/components/SiteChrome";
 import { StrapiArticle } from "@/components/StrapiArticle";
+import { resolveFromVariant, resolveHomePath } from "@/lib/homeVariants";
 import { getPostBySlug, getPostSlugs } from "@/strapi/posts";
 
 type Props = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ from?: string }>;
 };
 
 function formatDate(date?: string) {
@@ -60,9 +62,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage({ params, searchParams }: Props) {
   const { slug } = await params;
+  const { from } = await searchParams;
   const post = await getPostBySlug(slug);
+  const homePath = resolveHomePath(from);
+  const fromVariant = resolveFromVariant(homePath);
 
   if (!post) notFound();
 
@@ -91,7 +96,7 @@ export default async function BlogPostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navigation active="blog" />
+      <Navigation active="blog" homePath={homePath} fromVariant={fromVariant} />
       <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]">
         <article className="mt-16">
           <div className="mb-8">
@@ -171,7 +176,7 @@ export default async function BlogPostPage({ params }: Props) {
           ) : null}
         </article>
       </main>
-      <Footer backHome />
+      <Footer backHome homePath={homePath} />
     </div>
   );
 }

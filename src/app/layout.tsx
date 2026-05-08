@@ -12,34 +12,30 @@ const mulish = Mulish({
 export const metadata: Metadata = {
   metadataBase: new URL("https://shovon.bd"),
   title: {
-    default:
-      "Md Minaruzzaman Shovon | Water Resources Engineer & Full Stack Developer",
+    default: "Md Minaruzzaman Shovon",
     template: "%s | Minaruzzaman Shovon",
   },
   description:
-    "Md Minaruzzaman Shovon is a Water Resources Engineering undergraduate at CUET and Full Stack Developer focused on hydrological modeling, environmental analysis, and high-performance web applications with AI integration.",
+    "Personal website of Md Minaruzzaman Shovon, featuring selected work in software development, water resources engineering, research, and technical writing.",
   keywords: [
     "Md Minaruzzaman Shovon",
-    "Water Resources Engineering",
-    "CUET",
-    "hydrology",
-    "hydrological modeling",
-    "Full Stack Developer",
-    "AI integration",
-    "Next.js",
-    "React",
-    "Node.js",
+    "Shovon portfolio",
+    "software development",
+    "water resources engineering",
+    "research",
+    "technical writing",
     "Bangladesh",
   ],
   authors: [{ name: "Minaruzzaman Shovon" }],
   creator: "Minaruzzaman Shovon",
+  publisher: "Minaruzzaman Shovon",
   openGraph: {
     type: "website",
-    url: "https://shovon.bd/",
-    title:
-      "Md Minaruzzaman Shovon | Water Resources Engineer & Full Stack Developer",
+    url: "https://shovon.bd/dev",
+    siteName: "Shovon Portfolio",
+    title: "Md Minaruzzaman Shovon",
     description:
-      "Water Resources Engineering undergraduate at CUET focused on hydrological modeling, environmental analysis, and AI-powered web applications.",
+      "Personal website featuring selected work in software development, water resources engineering, research, and technical writing.",
     images: ["/og.png"],
   },
   twitter: {
@@ -47,7 +43,7 @@ export const metadata: Metadata = {
     creator: "@sh00von",
     title: "Md Minaruzzaman Shovon",
     description:
-      "Water Resources Engineering undergraduate at CUET and Full Stack Developer working on hydrological modeling and AI-powered web applications.",
+      "Personal website featuring selected work in software development, water resources engineering, research, and technical writing.",
     images: ["/og.png"],
   },
   icons: {

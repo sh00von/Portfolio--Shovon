@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withFromParam, type SharedFrom } from "@/lib/homeVariants";
 import type { BlogPostListItem } from "@/strapi/posts";
 
 function formatDate(date?: string) {
@@ -11,11 +12,12 @@ function formatDate(date?: string) {
   }).format(new Date(date));
 }
 
-export function BlogCard({ post }: { post: BlogPostListItem }) {
+export function BlogCard({ post, fromVariant }: { post: BlogPostListItem; fromVariant?: SharedFrom }) {
   const imageUrl = post.image?.url || null;
+  const href = withFromParam(`/blog/${post.slug}`, fromVariant);
 
   return (
-    <Link href={`/blog/${post.slug}`} className="group block border-b border-[#333] py-8 first:border-t lg:py-10">
+    <Link href={href} className="group block border-b border-[#333] py-8 first:border-t lg:py-10">
       <article className="grid gap-6 lg:grid-cols-[20rem_minmax(0,1fr)] lg:gap-8">
         <div className="spotlight-card overflow-hidden rounded-xl border border-[#333] bg-[#1a1a1a]">
           {imageUrl ? (

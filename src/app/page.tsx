@@ -1,8 +1,5 @@
-import { HomePage } from "@/components/HomePage";
-import { getHomeMetadata } from "@/lib/homeVariants";
-
-export const metadata = getHomeMetadata("dev", "/");
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  return <HomePage variant="dev" homePath="/" />;
+  redirect("/dev");
 }

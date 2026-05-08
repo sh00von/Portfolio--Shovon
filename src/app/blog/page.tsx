@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { BlogCard } from "@/components/BlogCard";
 import { Footer, Navigation } from "@/components/SiteChrome";
+import { resolveFromVariant, resolveHomePath } from "@/lib/homeVariants";
 import { getPosts } from "@/strapi/posts";
 import { hasStrapiConfig } from "@/strapi/env";
 
@@ -21,8 +22,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function BlogPage() {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>;
+}) {
+  const { from } = await searchParams;
   const posts = await getPosts();
+  const homePath = resolveHomePath(from);
+  const fromVariant = resolveFromVariant(homePath);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -43,7 +51,7 @@ export default async function BlogPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navigation active="blog" />
+      <Navigation active="blog" homePath={homePath} fromVariant={fromVariant} />
       <main className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]">
         <section className="mt-16 mb-14">
           <h1 className="mb-5 text-4xl font-bold tracking-tighter text-[#EDEDED] sm:text-5xl">Blog</h1>
@@ -55,7 +63,7 @@ export default async function BlogPage() {
         {posts.length ? (
           <section aria-label="Blog posts">
             {posts.map((post) => (
-              <BlogCard key={post.id} post={post} />
+              <BlogCard key={post.id} post={post} fromVariant={fromVariant} />
             ))}
           </section>
         ) : (
@@ -69,7 +77,7 @@ export default async function BlogPage() {
           </section>
         )}
       </main>
-      <Footer />
+      <Footer homePath={homePath} />
     </div>
   );
 }

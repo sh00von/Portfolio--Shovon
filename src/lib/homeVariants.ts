@@ -12,6 +12,7 @@ import {
 
 export type HomeVariant = "dev" | "wre";
 export type HomePath = "/" | "/dev" | "/wre";
+export type SharedFrom = HomeVariant | undefined;
 
 const siteUrl = "https://shovon.bd";
 
@@ -37,6 +38,7 @@ type VariantContent = {
     intro: string;
   };
   skills: {
+    title: string;
     intro: string;
   };
   contact: {
@@ -45,6 +47,8 @@ type VariantContent = {
   metadata: {
     title: string;
     description: string;
+    keywords: string[];
+    category: string;
     ogTitle: string;
     ogDescription: string;
     jobTitle: string;
@@ -63,6 +67,21 @@ type HomeVariantData = {
   gallery: readonly GalleryItem[];
   skills: readonly SkillGroup[];
 };
+
+const wreOnlySkills = [
+  [
+    "Programming & ML",
+    "Python",
+    "NumPy",
+    "MATLAB",
+    "PyTorch",
+    "TensorFlow",
+    "Machine Learning",
+    "CNN",
+    "ANN",
+    "LLM Fine-tuning",
+  ],
+] as const satisfies readonly SkillGroup[];
 
 export const homeVariantContent: Record<HomeVariant, VariantContent> = {
   dev: {
@@ -84,6 +103,7 @@ export const homeVariantContent: Record<HomeVariant, VariantContent> = {
         "Research and technical writing that reflect the analytical side of how I approach software, modeling, and environmental systems.",
     },
     skills: {
+      title: "Skills",
       intro: "Technologies and tools I use to design, build, and ship products.",
     },
     contact: {
@@ -93,6 +113,18 @@ export const homeVariantContent: Record<HomeVariant, VariantContent> = {
       title: "Md Minaruzzaman Shovon | Full Stack Developer",
       description:
         "Full stack developer portfolio of Md Minaruzzaman Shovon, focused on Next.js, TypeScript, AI integration, GIS, and high-performance web applications.",
+      keywords: [
+        "Md Minaruzzaman Shovon",
+        "Shovon developer",
+        "Full Stack Developer Bangladesh",
+        "Next.js developer",
+        "TypeScript developer",
+        "React developer",
+        "AI integration",
+        "GIS developer",
+        "web developer portfolio",
+      ],
+      category: "Technology",
       ogTitle: "Md Minaruzzaman Shovon | Full Stack Developer",
       ogDescription:
         "Full stack developer building fast, thoughtful web products across Next.js, AI integration, mapping, and data-rich interfaces.",
@@ -116,9 +148,9 @@ export const homeVariantContent: Record<HomeVariant, VariantContent> = {
     hero: {
       headline: "Exploring water systems, modeling, and environmental analysis.",
       intro:
-        "I'm Md Minaruzzaman Shovon, a water resources engineering undergraduate at CUET working across hydrology, hydraulics, GIS, environmental analysis, and applied computational tools.",
+        "I'm Md Minaruzzaman Shovon, a water resources engineering undergraduate at CUET working across hydrology, hydraulics, GIS, environmental analysis, and applied computational tools, with a focus on river systems, rainfall, air quality, spatial analysis, and practical modeling supported by software.",
       support:
-        "My engineering work is grounded in river systems, rainfall, air quality, spatial analysis, and practical modeling, with software helping me make those systems easier to analyze and communicate.",
+        "I use software to make complex water, environmental, and engineering systems easier to analyze, understand, and communicate.",
       pills: ["Hydrology", "Hydraulics", "GIS", "Environmental Analysis", "Research", "Modeling"],
       summaryEyebrow: "Based in Chattogram, studying and building in water systems.",
       summaryText:
@@ -130,6 +162,7 @@ export const homeVariantContent: Record<HomeVariant, VariantContent> = {
         "Research is a central part of this work, especially around hydrology, environmental monitoring, rainfall analysis, and applied machine learning for water-related systems.",
     },
     skills: {
+      title: "Tools & Methods",
       intro: "Methods, software, and technical tools I use across hydrology, GIS, analysis, and engineering workflows.",
     },
     contact: {
@@ -139,6 +172,18 @@ export const homeVariantContent: Record<HomeVariant, VariantContent> = {
       title: "Md Minaruzzaman Shovon | Water Resources Engineering",
       description:
         "Water resources engineering portfolio of Md Minaruzzaman Shovon, covering hydrology, hydraulics, GIS, environmental analysis, research, and modeling.",
+      keywords: [
+        "Md Minaruzzaman Shovon",
+        "Water Resources Engineering",
+        "CUET",
+        "hydrology",
+        "hydraulics",
+        "GIS",
+        "environmental analysis",
+        "hydrological modeling",
+        "research portfolio",
+      ],
+      category: "Engineering",
       ogTitle: "Md Minaruzzaman Shovon | Water Resources Engineering",
       ogDescription:
         "Water resources engineering work spanning hydrology, GIS, environmental analysis, modeling, and research-driven technical practice.",
@@ -178,7 +223,7 @@ export const homeVariantData: Record<HomeVariant, HomeVariantData> = {
     certifications,
     achievements,
     gallery,
-    skills: skills.filter(([heading]) => heading === "GIS/ML Modelling"),
+    skills: [...skills.filter(([heading]) => heading === "GIS/ML Modelling"), ...wreOnlySkills],
   },
 };
 
@@ -187,17 +232,41 @@ export function getHomeMetadata(variant: HomeVariant, canonicalPath: HomePath): 
   const canonicalUrl = `${siteUrl}${canonicalPath === "/" ? "/" : canonicalPath}`;
 
   return {
-    title: meta.title,
+    title: {
+      absolute: meta.title,
+    },
     description: meta.description,
+    keywords: meta.keywords,
+    category: meta.category,
+    authors: [{ name: "Minaruzzaman Shovon", url: canonicalUrl }],
+    creator: "Minaruzzaman Shovon",
+    publisher: "Minaruzzaman Shovon",
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
       type: "website",
       url: canonicalUrl,
+      siteName: "Shovon Portfolio",
       title: meta.ogTitle,
       description: meta.ogDescription,
-      images: ["/og.png"],
+      images: [
+        {
+          url: "/og.png",
+          alt: variant === "dev" ? "Developer portfolio of Minaruzzaman Shovon" : "Water resources engineering portfolio of Minaruzzaman Shovon",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -216,6 +285,9 @@ export function getProfileJsonLd(variant: HomeVariant, pagePath: HomePath) {
   return {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
+    name: meta.title,
+    description: meta.description,
+    url: pageUrl,
     dateCreated: "2024-01-01T00:00:00+06:00",
     dateModified: "2026-05-08T12:00:00+06:00",
     mainEntity: {
@@ -226,6 +298,7 @@ export function getProfileJsonLd(variant: HomeVariant, pagePath: HomePath) {
       url: pageUrl,
       image: "https://shovon.bd/shovon.jpg",
       description: meta.profileDescription,
+      mainEntityOfPage: pageUrl,
       affiliation: {
         "@type": "CollegeOrUniversity",
         name: "Chittagong University of Engineering and Technology (CUET)",
@@ -246,4 +319,19 @@ export function getProfileJsonLd(variant: HomeVariant, pagePath: HomePath) {
       ],
     },
   };
+}
+
+export function resolveHomePath(from?: string): Extract<HomePath, "/dev" | "/wre"> {
+  return from === "wre" ? "/wre" : "/dev";
+}
+
+export function resolveFromVariant(homePath: HomePath): HomeVariant {
+  return homePath === "/wre" ? "wre" : "dev";
+}
+
+export function withFromParam(href: string, from?: SharedFrom): string {
+  if (!from) return href;
+
+  const separator = href.includes("?") ? "&" : "?";
+  return `${href}${separator}from=${from}`;
 }
