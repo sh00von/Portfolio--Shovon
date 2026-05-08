@@ -75,37 +75,40 @@ export function ProjectsClient() {
         {visibleProjects.map((project) => (
           <article
             key={project.id}
-            className="project-row"
-            tabIndex={0}
-            role="link"
-            aria-label={`View Project: ${project.title} (${project.categories.join(", ")})`}
-            onClick={() => openProject(project)}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                openProject(project);
-              }
-            }}
             onMouseEnter={() =>
               project.image ? setPreview({ src: project.image, left: 0, top: 0 }) : undefined
             }
             onMouseLeave={() => setPreview(null)}
           >
-            <span className="project-num" aria-hidden="true">
-              {project.num}
-            </span>
-            <div>
-              <h2 className="project-title">{project.title}</h2>
-              <p className="project-desc">{project.description}</p>
-              <div className="project-tags">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="tag">
-                    {tag}
-                  </span>
-                ))}
+            <div
+              className="project-row"
+              tabIndex={0}
+              role="button"
+              aria-label={`View Project: ${project.title} (${project.categories.join(", ")})`}
+              onClick={() => openProject(project)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  openProject(project);
+                }
+              }}
+            >
+              <span className="project-num" aria-hidden="true">
+                {project.num}
+              </span>
+              <div>
+                <h2 className="project-title">{project.title}</h2>
+                <p className="project-desc">{project.description}</p>
+                <div className="project-tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
+              <ArrowUpRightIcon />
             </div>
-            <ArrowUpRightIcon />
           </article>
         ))}
       </div>

@@ -3,9 +3,9 @@
 :root {
   --bg: #171717;
   --text: #ededed;
-  --muted: #a1a1a1;
-  --muted-2: #888;
-  --muted-3: #666;
+  --muted: #cdcdcd;
+  --muted-2: #b7b7b7;
+  --muted-3: #a3a3a3;
   --surface: #1a1a1a;
   --border: #333;
   --border-soft: #2a2a2a;
@@ -50,6 +50,20 @@ body {
   color: var(--text);
   opacity: 1;
   visibility: visible;
+}
+
+html:not(.light) [class*="text-[#a1a1a1]"] {
+  color: var(--muted) !important;
+}
+
+html:not(.light) [class*="text-[#888]"],
+html:not(.light) [class*="text-[#8d8d8d]"] {
+  color: var(--muted-2) !important;
+}
+
+html:not(.light) [class*="text-[#666]"],
+html:not(.light) [class*="text-[#555]"] {
+  color: var(--muted-3) !important;
 }
 
 ::selection {
