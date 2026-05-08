@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { MoonIcon, SunIcon } from "./icons";
 
 const navItems = [
@@ -12,23 +12,43 @@ const navItems = [
   { href: "/#contact", label: "Connect" },
 ];
 
+const themeChangeEvent = "site-theme-change";
+
+function subscribeToTheme(callback: () => void) {
+  window.addEventListener("storage", callback);
+  window.addEventListener(themeChangeEvent, callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(themeChangeEvent, callback);
+  };
+}
+
+function getThemeSnapshot() {
+  return localStorage.getItem("theme") === "light";
+}
+
+function getThemeServerSnapshot() {
+  return false;
+}
+
 function ThemeButton() {
-  const [isLight, setIsLight] = useState(
-    () => typeof window !== "undefined" && localStorage.getItem("theme") === "light",
-  );
+  const isLight = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, getThemeServerSnapshot);
+
+  useEffect(() => {
+    document.body.classList.add("ready");
+  }, []);
 
   useEffect(() => {
     document.documentElement.classList.toggle("light", isLight);
     document
       .querySelector('meta[name="theme-color"]')
       ?.setAttribute("content", isLight ? "#f7f7f7" : "#171717");
-    document.body.classList.add("ready");
   }, [isLight]);
 
   const toggleTheme = () => {
     const next = !isLight;
-    setIsLight(next);
     localStorage.setItem("theme", next ? "light" : "dark");
+    window.dispatchEvent(new Event(themeChangeEvent));
     document.documentElement.classList.toggle("light", next);
     document
       .querySelector('meta[name="theme-color"]')

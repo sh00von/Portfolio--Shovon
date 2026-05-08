@@ -63,8 +63,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`antialiased ${mulish.variable}`}>
-      <body className={`${mulish.className} min-h-screen`}>
+    <html lang="en" className={`antialiased ${mulish.variable}`} suppressHydrationWarning>
+      <body className={`${mulish.className} min-h-screen`} suppressHydrationWarning>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-JJF34HQPL9"
           strategy="afterInteractive"
