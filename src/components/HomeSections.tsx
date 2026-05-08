@@ -230,7 +230,7 @@ export function SkillsSection({
   return (
     <section id="uses" className="mb-24 pt-6">
       <SectionHeader title={content.skills.title} description={content.skills.intro} />
-      {variant === "wre" ? (
+      {variant === "academic" ? (
         <div className="grid gap-4 sm:grid-cols-2">
           {items.map(([heading, ...groupItems]) => (
             <section key={heading} className="rounded-2xl border border-[#2f2f2f] bg-[#1a1a1a]/75 p-5">

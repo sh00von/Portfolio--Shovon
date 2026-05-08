@@ -81,7 +81,7 @@ export function Navigation({
   const [open, setOpen] = useState(false);
   const currentVariant = fromVariant ?? resolveFromVariant(homePath);
   const navItems =
-    currentVariant === "wre"
+    currentVariant === "academic"
       ? [
           { anchor: "#research", label: "Research" },
           defaultNavItems[1],

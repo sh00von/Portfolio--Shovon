@@ -11,11 +11,11 @@ type SwitcherState = {
 
 const routes: Array<{ href: HomePath; label: string; variant: HomeVariant }> = [
   { href: "/dev", label: "Developer", variant: "dev" },
-  { href: "/wre", label: "Engineer", variant: "wre" },
+  { href: "/academic", label: "Engineer", variant: "academic" },
 ];
 
 const getVariantFromPathname = (pathname: string | null): HomeVariant =>
-  pathname?.startsWith("/wre") ? "wre" : "dev";
+  pathname?.startsWith("/academic") ? "academic" : "dev";
 
 export function VersionSwitcher() {
   const router = useRouter();
@@ -25,7 +25,7 @@ export function VersionSwitcher() {
   const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Record<HomeVariant, HTMLButtonElement | null>>({
     dev: null,
-    wre: null,
+    academic: null,
   });
 
   useLayoutEffect(() => {
@@ -67,7 +67,7 @@ export function VersionSwitcher() {
 
   useEffect(() => {
     router.prefetch("/dev");
-    router.prefetch("/wre");
+    router.prefetch("/academic");
   }, [router]);
 
   const navigate = (href: HomePath) => {
