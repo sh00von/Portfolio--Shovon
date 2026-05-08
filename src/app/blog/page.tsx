@@ -45,8 +45,8 @@ export default async function BlogPage() {
             <h2 className="mb-3 text-xl font-semibold tracking-tight text-[#EDEDED]">No posts yet</h2>
             <p className="max-w-xl text-sm leading-relaxed text-[#a1a1a1]">
               {hasStrapiConfig
-                ? "Publish your first Strapi post and it will appear here automatically."
-                : "Connect Strapi by setting STRAPI_URL, then publish your first post."}
+                ? "Publish your first Strapi article and it will appear here automatically."
+                : "Connect Strapi by setting STRAPI_URL, then publish your first article."}
             </p>
           </section>
         )}

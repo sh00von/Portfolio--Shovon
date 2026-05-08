@@ -33,6 +33,7 @@ export function BlogCard({ post }: { post: BlogPostListItem }) {
         </h2>
         <span className="flex-shrink-0 text-sm tabular-nums text-[#666]">{formatDate(post.publishedAt)}</span>
       </div>
+      {post.author ? <p className="mb-2 text-xs text-[#666]">By {post.author}</p> : null}
       {post.excerpt ? <p className="max-w-xl text-sm leading-relaxed text-[#a1a1a1]">{post.excerpt}</p> : null}
       {post.categories?.length ? (
         <div className="mt-4 flex flex-wrap gap-2">

@@ -76,6 +76,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="mb-8">
             <p className="mb-4 text-sm tabular-nums text-[#666]">{formatDate(post.publishedAt)}</p>
             <h1 className="mb-5 text-4xl font-bold tracking-tighter text-[#EDEDED] sm:text-5xl">{post.title}</h1>
+            {post.author ? <p className="mb-4 text-sm text-[#666]">By {post.author}</p> : null}
             {post.excerpt ? <p className="text-lg leading-relaxed text-[#a1a1a1]">{post.excerpt}</p> : null}
             {post.categories?.length ? (
               <div className="mt-5 flex flex-wrap gap-2">
