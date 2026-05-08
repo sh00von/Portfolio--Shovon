@@ -8,7 +8,6 @@ import {
   PublicationsSection,
   SimpleListSection,
   SkillsSection,
-  VersionSwitcher,
 } from "@/components/HomeSections";
 import { getProfileJsonLd, homeVariantData, resolveFromVariant, type HomePath, type HomeVariant } from "@/lib/homeVariants";
 
@@ -87,14 +86,9 @@ export function HomePage({ variant, homePath }: { variant: HomeVariant; homePath
       />
       <Navigation homePath={homePath} fromVariant={fromVariant} />
       <main id="main-content" className="mx-auto w-full max-w-2xl flex-grow px-4 pb-20 lg:max-w-[60vw]">
-        <HeroSection variant={variant} currentPath={homePath} />
+        <HeroSection variant={variant} />
         {sectionOrder[variant].map(renderSection)}
       </main>
-      <div className="pointer-events-none fixed inset-x-0 bottom-5 z-30 flex justify-center px-4">
-        <div className="pointer-events-auto">
-          <VersionSwitcher variant={variant} currentPath={homePath} />
-        </div>
-      </div>
       <Footer homePath={homePath} />
     </div>
   );

@@ -3,7 +3,7 @@ import {
   publications,
   socials,
 } from "@/data/home";
-import { homeVariantContent, type HomePath, type HomeVariant } from "@/lib/homeVariants";
+import { homeVariantContent, type HomeVariant } from "@/lib/homeVariants";
 import { GalleryImage } from "./GalleryLightbox";
 
 function SectionHeader({
@@ -76,38 +76,7 @@ function LineItem({
   );
 }
 
-export function VersionSwitcher({ variant, currentPath }: { variant: HomeVariant; currentPath: HomePath }) {
-  const devHref = "/dev";
-
-  return (
-    <div className="inline-flex items-center rounded-full border border-[#333] bg-[#1a1a1a]/95 p-1 text-xs font-medium text-[#888] shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur-md">
-      <Link
-        href={devHref}
-        aria-current={variant === "dev" ? "page" : undefined}
-        className={
-          variant === "dev"
-            ? "rounded-full bg-[#EDEDED] px-3 py-1.5 text-[#171717]"
-            : "rounded-full px-3 py-1.5 transition-colors hover:text-[#EDEDED]"
-        }
-      >
-        Dev
-      </Link>
-      <Link
-        href="/wre"
-        aria-current={variant === "wre" ? "page" : undefined}
-        className={
-          variant === "wre"
-            ? "rounded-full bg-[#EDEDED] px-3 py-1.5 text-[#171717]"
-            : "rounded-full px-3 py-1.5 transition-colors hover:text-[#EDEDED]"
-        }
-      >
-        WRE
-      </Link>
-    </div>
-  );
-}
-
-export function HeroSection({ variant, currentPath }: { variant: HomeVariant; currentPath: HomePath }) {
+export function HeroSection({ variant }: { variant: HomeVariant; currentPath?: never }) {
   const content = homeVariantContent[variant];
 
   return (
