@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#171717] text-[#EDEDED]">
+    <div className="flex min-h-screen flex-col">
       <Script
         id="blog-post-json-ld"
         type="application/ld+json"
@@ -161,7 +161,7 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
                 ) : null}
                 <div>
                   <p className="text-sm uppercase tracking-[0.18em] text-[#666]">Written by</p>
-                  <h2 className="mt-1 text-xl font-semibold text-[#EDEDED]">{post.author}</h2>
+                  <p className="mt-1 text-xl font-semibold text-[#EDEDED]">{post.author}</p>
                   {post.authorBio ? <p className="mt-2 max-w-2xl leading-7 text-[#a1a1a1]">{post.authorBio}</p> : null}
                   {post.authorEmail ? (
                     <p className="mt-3 text-sm text-[#888]">

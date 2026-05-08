@@ -17,7 +17,7 @@ export function BlogCard({ post, fromVariant }: { post: BlogPostListItem; fromVa
   const href = withFromParam(`/blog/${post.slug}`, fromVariant);
 
   return (
-    <Link href={href} className="group block border-b border-[#333] py-8 first:border-t lg:py-10">
+    <Link href={href} aria-label={`Read article: ${post.title}`} className="group block border-b border-[#333] py-8 first:border-t lg:py-10">
       <article className="grid gap-6 lg:grid-cols-[20rem_minmax(0,1fr)] lg:gap-8">
         <div className="spotlight-card overflow-hidden rounded-xl border border-[#333] bg-[#1a1a1a]">
           {imageUrl ? (
