@@ -31,8 +31,20 @@ type StrapiPostAttributes = {
   category?: StrapiEntity<{ name?: string; title?: string; slug?: string }> | {
     data?: StrapiEntity<{ name?: string; title?: string; slug?: string }> | null;
   };
-  author?: StrapiEntity<{ name?: string; title?: string }> | {
-    data?: StrapiEntity<{ name?: string; title?: string }> | null;
+  author?: StrapiEntity<{
+    name?: string;
+    title?: string;
+    avatar?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
+    image?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
+    picture?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
+  }> | {
+    data?: StrapiEntity<{
+      name?: string;
+      title?: string;
+      avatar?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
+      image?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
+      picture?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
+    }> | null;
   };
   body?: unknown;
   content?: unknown;
@@ -53,6 +65,10 @@ export type BlogPostListItem = {
     alt?: string;
   };
   author?: string;
+  authorImage?: {
+    url: string;
+    alt?: string;
+  };
 };
 
 export type RichTextNode = {
@@ -118,6 +134,7 @@ function normalizePost(entity: StrapiEntity<StrapiPostAttributes>): BlogPost {
   const category = unwrapRelation(post.category);
   const author = unwrapRelation(post.author);
   const categoryName = category?.name || category?.title;
+  const authorImage = unwrapMedia(author?.avatar || author?.image || author?.picture);
 
   return {
     id: String(post.documentId || post.id),
@@ -128,6 +145,7 @@ function normalizePost(entity: StrapiEntity<StrapiPostAttributes>): BlogPost {
     categories: categoryName ? [categoryName] : undefined,
     image,
     author: author?.name || author?.title,
+    authorImage,
     body: post.blocks || post.body || post.content,
   };
 }
