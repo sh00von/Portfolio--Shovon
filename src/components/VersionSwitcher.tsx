@@ -10,7 +10,7 @@ type SwitcherState = {
 };
 
 const routes: Array<{ href: HomePath; label: string; variant: HomeVariant }> = [
-  { href: "/dev", label: "Dev", variant: "dev" },
+  { href: "/dev", label: "Developer", variant: "dev" },
   { href: "/wre", label: "Engineer", variant: "wre" },
 ];
 
