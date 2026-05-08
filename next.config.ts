@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const strapiHost = process.env.STRAPI_URL
   ? new URL(process.env.STRAPI_URL).hostname
   : undefined;
+const strapiMediaHost = strapiHost?.endsWith(".strapiapp.com")
+  ? strapiHost.replace(".strapiapp.com", ".media.strapiapp.com")
+  : undefined;
 
 const nextConfig: NextConfig = {
   images: {
@@ -12,6 +15,14 @@ const nextConfig: NextConfig = {
             {
               protocol: "https" as const,
               hostname: strapiHost,
+            },
+          ]
+        : []),
+      ...(strapiMediaHost
+        ? [
+            {
+              protocol: "https" as const,
+              hostname: strapiMediaHost,
             },
           ]
         : []),

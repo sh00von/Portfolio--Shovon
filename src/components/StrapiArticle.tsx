@@ -35,6 +35,22 @@ function renderChildren(children?: RichTextNode[]) {
 }
 
 function renderBlock(block: RichTextNode, index: number) {
+  if (block.__component?.endsWith("rich-text")) {
+    return <div key={index}>{renderValue(block.body || block.children || block.text)}</div>;
+  }
+
+  if (block.__component?.endsWith("quote")) {
+    return (
+      <blockquote key={index} className="my-8 border-l border-[#555] pl-5 text-lg leading-8 text-[#a1a1a1]">
+        {typeof block.body === "string" ? block.body : typeof block.text === "string" ? block.text : renderValue(block.body)}
+      </blockquote>
+    );
+  }
+
+  if (block.__component?.endsWith("media") || block.__component?.endsWith("slider")) {
+    return null;
+  }
+
   switch (block.type) {
     case "heading":
       if (block.level === 2) {
@@ -53,7 +69,7 @@ function renderBlock(block: RichTextNode, index: number) {
   }
 }
 
-export function StrapiArticle({ value }: { value?: unknown }) {
+function renderValue(value: unknown): React.ReactNode {
   if (!value) return null;
 
   if (typeof value === "string") {
@@ -69,4 +85,8 @@ export function StrapiArticle({ value }: { value?: unknown }) {
   }
 
   return null;
+}
+
+export function StrapiArticle({ value }: { value?: unknown }) {
+  return renderValue(value);
 }

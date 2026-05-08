@@ -23,13 +23,20 @@ type StrapiSingle<T> = {
 type StrapiPostAttributes = {
   title?: string;
   slug?: string;
+  description?: string;
   excerpt?: string;
   publishedAt?: string;
   createdAt?: string;
   updatedAt?: string;
-  categories?: string[] | Array<{ name?: string; title?: string }>;
+  category?: StrapiEntity<{ name?: string; title?: string; slug?: string }> | {
+    data?: StrapiEntity<{ name?: string; title?: string; slug?: string }> | null;
+  };
+  author?: StrapiEntity<{ name?: string; title?: string }> | {
+    data?: StrapiEntity<{ name?: string; title?: string }> | null;
+  };
   body?: unknown;
   content?: unknown;
+  blocks?: unknown;
   cover?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
   mainImage?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
 };
@@ -45,9 +52,11 @@ export type BlogPostListItem = {
     url: string;
     alt?: string;
   };
+  author?: string;
 };
 
 export type RichTextNode = {
+  __component?: string;
   type?: string;
   level?: number;
   children?: RichTextNode[];
@@ -58,6 +67,12 @@ export type RichTextNode = {
   strikethrough?: boolean;
   code?: boolean;
   url?: string;
+  body?: unknown;
+  title?: string;
+  file?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
+  files?: Array<StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null }>;
+  image?: StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null };
+  images?: Array<StrapiMedia | { data?: StrapiEntity<StrapiMedia> | null }>;
 };
 
 export type BlogPost = BlogPostListItem & {
@@ -91,26 +106,29 @@ function unwrapMedia(media?: StrapiPostAttributes["cover"]) {
   };
 }
 
-function normalizeCategories(categories: StrapiPostAttributes["categories"]) {
-  if (!categories?.length) return undefined;
-  return categories
-    .map((category) => (typeof category === "string" ? category : category.name || category.title))
-    .filter(Boolean) as string[];
+function unwrapRelation<T>(relation?: StrapiEntity<T> | { data?: StrapiEntity<T> | null }) {
+  if (!relation) return undefined;
+  const value = "data" in relation ? relation.data : relation;
+  return value ? unwrapEntity(value as StrapiEntity<T>) : undefined;
 }
 
 function normalizePost(entity: StrapiEntity<StrapiPostAttributes>): BlogPost {
   const post = unwrapEntity(entity);
   const image = unwrapMedia(post.cover || post.mainImage);
+  const category = unwrapRelation(post.category);
+  const author = unwrapRelation(post.author);
+  const categoryName = category?.name || category?.title;
 
   return {
     id: String(post.documentId || post.id),
     title: post.title || "Untitled",
     slug: post.slug || String(post.documentId || post.id),
-    excerpt: post.excerpt,
+    excerpt: post.description || post.excerpt,
     publishedAt: post.publishedAt || post.createdAt,
-    categories: normalizeCategories(post.categories),
+    categories: categoryName ? [categoryName] : undefined,
     image,
-    body: post.body || post.content,
+    author: author?.name || author?.title,
+    body: post.blocks || post.body || post.content,
   };
 }
 
@@ -136,18 +154,18 @@ async function strapiFetch<T>(path: string): Promise<T | null> {
 }
 
 export async function getPosts(): Promise<BlogPostListItem[]> {
-  const query = "/api/posts?populate=*&sort=publishedAt:desc";
+  const query = "/api/articles?populate=*&sort=publishedAt:desc";
   const payload = await strapiFetch<StrapiCollection<StrapiPostAttributes>>(query);
   return payload?.data?.map(normalizePost) || [];
 }
 
 export async function getPostSlugs(): Promise<{ slug: string }[]> {
-  const payload = await strapiFetch<StrapiCollection<StrapiPostAttributes>>("/api/posts?fields[0]=slug");
+  const payload = await strapiFetch<StrapiCollection<StrapiPostAttributes>>("/api/articles?fields[0]=slug");
   return payload?.data?.map((entity) => ({ slug: normalizePost(entity).slug })) || [];
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const query = `/api/posts?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`;
+  const query = `/api/articles?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`;
   const payload = await strapiFetch<StrapiCollection<StrapiPostAttributes> | StrapiSingle<StrapiPostAttributes>>(query);
   const entity = Array.isArray(payload?.data) ? payload.data[0] : payload?.data;
   return entity ? normalizePost(entity) : null;
