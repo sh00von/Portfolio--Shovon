@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import type { HomePath } from "@/lib/homeVariants";
 import { MoonIcon, SunIcon } from "./icons";
 
 const navItems = [
-  { href: "/#experience", label: "Experience" },
-  { href: "/#certifications", label: "Certifications" },
+  { anchor: "#experience", label: "Experience" },
+  { anchor: "#certifications", label: "Certifications" },
   { href: "/projects", label: "Projects" },
   { href: "/blog", label: "Blog" },
-  { href: "/#contact", label: "Connect" },
+  { anchor: "#contact", label: "Connect" },
 ];
 
 const themeChangeEvent = "site-theme-change";
@@ -68,7 +69,13 @@ function ThemeButton() {
   );
 }
 
-export function Navigation({ active }: { active?: "projects" | "blog" }) {
+export function Navigation({
+  active,
+  homePath = "/",
+}: {
+  active?: "projects" | "blog";
+  homePath?: HomePath;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -78,7 +85,7 @@ export function Navigation({ active }: { active?: "projects" | "blog" }) {
     >
       <div className="flex items-center justify-between">
         <Link
-          href="/"
+          href={homePath}
           className="font-medium tracking-tight text-[#EDEDED] transition-colors hover:text-gray-300"
           aria-label="Home"
         >
@@ -86,10 +93,13 @@ export function Navigation({ active }: { active?: "projects" | "blog" }) {
         </Link>
 
         <div className="hidden items-center gap-6 text-sm font-medium md:flex">
-          {navItems.map((item) => (
+          {navItems.map((item) => {
+            const href = "anchor" in item ? `${homePath}${item.anchor}` : item.href;
+
+            return (
             <Link
-              key={item.href}
-              href={item.href}
+              key={href}
+              href={href}
               aria-current={
                 (active === "projects" && item.label === "Projects") ||
                 (active === "blog" && item.label === "Blog")
@@ -105,7 +115,8 @@ export function Navigation({ active }: { active?: "projects" | "blog" }) {
             >
               {item.label}
             </Link>
-          ))}
+            );
+          })}
           <ThemeButton />
         </div>
 
@@ -141,10 +152,13 @@ export function Navigation({ active }: { active?: "projects" | "blog" }) {
         style={{ maxHeight: open ? 220 : 0, opacity: open ? 1 : 0 }}
       >
         <div className="mt-4 flex flex-col gap-4 border-t border-[#2a2a2a] pt-5 pb-2 text-sm font-medium">
-          {navItems.map((item) => (
+          {navItems.map((item) => {
+            const href = "anchor" in item ? `${homePath}${item.anchor}` : item.href;
+
+            return (
             <Link
-              key={item.href}
-              href={item.href}
+              key={href}
+              href={href}
               className={
                 (active === "projects" && item.label === "Projects") ||
                 (active === "blog" && item.label === "Blog")
@@ -155,7 +169,8 @@ export function Navigation({ active }: { active?: "projects" | "blog" }) {
             >
               {item.label}
             </Link>
-          ))}
+            );
+          })}
         </div>
       </div>
     </nav>
