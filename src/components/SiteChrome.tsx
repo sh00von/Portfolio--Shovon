@@ -72,7 +72,10 @@ export function Navigation({ active }: { active?: "projects" | "blog" }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="mx-auto w-full max-w-2xl px-4 py-6 lg:max-w-[60vw]" aria-label="Main navigation">
+    <nav
+      className="sticky top-0 z-40 mx-auto w-full max-w-2xl border-b border-[#2a2a2a]/80 bg-[#171717]/90 px-4 py-4 backdrop-blur-md lg:max-w-[60vw] lg:py-5"
+      aria-label="Main navigation"
+    >
       <div className="flex items-center justify-between">
         <Link
           href="/"
