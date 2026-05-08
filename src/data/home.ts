@@ -1,0 +1,101 @@
+export const socials = [
+  ["GitHub", "https://github.com/sh00von"],
+  ["Facebook", "https://www.facebook.com/minar.svn"],
+  ["LinkedIn", "https://www.linkedin.com/in/minarsvn9090/"],
+  ["Google Scholar", "https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en"],
+  ["ResearchGate", "https://www.researchgate.net/profile/Md-Shovon-13"],
+  ["Resume", "/resume.pdf"],
+] as const;
+
+export const education = [
+  ["Chittagong University of Engineering and Technology (CUET)", "Undergraduate, Water Resources Engineering"],
+  ["Chittagong College", "College"],
+  ["Chattogram Cantonment Public College", "School"],
+] as const;
+
+export const experience = [
+  ["Blendin", "https://blendin247.com/", "Web Developer, 2025-Present"],
+  ["Logifu PTY LTD", "https://www.logifu.com/", "Senior Software Developer, 2025-2026"],
+] as const;
+
+export const volunteers = [
+  ["WRRO", "https://www.facebook.com/wrro.cuet", "Joint Research Secretary, 2025-Present"],
+  ["Cyber Security Club, CUET", "https://www.facebook.com/cybersec.cuet", "President, 2025"],
+  ["Nogorful", "https://nogorful.org/", "ICT Director, 2024-Present"],
+  ["Ongko", "https://www.facebook.com/ongko.org/", "Founder and President, 2019-2020"],
+] as const;
+
+export const publications = [
+  {
+    href: "https://doi.org/10.31223/X5S767",
+    title:
+      "Analyzing Seasonal Variations in Air Quality with Google Earth Engine: A Case Study of Chattogram, Bangladesh",
+    date: "Mar 2026",
+    authors: "Md. Minaruzzaman Shovon, Md. Tamim",
+    label: "Preprint / EarthArXiv",
+  },
+  {
+    href: "https://www.researchgate.net/publication/399071973_Analysis_and_Prediction_of_Time_Series_Variations_in_Rainfall_by_Machine_Learning_Approach_A_Case_Study_of_Sylhet_and_Sreemangal",
+    title:
+      "Analysis and Prediction of Time Series Variations in Rainfall by Machine Learning Approach: A Case Study of Sylhet and Sreemangal",
+    date: "Dec 2025",
+    authors:
+      "Muhammad Obaid Chowdhury, Arafat Kabir, Md. Minaruzzaman Shovon, Priya Chowdhury",
+    label: "Conference Paper",
+    featured: "Most read in the last month",
+  },
+  {
+    href: "https://www.researchgate.net/publication/399604495_Seasonal_Anomaly_Detection_in_the_Halda_River_Using_a_Multivariate_Deep_Learning_Framework",
+    title: "Seasonal Anomaly Detection in the Halda River Using a Multivariate Deep Learning Framework",
+    date: "Dec 2025",
+    authors: "Md. Minaruzzaman Shovon, H A Hossain Tamjid, MD. Tamim",
+    label: "Conference Paper",
+  },
+] as const;
+
+export const certifications = [
+  ["CISSP by InfoSec", "InfoSEC, Jun 2025"],
+  ["Cybersecurity Attack and Defense Fundamentals", "EC-Council, Jun 2025"],
+  ["Microsoft Python Development", "Microsoft, Jun 2025"],
+  ["Google Cybersecurity Professional", "Google, Jun 2025"],
+  ["GIS & Its Application", "Enhancing Digital Government & Economy Project, Apr 2025"],
+] as const;
+
+export const achievements = [
+  ["Ranked 11th - NextGen Hackathon", "International Islamic University Chittagong", "2025"],
+  ["Finalist - BCS ICT FEST 2025 (Top 21 of 150+ Teams)", "Bangladesh Computer Society", "2025"],
+  ["Ranked 246th out of 760 Participants - KnightCTF 2025", "Organized by Knight Squad", "2025"],
+  [
+    "2nd Runner-Up - IEEE CS Hackathon",
+    "IEEE Computer Society, Bangladesh University of Engineering and Technology",
+    "2024",
+  ],
+  [
+    "Local Qualifier - NASA Space Apps Challenge 2024",
+    "Earth Science Division, Science Mission Directorate, NASA",
+    "2024",
+  ],
+  ["Ranked 26th out of 106 Teams - SMP CTF 2024", "Organized by SMP Cyber Security", "2024"],
+  [
+    "1st Place - AutoCAD Design Competition",
+    "Department of Water Resources Engineering, Chittagong University of Engineering and Technology",
+    "2023",
+  ],
+] as const;
+
+export const gallery = [
+  ["/images/lst_high_res.png", "High Resolution LST"],
+  ["/images/padma_pulse.png", "Padma Pulse"],
+  ["/images/seminar_ccsc.png", "seminar CCSC"],
+  ["/images/truss_solver.png", "Truss Solver"],
+  ["/images/uap_ccsc.png", "UAP CCSC"],
+  ["/images/exabytebd.png", "ExabyteBD"],
+  ["/images/math_solver.png", "Math Solver"],
+] as const;
+
+export const skills = [
+  ["Frontend", "Next.js", "React", "Expo (React Native)", "TypeScript", "Tailwind CSS"],
+  ["Backend", "Node.js", "Express.js", "REST APIs", "Authentication Systems"],
+  ["Database", "MongoDB", "Mongoose", "Firebase"],
+  ["GIS/ML Modelling", "QGIS", "ArcGIS", "ETABS", "AutoCAD", "HEC-RAS"],
+] as const;
