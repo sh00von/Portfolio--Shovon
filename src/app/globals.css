@@ -345,7 +345,8 @@ html.light [class*="border-[#363636]"] {
 }
 
 .variant-switcher-option.is-active {
-  color: #f3f0ea;
+  color: #f8f6f2;
+  font-weight: 500;
 }
 
 html.light .variant-switcher {

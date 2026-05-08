@@ -73,7 +73,7 @@ export function VersionSwitcher() {
 
   return (
     <div
-      className="variant-switcher relative inline-flex items-center p-1"
+      className="variant-switcher relative inline-flex items-center px-1.5 py-1"
       role="tablist"
       aria-label="Homepage version"
     >
@@ -98,7 +98,7 @@ export function VersionSwitcher() {
             role="tab"
             aria-selected={active}
             onClick={() => navigate(item.href)}
-            className={`variant-switcher-option relative z-10 rounded-full px-4 py-2 transition-colors duration-300 ${
+            className={`variant-switcher-option relative z-10 rounded-full px-5 py-2 transition-colors duration-300 ${
               active ? "is-active" : ""
             }`}
           >
