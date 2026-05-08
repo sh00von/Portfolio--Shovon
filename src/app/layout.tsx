@@ -3,6 +3,9 @@ import { Mulish } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
+// Injected synchronously in <head> to avoid theme flicker on reload
+const themeInitScript = `(function(){try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.add('light');}}catch(e){}})();`;
+
 const mulish = Mulish({
   subsets: ["latin"],
   variable: "--font-mulish",
@@ -65,6 +68,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
+      <head>
+        {/* Synchronous blocking script — must run before first paint to prevent theme flicker */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className={`${mulish.className} min-h-screen`} suppressHydrationWarning>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-JJF34HQPL9"
