@@ -19,7 +19,7 @@ const siteUrl = "https://shovon.bd";
 type SimpleItem = readonly [string, string];
 type LinkedItem = readonly [string, string, string];
 type PublicationItem = (typeof publications)[number];
-type SkillGroup = (typeof skills)[number];
+type SkillGroup = readonly [string, ...string[]];
 type GalleryItem = (typeof gallery)[number];
 type AchievementItem = (typeof achievements)[number];
 
