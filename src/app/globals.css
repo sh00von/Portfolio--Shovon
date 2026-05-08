@@ -329,10 +329,11 @@ html.light [class*="border-[#363636]"] {
 }
 
 .variant-switcher-indicator {
-  background: #242424;
+  background: #edeae4;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 6px 16px rgba(0, 0, 0, 0.18);
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 .variant-switcher-option {
@@ -345,8 +346,8 @@ html.light [class*="border-[#363636]"] {
 }
 
 .variant-switcher-option.is-active {
-  color: #f8f6f2;
-  font-weight: 500;
+  color: #141414;
+  font-weight: 600;
 }
 
 html.light .variant-switcher {
