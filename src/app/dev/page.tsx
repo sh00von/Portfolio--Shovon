@@ -3,6 +3,6 @@ import { getHomeMetadata } from "@/lib/homeVariants";
 
 export const metadata = getHomeMetadata("dev", "/");
 
-export default function Page() {
-  return <HomePage variant="dev" homePath="/" />;
+export default function DevPage() {
+  return <HomePage variant="dev" homePath="/dev" />;
 }

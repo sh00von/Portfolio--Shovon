@@ -1,15 +1,9 @@
 import Link from "next/link";
 import {
-  achievements,
-  certifications,
-  education,
-  experience,
-  gallery,
   publications,
-  skills,
   socials,
-  volunteers,
 } from "@/data/home";
+import { homeVariantContent, type HomePath, type HomeVariant } from "@/lib/homeVariants";
 import { GalleryImage } from "./GalleryLightbox";
 
 function DotLinks({ links }: { links: readonly (readonly [string, string])[] }) {
@@ -17,12 +11,16 @@ function DotLinks({ links }: { links: readonly (readonly [string, string])[] }) 
     <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#666]">
       {links.map(([label, href], index) => (
         <span key={label} className="contents">
-          {index > 0 ? <span aria-hidden="true">·</span> : null}
+          {index > 0 ? <span aria-hidden="true">/</span> : null}
           <Link
             href={href}
             target={href.startsWith("http") ? "_blank" : undefined}
             rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-            className={label === "hello@shovon.bd" ? "font-medium text-[#EDEDED] hover:underline" : "transition-colors hover:text-[#EDEDED]"}
+            className={
+              label === "hello@shovon.bd"
+                ? "font-medium text-[#EDEDED] hover:underline"
+                : "transition-colors hover:text-[#EDEDED]"
+            }
           >
             {label}
           </Link>
@@ -63,32 +61,59 @@ function LineItem({
   );
 }
 
-export function HeroSection() {
+function VersionSwitcher({ variant, currentPath }: { variant: HomeVariant; currentPath: HomePath }) {
+  const devHref = currentPath === "/dev" ? "/dev" : "/";
+
+  return (
+    <div className="mb-6 inline-flex items-center rounded-full border border-[#333] bg-[#1a1a1a] p-1 text-xs font-medium text-[#888]">
+      <Link
+        href={devHref}
+        aria-current={variant === "dev" ? "page" : undefined}
+        className={
+          variant === "dev"
+            ? "rounded-full bg-[#EDEDED] px-3 py-1.5 text-[#171717]"
+            : "rounded-full px-3 py-1.5 transition-colors hover:text-[#EDEDED]"
+        }
+      >
+        Dev
+      </Link>
+      <Link
+        href="/wre"
+        aria-current={variant === "wre" ? "page" : undefined}
+        className={
+          variant === "wre"
+            ? "rounded-full bg-[#EDEDED] px-3 py-1.5 text-[#171717]"
+            : "rounded-full px-3 py-1.5 transition-colors hover:text-[#EDEDED]"
+        }
+      >
+        WRE
+      </Link>
+    </div>
+  );
+}
+
+export function HeroSection({ variant, currentPath }: { variant: HomeVariant; currentPath: HomePath }) {
+  const content = homeVariantContent[variant];
+
   return (
     <section className="mt-14 mb-20">
       <div className="max-w-4xl">
+        <VersionSwitcher variant={variant} currentPath={currentPath} />
         <h1 className="mb-6 max-w-4xl text-4xl font-bold tracking-tighter text-[#EDEDED] sm:text-5xl lg:text-[3.7rem]">
-          Building fast, thoughtful web products.
+          {content.hero.headline}
         </h1>
-        <p className="mb-8 max-w-3xl text-base leading-8 text-[#d4d4d4] sm:text-lg">
-          I&apos;m <span className="font-medium text-[#EDEDED]">Md Minaruzzaman Shovon</span>, a full-stack developer focused
-          on Next.js, TypeScript, modern UI systems, and AI-powered product experiences, with a background in water
-          resources engineering and GIS.
-        </p>
+        <p className="mb-5 max-w-3xl text-base leading-8 text-[#d4d4d4] sm:text-lg">{content.hero.intro}</p>
+        <p className="mb-8 max-w-3xl text-base leading-8 text-[#a9a9a9] sm:text-lg">{content.hero.support}</p>
         <div className="mb-8 flex flex-wrap gap-2 text-xs text-[#888]">
-          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">Next.js</span>
-          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">TypeScript</span>
-          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">UI Engineering</span>
-          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">AI Apps</span>
-          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">GIS</span>
-          <span className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">Data Visualization</span>
+          {content.hero.pills.map((pill) => (
+            <span key={pill} className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">
+              {pill}
+            </span>
+          ))}
         </div>
         <div className="rounded-2xl border border-[#2e2e2e] bg-[#1a1a1a]/80 p-5 sm:p-6">
-          <p className="mb-3 text-sm font-medium text-[#EDEDED]">Based in Chattogram, building for the web.</p>
-          <p className="mb-4 max-w-2xl text-sm leading-7 text-[#8d8d8d]">
-            Recent work spans developer-focused interfaces, portfolio systems, interactive maps, blog architecture, and
-            practical software for engineering-heavy use cases.
-          </p>
+          <p className="mb-3 text-sm font-medium text-[#EDEDED]">{content.hero.summaryEyebrow}</p>
+          <p className="mb-4 max-w-2xl text-sm leading-7 text-[#8d8d8d]">{content.hero.summaryText}</p>
           <DotLinks links={socials} />
         </div>
       </div>
@@ -121,16 +146,21 @@ export function SimpleListSection({
   );
 }
 
-export function PublicationsSection() {
+export function PublicationsSection({
+  variant,
+  items,
+}: {
+  variant: HomeVariant;
+  items: readonly (typeof publications)[number][];
+}) {
+  const content = homeVariantContent[variant];
+
   return (
     <section id="research" className="mb-20">
-      <h2 className="mb-6 text-xl font-semibold tracking-tight text-[#EDEDED]">Publications</h2>
-      <p className="mb-6 text-sm leading-relaxed text-[#a1a1a1]">
-        <span className="font-medium text-[#EDEDED]">Research Interests:</span> Environmental analysis, hydrological
-        modeling, and sustainable water infrastructure.
-      </p>
+      <h2 className="mb-6 text-xl font-semibold tracking-tight text-[#EDEDED]">{content.publications.title}</h2>
+      <p className="mb-6 text-sm leading-relaxed text-[#a1a1a1]">{content.publications.intro}</p>
       <div className="flex flex-col space-y-8">
-        {publications.map((publication) => (
+        {items.map((publication) => (
           <Link
             key={publication.title}
             href={publication.href}
@@ -164,12 +194,12 @@ export function PublicationsSection() {
   );
 }
 
-export function AchievementsSection() {
+export function AchievementsSection({ items }: { items: readonly (readonly [string, string, string])[] }) {
   return (
     <section id="achievements" className="mb-20">
       <h2 className="mb-6 text-xl font-semibold tracking-tight text-[#EDEDED]">Achievements</h2>
       <div className="flex flex-col space-y-4">
-        {achievements.map(([title, org, year]) => (
+        {items.map(([title, org, year]) => (
           <div key={title} className="group flex flex-col justify-between sm:flex-row sm:items-baseline">
             <div>
               <span className="font-medium text-[#EDEDED]">{title}</span>
@@ -184,7 +214,7 @@ export function AchievementsSection() {
   );
 }
 
-export function GallerySection() {
+export function GallerySection({ items }: { items: readonly (readonly [string, string])[] }) {
   return (
     <section id="gallery" className="mb-20">
       <h2 className="mb-6 text-xl font-semibold tracking-tight text-[#EDEDED]">Gallery</h2>
@@ -192,7 +222,7 @@ export function GallerySection() {
         A visual journey through my interests in engineering, development, and the environment.
       </p>
       <div className="columns-2 gap-4 sm:columns-3 sm:gap-6">
-        {gallery.map(([src, alt]) => (
+        {items.map(([src, alt]) => (
           <div
             key={src}
             className="spotlight-card group mb-4 break-inside-avoid overflow-hidden rounded-xl border border-[#333] bg-[#1a1a1a] sm:mb-6"
@@ -205,18 +235,24 @@ export function GallerySection() {
   );
 }
 
-export function SkillsSection() {
+export function SkillsSection({
+  variant,
+  items,
+}: {
+  variant: HomeVariant;
+  items: readonly (readonly [string, ...string[]])[];
+}) {
+  const content = homeVariantContent[variant];
+
   return (
     <section id="uses" className="mb-20">
       <h2 className="mb-6 text-xl font-semibold tracking-tight text-[#EDEDED]">Skills</h2>
-      <p className="mb-6 leading-relaxed text-[#a1a1a1]">
-        Technologies and tools I use to design, build, and ship products.
-      </p>
+      <p className="mb-6 leading-relaxed text-[#a1a1a1]">{content.skills.intro}</p>
       <div className="grid grid-cols-2 gap-4 text-sm text-[#888] sm:grid-cols-4">
-        {skills.map(([heading, ...items]) => (
+        {items.map(([heading, ...groupItems]) => (
           <ul key={heading} className="space-y-2">
             <li className="mb-1 font-medium text-[#EDEDED]">{heading}</li>
-            {items.map((item) => (
+            {groupItems.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
@@ -226,19 +262,14 @@ export function SkillsSection() {
   );
 }
 
-export function ContactSection() {
+export function ContactSection({ variant }: { variant: HomeVariant }) {
+  const content = homeVariantContent[variant];
+
   return (
     <section id="contact" className="mb-20">
       <h2 className="mb-6 text-xl font-semibold tracking-tight text-[#EDEDED]">Connect</h2>
-      <p className="mb-6 text-[#a1a1a1]">I&apos;m always open to discussing new opportunities.</p>
+      <p className="mb-6 text-[#a1a1a1]">{content.contact.intro}</p>
       <DotLinks links={[["hello@shovon.bd", "mailto:hello@shovon.bd"], ...socials.slice(1, 5)]} />
     </section>
   );
 }
-
-export const homeLists = {
-  education,
-  experience,
-  volunteers,
-  certifications,
-};
