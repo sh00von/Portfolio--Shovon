@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      url: "https://shovon.bd/wre",
+      url: "https://shovon.bd/academic",
       lastModified: new Date("2026-05-08"),
       changeFrequency: "weekly",
       priority: 0.9,

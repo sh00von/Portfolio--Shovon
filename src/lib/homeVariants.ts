@@ -10,8 +10,8 @@ import {
   volunteers,
 } from "@/data/home";
 
-export type HomeVariant = "dev" | "wre";
-export type HomePath = "/" | "/dev" | "/wre";
+export type HomeVariant = "dev" | "academic";
+export type HomePath = "/" | "/dev" | "/academic";
 export type SharedFrom = HomeVariant | undefined;
 
 const siteUrl = "https://shovon.bd";
@@ -68,7 +68,7 @@ type HomeVariantData = {
   skills: readonly SkillGroup[];
 };
 
-const wreOnlySkills = [
+const academicOnlySkills = [
   [
     "Programming & ML",
     "Python",
@@ -143,7 +143,7 @@ export const homeVariantContent: Record<HomeVariant, VariantContent> = {
       ],
     },
   },
-  wre: {
+  academic: {
     shortLabel: "WRE",
     hero: {
       headline: "Exploring water systems, modeling, and environmental analysis.",
@@ -215,7 +215,7 @@ export const homeVariantData: Record<HomeVariant, HomeVariantData> = {
     gallery,
     skills: skills.filter(([heading]) => heading !== "GIS/ML Modelling"),
   },
-  wre: {
+  academic: {
     education,
     experience: [],
     volunteers,
@@ -223,7 +223,7 @@ export const homeVariantData: Record<HomeVariant, HomeVariantData> = {
     certifications,
     achievements,
     gallery,
-    skills: [...skills.filter(([heading]) => heading === "GIS/ML Modelling"), ...wreOnlySkills],
+    skills: [...skills.filter(([heading]) => heading === "GIS/ML Modelling"), ...academicOnlySkills],
   },
 };
 
@@ -321,12 +321,12 @@ export function getProfileJsonLd(variant: HomeVariant, pagePath: HomePath) {
   };
 }
 
-export function resolveHomePath(from?: string): Extract<HomePath, "/dev" | "/wre"> {
-  return from === "wre" ? "/wre" : "/dev";
+export function resolveHomePath(from?: string): Extract<HomePath, "/dev" | "/academic"> {
+  return from === "academic" ? "/academic" : "/dev";
 }
 
 export function resolveFromVariant(homePath: HomePath): HomeVariant {
-  return homePath === "/wre" ? "wre" : "dev";
+  return homePath === "/academic" ? "academic" : "dev";
 }
 
 export function withFromParam(href: string, from?: SharedFrom): string {

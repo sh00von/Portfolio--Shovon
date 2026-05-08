@@ -24,7 +24,7 @@ type HomeSectionKey =
 
 const sectionOrder: Record<HomeVariant, HomeSectionKey[]> = {
   dev: ["experience", "skills", "certifications", "achievements", "volunteers", "education", "gallery", "contact"],
-  wre: ["education", "publications", "skills", "certifications", "achievements", "volunteers", "gallery", "contact"],
+  academic: ["education", "publications", "skills", "certifications", "achievements", "volunteers", "gallery", "contact"],
 };
 
 export function HomePage({ variant, homePath }: { variant: HomeVariant; homePath: HomePath }) {
