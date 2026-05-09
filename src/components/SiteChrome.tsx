@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { resolveFromVariant, withFromParam, type HomePath, type SharedFrom } from "@/lib/homeVariants";
 import { MoonIcon, SunIcon } from "./icons";
 
@@ -13,48 +14,40 @@ const defaultNavItems = [
   { anchor: "#contact", label: "Connect" },
 ];
 
-const themeChangeEvent = "site-theme-change";
-
-function subscribeToTheme(callback: () => void) {
-  window.addEventListener("storage", callback);
-  window.addEventListener(themeChangeEvent, callback);
-  return () => {
-    window.removeEventListener("storage", callback);
-    window.removeEventListener(themeChangeEvent, callback);
-  };
-}
-
-function getThemeSnapshot() {
-  return localStorage.getItem("theme") === "light";
-}
-
-function getThemeServerSnapshot() {
-  return false;
-}
-
 function ThemeButton() {
-  const isLight = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, getThemeServerSnapshot);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
+    setMounted(true);
     document.body.classList.add("ready");
   }, []);
 
   useEffect(() => {
-    document.documentElement.classList.toggle("light", isLight);
+    if (!mounted) return;
+    const isLight = theme === "light";
     document
       .querySelector('meta[name="theme-color"]')
       ?.setAttribute("content", isLight ? "#f7f7f7" : "#171717");
-  }, [isLight]);
+  }, [theme, mounted]);
 
   const toggleTheme = () => {
-    const next = !isLight;
-    localStorage.setItem("theme", next ? "light" : "dark");
-    window.dispatchEvent(new Event(themeChangeEvent));
-    document.documentElement.classList.toggle("light", next);
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", next ? "#f7f7f7" : "#171717");
+    setTheme(theme === "light" ? "dark" : "light");
   };
+
+  if (!mounted) {
+    return (
+      <button
+        type="button"
+        className="theme-toggle inline-flex items-center justify-center rounded-md border px-2 py-1 text-sm transition-colors"
+        aria-label="Toggle theme"
+      >
+        <div className="w-4 h-4" />
+      </button>
+    );
+  }
+
+  const isLight = theme === "light";
 
   return (
     <button

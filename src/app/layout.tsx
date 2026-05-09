@@ -2,9 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Mulish } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-
-// Injected synchronously in <head> to avoid theme flicker on reload
-const themeInitScript = `(function(){try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.add('light');}}catch(e){}})();`;
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const mulish = Mulish({
   subsets: ["latin"],
@@ -69,8 +67,6 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Synchronous blocking script — must run before first paint to prevent theme flicker */}
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className={`${mulish.className} min-h-screen`} suppressHydrationWarning>
         <Script
@@ -94,7 +90,14 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "wbdj1lhmzk");
           `}
         </Script>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
