@@ -18,13 +18,10 @@ function formatDate(date?: string) {
     month: "long",
     day: "numeric",
     year: "numeric",
+    timeZone: "UTC",
   }).format(new Date(date));
 }
 
-export async function generateStaticParams() {
-  const slugs = await getPostSlugs();
-  return slugs.map((post) => ({ slug: post.slug }));
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
