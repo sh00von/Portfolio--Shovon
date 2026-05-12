@@ -55,6 +55,15 @@ export const publications = [
 
 export const featured = [
   {
+    href: "https://wordpress.org/plugins/wp-store-locator/#developers",
+    title: "WP Store Locator 2.3.1 Security Fix",
+    outlet: "WordPress.org",
+    section: "Security Research",
+    date: "2026",
+    description:
+      "Discovered and reported a high-severity Stored XSS vulnerability (CVSS 8.1) in WP Store Locator (<= 2.3.0). Coordinated a responsible disclosure resulting in a critical patch in version 2.3.1 and formal recognition in the changelog.",
+  },
+  {
     href: "https://www.thedailystar.net/tech-startup/news/digital-resistance-websites-kept-the-revolution-alive-3677231",
     title: "Digital resistance: The websites that kept the revolution alive",
     outlet: "The Daily Star",
