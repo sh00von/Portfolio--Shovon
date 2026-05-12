@@ -3,6 +3,7 @@ import { Footer, Navigation } from "@/components/SiteChrome";
 import {
   AchievementsSection,
   ContactSection,
+  FeaturedSection,
   GallerySection,
   HeroSection,
   PublicationsSection,
@@ -18,13 +19,14 @@ type HomeSectionKey =
   | "volunteers"
   | "certifications"
   | "achievements"
+  | "featured"
   | "skills"
   | "gallery"
   | "contact";
 
 const sectionOrder: Record<HomeVariant, HomeSectionKey[]> = {
-  dev: ["experience", "skills", "certifications", "achievements", "volunteers", "education", "gallery", "contact"],
-  academic: ["education", "publications", "skills", "certifications", "achievements", "volunteers", "gallery", "contact"],
+  dev: ["experience", "skills", "certifications", "achievements", "featured", "volunteers", "education", "gallery", "contact"],
+  academic: ["education", "publications", "skills", "certifications", "achievements", "featured", "volunteers", "gallery", "contact"],
 };
 
 export function HomePage({ variant, homePath }: { variant: HomeVariant; homePath: HomePath }) {
@@ -66,6 +68,8 @@ export function HomePage({ variant, homePath }: { variant: HomeVariant; homePath
         ) : null;
       case "achievements":
         return homeData.achievements.length ? <AchievementsSection key={section} items={homeData.achievements} /> : null;
+      case "featured":
+        return homeData.featured.length ? <FeaturedSection key={section} items={homeData.featured} /> : null;
       case "skills":
         return homeData.skills.length ? <SkillsSection key={section} variant={variant} items={homeData.skills} /> : null;
       case "gallery":

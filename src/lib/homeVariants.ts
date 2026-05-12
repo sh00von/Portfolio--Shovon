@@ -4,6 +4,7 @@ import {
   certifications,
   education,
   experience,
+  featured,
   gallery,
   publications,
   skills,
@@ -22,6 +23,7 @@ type PublicationItem = (typeof publications)[number];
 type SkillGroup = readonly [string, ...string[]];
 type GalleryItem = (typeof gallery)[number];
 type AchievementItem = (typeof achievements)[number];
+type FeaturedItem = (typeof featured)[number];
 
 type VariantContent = {
   shortLabel: string;
@@ -66,6 +68,7 @@ type HomeVariantData = {
   achievements: readonly AchievementItem[];
   gallery: readonly GalleryItem[];
   skills: readonly SkillGroup[];
+  featured: readonly FeaturedItem[];
 };
 
 const academicOnlySkills = [
@@ -214,6 +217,7 @@ export const homeVariantData: Record<HomeVariant, HomeVariantData> = {
     achievements,
     gallery,
     skills: skills.filter(([heading]) => heading !== "GIS/ML Modelling"),
+    featured,
   },
   academic: {
     education,
@@ -224,6 +228,7 @@ export const homeVariantData: Record<HomeVariant, HomeVariantData> = {
     achievements,
     gallery,
     skills: [...skills.filter(([heading]) => heading === "GIS/ML Modelling"), ...academicOnlySkills],
+    featured,
   },
 };
 

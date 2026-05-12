@@ -53,6 +53,18 @@ export const publications = [
   },
 ] as const;
 
+export const featured = [
+  {
+    href: "https://www.thedailystar.net/tech-startup/news/digital-resistance-websites-kept-the-revolution-alive-3677231",
+    title: "Digital resistance: The websites that kept the revolution alive",
+    outlet: "The Daily Star",
+    section: "Tech & Startup",
+    date: "2024",
+    description:
+      "Featured for co-developing The Inquilab with Daniel Rozario (Varendra University) — an open-source archive of martyrs, stories, and key events of the July 2024 protests, preserved via the Wayback Machine and exposed through a public API.",
+  },
+] as const;
+
 export const certifications = [
   ["CISSP by InfoSec", "InfoSEC, Jun 2025"],
   ["Cybersecurity Attack and Defense Fundamentals", "EC-Council, Jun 2025"],
