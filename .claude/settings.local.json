@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:tinyurl.com)",
+      "WebFetch(domain:www.thedailystar.net)",
+      "WebFetch(domain:webcache.googleusercontent.com)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
+    ]
+  }
+}
