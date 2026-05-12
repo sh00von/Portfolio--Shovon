@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  featured,
   publications,
   socials,
 } from "@/data/home";
@@ -169,6 +170,47 @@ export function PublicationsSection({
                   {publication.featured}
                 </span>
               ) : null}
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function FeaturedSection({ items }: { items: readonly (typeof featured)[number][] }) {
+  return (
+    <section id="featured" className="mb-24 pt-6">
+      <SectionHeader
+        title="Featured In"
+        description="Press coverage and external mentions of work I've contributed to."
+      />
+      <div className="flex flex-col space-y-8">
+        {items.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${item.title} — ${item.outlet} (opens in new tab)`}
+            className="group block no-underline"
+          >
+            <div className="mb-2 flex flex-col justify-between sm:flex-row sm:items-start">
+              <h3 className="max-w-lg font-medium leading-snug text-[#EDEDED] underline-offset-4 group-hover:underline decoration-[#555]">
+                {item.title}
+              </h3>
+              <span className="mt-1 flex-shrink-0 text-sm tabular-nums text-[#666] sm:mt-0 sm:ml-4">
+                {item.date}
+              </span>
+            </div>
+            <p className="mb-2 text-sm text-[#888]">{item.description}</p>
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center rounded border border-[#333] bg-[#1a1a1a] px-2 py-0.5 text-xs font-medium text-[#888]">
+                {item.outlet}
+              </span>
+              <span className="inline-flex items-center rounded border border-[#333] bg-[#1a1a1a] px-2 py-0.5 text-xs font-medium text-[#888]">
+                {item.section}
+              </span>
             </div>
           </Link>
         ))}
