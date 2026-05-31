@@ -318,6 +318,7 @@ export function getProfileJsonLd(variant: HomeVariant, pagePath: HomePath) {
         "https://github.com/sh00von",
         "https://twitter.com/sh00von",
         "https://www.linkedin.com/in/minarsvn9090/",
+        "https://vdp.patchstack.com/database/researchers/093a22ad-bf3b-4fd3-96cf-9e6cef3eb7db",
         "https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en",
         "https://www.researchgate.net/profile/Md-Shovon-13",
         "https://www.facebook.com/minar.svn",

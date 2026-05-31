@@ -2,6 +2,7 @@ export const socials = [
   ["GitHub", "https://github.com/sh00von"],
   ["Facebook", "https://www.facebook.com/minar.svn"],
   ["LinkedIn", "https://www.linkedin.com/in/minarsvn9090/"],
+  ["Patchstack", "https://vdp.patchstack.com/database/researchers/093a22ad-bf3b-4fd3-96cf-9e6cef3eb7db"],
   ["Google Scholar", "https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en"],
   ["ResearchGate", "https://www.researchgate.net/profile/Md-Shovon-13"],
   ["Resume", "/resume.pdf"],

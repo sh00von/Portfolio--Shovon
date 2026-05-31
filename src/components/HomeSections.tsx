@@ -314,7 +314,7 @@ export function ContactSection({ variant }: { variant: HomeVariant }) {
   return (
     <section id="contact" className="mb-24 pt-6">
       <SectionHeader title="Connect" description={content.contact.intro} />
-      <DotLinks links={[["hello@shovon.bd", "mailto:hello@shovon.bd"], ...socials.slice(1, 5)]} />
+      <DotLinks links={[["hello@shovon.bd", "mailto:hello@shovon.bd"], ...socials.filter(([label]) => label !== "GitHub" && label !== "Resume")]} />
     </section>
   );
 }
