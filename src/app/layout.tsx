@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Mulish } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
 
 const mulish = Mulish({
   subsets: ["latin"],
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#171717",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -64,11 +63,10 @@ export default function RootLayout({
       lang="en"
       className={`antialiased ${mulish.variable}`}
       data-scroll-behavior="smooth"
-      suppressHydrationWarning
     >
       <head>
       </head>
-      <body className={`${mulish.className} min-h-screen`} suppressHydrationWarning>
+      <body className={`${mulish.className} min-h-screen`}>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-JJF34HQPL9"
           strategy="afterInteractive"
@@ -90,14 +88,7 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "wbdj1lhmzk");
           `}
         </Script>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

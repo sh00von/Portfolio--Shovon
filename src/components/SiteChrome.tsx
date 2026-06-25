@@ -1,73 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
+import { useState } from "react";
 import { resolveFromVariant, withFromParam, type HomePath, type SharedFrom } from "@/lib/homeVariants";
-import { MoonIcon, SunIcon } from "./icons";
 
 const defaultNavItems = [
   { anchor: "#experience", label: "Experience" },
   { anchor: "#certifications", label: "Certifications" },
   { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
   { anchor: "#contact", label: "Connect" },
 ];
-
-function ThemeButton() {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-    document.body.classList.add("ready");
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-    const isLight = theme === "light";
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", isLight ? "#f7f7f7" : "#171717");
-  }, [theme, mounted]);
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
-  if (!mounted) {
-    return (
-      <button
-        type="button"
-        className="theme-toggle inline-flex items-center justify-center rounded-md border px-2 py-1 text-sm transition-colors"
-        aria-label="Toggle theme"
-      >
-        <div className="w-4 h-4" />
-      </button>
-    );
-  }
-
-  const isLight = theme === "light";
-
-  return (
-    <button
-      type="button"
-      className="theme-toggle inline-flex items-center justify-center rounded-md border px-2 py-1 text-sm transition-colors"
-      aria-label="Toggle theme"
-      aria-pressed={isLight}
-      onClick={toggleTheme}
-    >
-      {isLight ? <SunIcon /> : <MoonIcon />}
-    </button>
-  );
-}
 
 export function Navigation({
   active,
   homePath = "/dev",
   fromVariant,
 }: {
-  active?: "projects" | "blog";
+  active?: "projects";
   homePath?: HomePath;
   fromVariant?: SharedFrom;
 }) {
@@ -80,26 +29,25 @@ export function Navigation({
           defaultNavItems[1],
           defaultNavItems[2],
           defaultNavItems[3],
-          defaultNavItems[4],
         ]
       : defaultNavItems;
 
   return (
     <nav
-      className="sticky top-0 z-40 mx-auto w-full max-w-2xl border-b border-[#2a2a2a]/80 bg-[#171717]/90 px-4 py-4 backdrop-blur-md lg:max-w-[60vw] lg:py-5"
+      className="sticky top-0 z-40 mx-auto w-full max-w-2xl border-b border-[#e5e5e5] bg-white/90 px-4 py-4 backdrop-blur-md lg:max-w-[60vw] lg:py-5"
       aria-label="Main navigation"
     >
       {/* Issue #8: Skip-to-content link for keyboard/screen reader users */}
       <a
         href="#main-content"
-        className="absolute -top-full left-4 z-50 rounded-md bg-[#EDEDED] px-4 py-2 text-sm font-medium text-[#171717] focus:top-4 transition-[top]"
+        className="absolute -top-full left-4 z-50 rounded-md bg-white px-4 py-2 text-sm font-medium text-[#111111] shadow focus:top-4 transition-[top]"
       >
         Skip to main content
       </a>
       <div className="flex items-center justify-between">
         <Link
           href={homePath}
-          className="font-medium tracking-tight text-[#EDEDED] transition-colors hover:text-gray-300"
+          className="font-medium tracking-tight text-[#111111] transition-colors hover:text-[#5c5c5c]"
           aria-label="Home"
         >
           Minaruzzaman Shovon
@@ -115,27 +63,21 @@ export function Navigation({
                 key={href}
                 href={href}
                 aria-current={
-                  (active === "projects" && item.label === "Projects") ||
-                  (active === "blog" && item.label === "Blog")
-                    ? "page"
-                    : undefined
+                  active === "projects" && item.label === "Projects" ? "page" : undefined
                 }
                 className={
-                  (active === "projects" && item.label === "Projects") ||
-                  (active === "blog" && item.label === "Blog")
-                    ? "border-b border-[#444] pb-px text-[#EDEDED]"
-                    : "text-[#888] transition-colors hover:text-[#EDEDED]"
+                  active === "projects" && item.label === "Projects"
+                    ? "border-b-2 border-lime-500 pb-px font-semibold text-[#151515]"
+                    : "text-[#5c5c5c] transition-colors hover:text-[#111111]"
                 }
               >
                 {item.label}
               </Link>
             );
           })}
-          <ThemeButton />
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <ThemeButton />
           <button
             type="button"
             className="theme-toggle inline-flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-md border transition-colors"
@@ -165,7 +107,7 @@ export function Navigation({
         className="overflow-hidden transition-all duration-300 ease-in-out md:hidden"
         style={{ maxHeight: open ? 220 : 0, opacity: open ? 1 : 0 }}
       >
-        <div className="mt-4 flex flex-col gap-4 border-t border-[#2a2a2a] pt-5 pb-2 text-sm font-medium">
+        <div className="mt-4 flex flex-col gap-4 border-t border-[#e5e5e5] pt-5 pb-2 text-sm font-medium">
           {navItems.map((item) => {
             const href =
               "anchor" in item ? `${homePath}${item.anchor}` : withFromParam(item.href, currentVariant);
@@ -175,10 +117,9 @@ export function Navigation({
                 key={href}
                 href={href}
                 className={
-                  (active === "projects" && item.label === "Projects") ||
-                  (active === "blog" && item.label === "Blog")
-                    ? "text-[#EDEDED]"
-                    : "text-[#888] transition-colors hover:text-[#EDEDED]"
+                  active === "projects" && item.label === "Projects"
+                    ? "font-semibold text-[#151515]"
+                    : "text-[#5c5c5c] transition-colors hover:text-[#111111]"
                 }
                 onClick={() => setOpen(false)}
               >
@@ -194,14 +135,11 @@ export function Navigation({
 
 export function Footer({ backHome = false, homePath = "/dev" }: { backHome?: boolean; homePath?: HomePath }) {
   return (
-    <footer className="mx-auto flex w-full max-w-2xl flex-col items-center justify-between px-4 pb-10 text-sm text-[#555] sm:flex-row lg:max-w-[60vw]">
+    <footer className="mx-auto flex w-full max-w-2xl flex-col items-center justify-between px-4 pb-10 text-sm text-[#737373] sm:flex-row lg:max-w-[60vw]">
       <span>&copy; 2026 Minaruzzaman Shovon</span>
       <div className="flex items-center gap-4">
         <Link href="/sitemap.xml" className="back-link">
           Sitemap
-        </Link>
-        <Link href="/feed.xml" className="back-link">
-          Feed
         </Link>
         {backHome ? (
           <Link href={homePath} className="back-link">

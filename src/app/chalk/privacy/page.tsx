@@ -30,8 +30,8 @@ const CONTACT_EMAIL = "minar.svn@gmail.com";
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="mt-8">
-      <h2 className="mb-2 text-lg font-semibold text-[#EDEDED]">{title}</h2>
-      <div className="space-y-3 text-[#aaa]">{children}</div>
+      <h2 className="mb-2 text-lg font-semibold text-[#111111]">{title}</h2>
+      <div className="space-y-3 text-[#5c5c5c]">{children}</div>
     </section>
   );
 }
@@ -45,12 +45,12 @@ export default function PrivacyPolicyPage() {
         id="main-content"
         className="mx-auto w-full max-w-2xl flex-1 px-4 py-12 lg:max-w-[60vw]"
       >
-        <h1 className="text-2xl font-semibold tracking-tight text-[#EDEDED]">
+        <h1 className="text-2xl font-semibold tracking-tight text-[#111111]">
           Privacy Policy for Chalk
         </h1>
-        <p className="mt-2 text-sm text-[#666]">Last updated: {LAST_UPDATED}</p>
+        <p className="mt-2 text-sm text-[#737373]">Last updated: {LAST_UPDATED}</p>
 
-        <p className="mt-6 text-[#aaa]">
+        <p className="mt-6 text-[#5c5c5c]">
           Chalk (&ldquo;the app&rdquo;) is a note-taking and mind-mapping app developed by
           Md Minaruzzaman Shovon. This privacy policy explains what data the app handles.
           In short: Chalk keeps everything on your device and does not collect, transmit,
@@ -59,7 +59,7 @@ export default function PrivacyPolicyPage() {
 
         <Section title="Data we collect">
           <p>
-            <strong className="text-[#EDEDED]">We do not collect any personal data.</strong>{" "}
+            <strong className="text-[#111111]">We do not collect any personal data.</strong>{" "}
             Chalk has no user accounts, no sign-up, and no analytics or tracking. The app
             does not send your notes, boards, or any other information to us or to any
             third party.
@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
         <Section title="Where your notes are stored">
           <p>
             All boards, notes, checklists, tables, and settings you create are stored{" "}
-            <strong className="text-[#EDEDED]">locally on your device only</strong>. They
+            <strong className="text-[#111111]">locally on your device only</strong>. They
             are not uploaded to any server or cloud service. If you uninstall the app or
             clear its data, this content is permanently deleted from your device, and we
             cannot recover it.
@@ -110,7 +110,7 @@ export default function PrivacyPolicyPage() {
             If you have any questions about this privacy policy, contact us at{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="text-[#EDEDED] underline underline-offset-4 hover:text-gray-300"
+              className="text-[#111111] underline underline-offset-4 hover:text-[#5c5c5c]"
             >
               {CONTACT_EMAIL}
             </a>

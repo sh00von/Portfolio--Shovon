@@ -56,6 +56,15 @@ export const publications = [
 
 export const featured = [
   {
+    href: "https://wpscan.com/vulnerability/224c36b5-e604-4eb3-aad8-47283b95e994/",
+    title: "CVE-2026-10749 — Post Duplicator PHP Object Injection",
+    outlet: "WPScan / CVE",
+    section: "Security Research",
+    date: "Jun 2026",
+    description:
+      "Discovered and reported CVE-2026-10749, a high-severity (CVSS 7.2) PHP Object Injection vulnerability in Post Duplicator ≤ 3.0.14. Authenticated Contributors can inject malicious serialized objects via the customMetaData parameter, enabling remote code execution when a gadget chain is present. Patched in version 3.0.15.",
+  },
+  {
     href: "https://wordpress.org/plugins/wp-store-locator/#developers",
     title: "WP Store Locator 2.3.1 Security Fix",
     outlet: "WordPress.org",

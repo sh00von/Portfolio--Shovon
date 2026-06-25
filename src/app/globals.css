@@ -1,39 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #171717;
-  --text: #ededed;
-  --muted: #cdcdcd;
-  --muted-2: #b7b7b7;
-  --muted-3: #a3a3a3;
-  --surface: #1a1a1a;
-  --border: #333;
-  --border-soft: #2a2a2a;
-  --border-hover: #444;
-  --accent-bg: rgba(16, 185, 129, 0.18);
-  --accent-text: #86efac;
-  --accent-border: rgba(16, 185, 129, 0.35);
-  --bg-image:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.05), transparent 28%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 24rem);
-}
-
-html.light {
-  --bg: #f3f0ea;
-  --text: #151515;
-  --muted: #45423d;
-  --muted-2: #67625c;
-  --muted-3: #8a837c;
-  --surface: #ece7df;
-  --border: #d6cec4;
-  --border-soft: #ded6cb;
-  --border-hover: #b6ab9d;
-  --accent-bg: #e2f2e6;
-  --accent-text: #1d5d35;
-  --accent-border: #9cd1ae;
-  --bg-image:
-    radial-gradient(circle at top left, rgba(191, 160, 122, 0.16), transparent 30%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #3d3d3d;
+  --muted-2: #5c5c5c;
+  --muted-3: #737373;
+  --surface: #f5f5f5;
+  --border: #e5e5e5;
+  --border-soft: #ebebeb;
+  --border-hover: #d4d4d4;
+  --accent-bg: #ecfccb;
+  --accent-text: #365314;
+  --accent-border: #a3e635;
 }
 
 * {
@@ -46,29 +25,14 @@ html {
 
 body {
   background-color: var(--bg);
-  background-image: var(--bg-image);
   color: var(--text);
   opacity: 1;
   visibility: visible;
 }
 
-html:not(.light) [class*="text-[#a1a1a1]"] {
-  color: var(--muted) !important;
-}
-
-html:not(.light) [class*="text-[#888]"],
-html:not(.light) [class*="text-[#8d8d8d]"] {
-  color: var(--muted-2) !important;
-}
-
-html:not(.light) [class*="text-[#666]"],
-html:not(.light) [class*="text-[#555]"] {
-  color: var(--muted-3) !important;
-}
-
 ::selection {
-  background: #333;
-  color: #ededed;
+  background: #d9f99d;
+  color: #1a2e05;
 }
 
 ::-webkit-scrollbar {
@@ -80,63 +44,12 @@ html:not(.light) [class*="text-[#555]"] {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #262626;
+  background-color: #d4d4d4;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #404040;
-}
-
-html.light [class*="bg-[#171717]"] {
-  background-color: var(--bg) !important;
-}
-
-html.light [class*="text-[#EDEDED]"] {
-  color: var(--text) !important;
-}
-
-html.light [class*="text-[#d4d4d4]"],
-html.light [class*="text-[#a9a9a9]"],
-html.light [class*="text-[#a1a1a1]"] {
-  color: var(--muted) !important;
-}
-
-html.light [class*="text-[#8d8d8d]"],
-html.light [class*="text-[#888]"] {
-  color: var(--muted-2) !important;
-}
-
-html.light [class*="text-[#666]"],
-html.light [class*="text-[#555]"] {
-  color: var(--muted-3) !important;
-}
-
-html.light [class*="bg-[#1a1a1a]"],
-html.light [class*="bg-[#141414]"],
-html.light [class*="bg-[#242424]"] {
-  background-color: var(--surface) !important;
-}
-
-html.light [class*="bg-[#202020]"] {
-  background-color: #e7e0d6 !important;
-}
-
-html.light .spotlight-card:hover {
-  background-color: #e4ddd3;
-  border-color: #b6ab9d;
-}
-
-html.light [class*="border-[#333]"],
-html.light [class*="border-[#2a2a2a]"],
-html.light [class*="border-[#2e2e2e]"],
-html.light [class*="border-[#252525]"],
-html.light [class*="border-[#2f2f2f]"],
-html.light [class*="border-[#363636]"],
-html.light [class*="border-[#555]"],
-html.light [class*="decoration-[#555]"] {
-  border-color: var(--border) !important;
-  text-decoration-color: var(--border) !important;
+  background-color: #a3e635;
 }
 
 .theme-toggle,
@@ -153,15 +66,15 @@ html.light [class*="decoration-[#555]"] {
 
 .spotlight-card {
   background: transparent;
-  border: 1px solid #1f1f1f;
+  border: 1px solid var(--border);
   transition:
     border-color 0.3s ease,
     background-color 0.3s ease;
 }
 
 .spotlight-card:hover {
-  border-color: #404040;
-  background-color: #0a0a0a;
+  background-color: var(--surface);
+  border-color: var(--border-hover);
 }
 
 .badge-featured {
@@ -184,7 +97,6 @@ html.light [class*="decoration-[#555]"] {
   transition: background 0.2s;
 }
 
-/* Reset native button styles when project-row is a <button> */
 button.project-row {
   width: 100%;
   text-align: left;
@@ -255,13 +167,13 @@ button.project-row:first-child {
   overflow: hidden;
   pointer-events: none;
   z-index: 100;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
   opacity: 0;
   transform: scale(0.92) rotate(-1deg);
   transition:
     opacity 0.25s ease,
     transform 0.25s ease;
-  border: 1px solid #333;
+  border: 1px solid var(--border);
 }
 
 .project-preview img {
@@ -289,7 +201,7 @@ button.project-row:first-child {
 }
 
 .project-row:hover .project-title {
-  color: var(--muted);
+  color: var(--muted-2);
 }
 
 .filter-pills {
@@ -317,9 +229,9 @@ button.project-row:first-child {
 
 .pill:hover,
 .pill.active {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+  background: #a3e635;
+  color: #1a2e05;
+  border-color: #a3e635;
 }
 
 .back-link {
@@ -339,63 +251,30 @@ button.project-row:first-child {
 .variant-switcher {
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: rgba(24, 24, 24, 0.94);
+  background: rgba(255, 255, 255, 0.92);
   color: var(--muted-2);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 10px 24px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(12px);
 }
 
 .variant-switcher-indicator {
-  background: #edeae4;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.6) inset,
-    0 4px 12px rgba(0, 0, 0, 0.35);
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .variant-switcher-option {
-  color: var(--muted-2);
+  color: #5c5c5c;
   letter-spacing: 0;
 }
 
 .variant-switcher-option:hover {
-  color: var(--text);
+  color: #111111;
 }
 
 .variant-switcher-option.is-active {
-  color: #141414;
+  color: #ffffff;
   font-weight: 600;
-}
-
-html.light .variant-switcher {
-  background: rgba(236, 231, 223, 0.98);
-  box-shadow: 0 10px 24px rgba(100, 82, 57, 0.12);
-}
-
-html.light .variant-switcher-indicator {
-  background: #2f2b28;
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.08) inset,
-    0 8px 18px rgba(92, 74, 49, 0.16);
-}
-
-html.light .variant-switcher-option {
-  color: #5f5a53;
-}
-
-html.light .variant-switcher-option:hover {
-  color: #1f1d1a;
-}
-
-html.light .variant-switcher-option.is-active {
-  color: #f5f0e8;
-}
-
-html.light .project-preview {
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-  border-color: #d1d5db;
 }
 
 @media (max-width: 640px) {

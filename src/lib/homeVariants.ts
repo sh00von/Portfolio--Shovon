@@ -98,7 +98,7 @@ export const homeVariantContent: Record<HomeVariant, VariantContent> = {
       pills: ["Next.js", "TypeScript", "UI Engineering", "AI Apps", "GIS", "Data Visualization"],
       summaryEyebrow: "Based in Chattogram, building for the web.",
       summaryText:
-        "Recent work spans developer-focused interfaces, portfolio systems, interactive maps, blog architecture, and practical software for engineering-heavy use cases.",
+        "Recent work spans developer-focused interfaces, portfolio systems, interactive maps, and practical software for engineering-heavy use cases.",
     },
     publications: {
       title: "Publications",

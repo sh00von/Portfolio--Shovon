@@ -15,16 +15,16 @@ function SectionHeader({
   description?: string;
 }) {
   return (
-    <div className="mb-8 border-b border-[#252525] pb-5">
-      <h2 className="text-xl font-semibold tracking-tight text-[#EDEDED]">{title}</h2>
-      {description ? <p className="mt-4 max-w-3xl leading-relaxed text-[#a1a1a1]">{description}</p> : null}
+    <div className="mb-8 border-b border-[#e5e5e5] pb-5">
+      <h2 className="text-xl font-semibold tracking-tight text-[#111111]">{title}</h2>
+      {description ? <p className="mt-4 max-w-3xl leading-relaxed text-[#5c5c5c]">{description}</p> : null}
     </div>
   );
 }
 
 function DotLinks({ links }: { links: readonly (readonly [string, string])[] }) {
   return (
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#666]">
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#737373]">
       {links.map(([label, href], index) => (
         <span key={label} className="contents">
           {index > 0 ? <span aria-hidden="true">/</span> : null}
@@ -34,8 +34,8 @@ function DotLinks({ links }: { links: readonly (readonly [string, string])[] }) 
             rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
             className={
               label === "hello@shovon.bd"
-                ? "font-medium text-[#EDEDED] hover:underline"
-                : "transition-colors hover:text-[#EDEDED]"
+                ? "font-medium text-[#111111] hover:underline"
+                : "transition-colors hover:text-[#111111]"
             }
           >
             {label}
@@ -60,19 +60,19 @@ function LineItem({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="font-medium text-[#EDEDED] underline-offset-4 hover:underline decoration-[#555]"
+      className="font-medium text-[#111111] underline-offset-4 hover:underline decoration-[#d4d4d4]"
     >
       {title}
     </Link>
   ) : (
-    <span className="font-medium text-[#EDEDED]">{title}</span>
+    <span className="font-medium text-[#111111]">{title}</span>
   );
 
   return (
     <div className="group flex flex-col justify-between sm:flex-row sm:items-baseline">
       {content}
-      <div className="mx-4 hidden flex-grow border-b border-[#333] transition-colors group-hover:border-[#555] sm:block" />
-      <span className="text-sm tabular-nums text-[#666]">{meta}</span>
+      <div className="mx-4 hidden flex-grow border-b border-[#e5e5e5] transition-colors group-hover:border-[#d4d4d4] sm:block" />
+      <span className="text-sm tabular-nums text-[#737373]">{meta}</span>
     </div>
   );
 }
@@ -83,21 +83,21 @@ export function HeroSection({ variant }: { variant: HomeVariant; currentPath?: n
   return (
     <section className="mt-14 mb-20">
       <div className="max-w-4xl">
-        <h1 className="mb-6 max-w-4xl text-4xl font-bold tracking-tighter text-[#EDEDED] sm:text-5xl lg:text-[3.7rem]">
+        <h1 className="mb-6 max-w-4xl text-4xl font-bold tracking-tighter text-[#111111] sm:text-5xl lg:text-[3.7rem]">
           {content.hero.headline}
         </h1>
-        <p className="mb-5 max-w-3xl text-base leading-8 text-[#d4d4d4] sm:text-lg">{content.hero.intro}</p>
-        <p className="mb-8 max-w-3xl text-base leading-8 text-[#a9a9a9] sm:text-lg">{content.hero.support}</p>
-        <div className="mb-8 flex flex-wrap gap-2 text-xs text-[#888]">
+        <p className="mb-5 max-w-3xl text-base leading-8 text-[#3d3d3d] sm:text-lg">{content.hero.intro}</p>
+        <p className="mb-8 max-w-3xl text-base leading-8 text-[#5c5c5c] sm:text-lg">{content.hero.support}</p>
+        <div className="mb-8 flex flex-wrap gap-2 text-xs text-[#5c5c5c]">
           {content.hero.pills.map((pill) => (
-            <span key={pill} className="rounded-full border border-[#333] bg-[#1a1a1a] px-3 py-1">
+            <span key={pill} className="rounded-full border border-[#e5e5e5] bg-[#f5f5f5] px-3 py-1">
               {pill}
             </span>
           ))}
         </div>
-        <div className="rounded-2xl border border-[#2e2e2e] bg-[#1a1a1a]/80 p-5 sm:p-6">
-          <p className="mb-3 text-sm font-medium text-[#EDEDED]">{content.hero.summaryEyebrow}</p>
-          <p className="mb-4 max-w-2xl text-sm leading-7 text-[#8d8d8d]">{content.hero.summaryText}</p>
+        <div className="rounded-2xl border border-[#e5e5e5] bg-[#f5f5f5] p-5 sm:p-6">
+          <p className="mb-3 text-sm font-medium text-[#111111]">{content.hero.summaryEyebrow}</p>
+          <p className="mb-4 max-w-2xl text-sm leading-7 text-[#5c5c5c]">{content.hero.summaryText}</p>
           <DotLinks links={socials} />
         </div>
       </div>
@@ -153,16 +153,16 @@ export function PublicationsSection({
             className="group block no-underline"
           >
             <div className="mb-2 flex flex-col justify-between sm:flex-row sm:items-start">
-              <h3 className="max-w-lg font-medium leading-snug text-[#EDEDED] underline-offset-4 group-hover:underline decoration-[#555]">
+              <h3 className="max-w-lg font-medium leading-snug text-[#111111] underline-offset-4 group-hover:underline decoration-[#d4d4d4]">
                 {publication.title}
               </h3>
-              <span className="mt-1 flex-shrink-0 text-sm tabular-nums text-[#666] sm:mt-0 sm:ml-4">
+              <span className="mt-1 flex-shrink-0 text-sm tabular-nums text-[#737373] sm:mt-0 sm:ml-4">
                 {publication.date}
               </span>
             </div>
-            <p className="mb-2 text-sm text-[#888]">{publication.authors}</p>
+            <p className="mb-2 text-sm text-[#5c5c5c]">{publication.authors}</p>
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center rounded border border-[#333] bg-[#1a1a1a] px-2 py-0.5 text-xs font-medium text-[#888]">
+              <span className="inline-flex items-center rounded border border-[#e5e5e5] bg-[#f5f5f5] px-2 py-0.5 text-xs font-medium text-[#5c5c5c]">
                 {publication.label}
               </span>
               {"featured" in publication ? (
@@ -196,19 +196,19 @@ export function FeaturedSection({ items }: { items: readonly (typeof featured)[n
             className="group block no-underline"
           >
             <div className="mb-2 flex flex-col justify-between sm:flex-row sm:items-start">
-              <h3 className="max-w-lg font-medium leading-snug text-[#EDEDED] underline-offset-4 group-hover:underline decoration-[#555]">
+              <h3 className="max-w-lg font-medium leading-snug text-[#111111] underline-offset-4 group-hover:underline decoration-[#d4d4d4]">
                 {item.title}
               </h3>
-              <span className="mt-1 flex-shrink-0 text-sm tabular-nums text-[#666] sm:mt-0 sm:ml-4">
+              <span className="mt-1 flex-shrink-0 text-sm tabular-nums text-[#737373] sm:mt-0 sm:ml-4">
                 {item.date}
               </span>
             </div>
-            <p className="mb-2 text-sm text-[#888]">{item.description}</p>
+            <p className="mb-2 text-sm text-[#5c5c5c]">{item.description}</p>
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center rounded border border-[#333] bg-[#1a1a1a] px-2 py-0.5 text-xs font-medium text-[#888]">
+              <span className="inline-flex items-center rounded border border-[#e5e5e5] bg-[#f5f5f5] px-2 py-0.5 text-xs font-medium text-[#5c5c5c]">
                 {item.outlet}
               </span>
-              <span className="inline-flex items-center rounded border border-[#333] bg-[#1a1a1a] px-2 py-0.5 text-xs font-medium text-[#888]">
+              <span className="inline-flex items-center rounded border border-[#e5e5e5] bg-[#f5f5f5] px-2 py-0.5 text-xs font-medium text-[#5c5c5c]">
                 {item.section}
               </span>
             </div>
@@ -227,11 +227,11 @@ export function AchievementsSection({ items }: { items: readonly (readonly [stri
         {items.map(([title, org, year]) => (
           <div key={title} className="group flex flex-col justify-between sm:flex-row sm:items-baseline">
             <div>
-              <span className="font-medium text-[#EDEDED]">{title}</span>
-              <p className="mt-0.5 text-sm text-[#888]">{org}</p>
+              <span className="font-medium text-[#111111]">{title}</span>
+              <p className="mt-0.5 text-sm text-[#5c5c5c]">{org}</p>
             </div>
-            <div className="mx-4 hidden flex-grow border-b border-[#333] transition-colors group-hover:border-[#555] sm:block" />
-            <span className="flex-shrink-0 text-sm tabular-nums text-[#666]">{year}</span>
+            <div className="mx-4 hidden flex-grow border-b border-[#e5e5e5] transition-colors group-hover:border-[#d4d4d4] sm:block" />
+            <span className="flex-shrink-0 text-sm tabular-nums text-[#737373]">{year}</span>
           </div>
         ))}
       </div>
@@ -250,7 +250,7 @@ export function GallerySection({ items }: { items: readonly (readonly [string, s
         {items.map(([src, alt]) => (
           <div
             key={src}
-            className="spotlight-card group mb-4 break-inside-avoid overflow-hidden rounded-xl border border-[#333] bg-[#1a1a1a] sm:mb-6"
+            className="spotlight-card group mb-4 break-inside-avoid overflow-hidden rounded-xl border border-[#e5e5e5] sm:mb-6"
           >
             <GalleryImage src={src} alt={alt} />
           </div>
@@ -275,13 +275,13 @@ export function SkillsSection({
       {variant === "academic" ? (
         <div className="grid gap-4 sm:grid-cols-2">
           {items.map(([heading, ...groupItems]) => (
-            <section key={heading} className="rounded-2xl border border-[#2f2f2f] bg-[#1a1a1a]/75 p-5">
-              <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-[#EDEDED]">{heading}</h3>
+            <section key={heading} className="rounded-2xl border border-[#e5e5e5] bg-[#f5f5f5] p-5">
+              <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-[#111111]">{heading}</h3>
               <div className="flex flex-wrap gap-2">
                 {groupItems.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-[#363636] bg-[#202020] px-3 py-1.5 text-sm leading-none text-[#a1a1a1]"
+                    className="rounded-full border border-[#e5e5e5] bg-white px-3 py-1.5 text-sm leading-none text-[#5c5c5c]"
                   >
                     {item}
                   </span>
@@ -291,10 +291,10 @@ export function SkillsSection({
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-4 text-sm text-[#888] sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 text-sm text-[#5c5c5c] sm:grid-cols-4">
           {items.map(([heading, ...groupItems]) => (
             <div key={heading}>
-              <p className="mb-2 font-medium text-[#EDEDED]">{heading}</p>
+              <p className="mb-2 font-medium text-[#111111]">{heading}</p>
               <ul className="space-y-2">
                 {groupItems.map((item) => (
                   <li key={item}>{item}</li>
