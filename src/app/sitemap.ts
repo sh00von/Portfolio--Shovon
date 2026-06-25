@@ -22,5 +22,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: "https://shovon.bd/security/cve-2026-10749",
+      lastModified: LAST_UPDATED,
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
   ];
 }

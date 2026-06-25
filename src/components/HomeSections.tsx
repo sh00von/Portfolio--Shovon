@@ -193,9 +193,9 @@ export function FeaturedSection({ items }: { items: readonly (typeof featured)[n
           <Link
             key={item.href}
             href={item.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${item.title} — ${item.outlet} (opens in new tab)`}
+            target={item.href.startsWith("http") ? "_blank" : undefined}
+            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+            aria-label={`${item.title} — ${item.outlet}`}
             className="group block no-underline"
           >
             <div className="mb-2 flex flex-col justify-between sm:flex-row sm:items-start">
