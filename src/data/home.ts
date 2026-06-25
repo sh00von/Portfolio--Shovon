@@ -56,7 +56,7 @@ export const publications = [
 
 export const featured = [
   {
-    href: "https://wpscan.com/vulnerability/224c36b5-e604-4eb3-aad8-47283b95e994/",
+    href: "/security/cve-2026-10749",
     title: "CVE-2026-10749 — Post Duplicator PHP Object Injection",
     outlet: "WPScan / CVE",
     section: "Security Research",
