@@ -83,9 +83,12 @@ export function HeroSection({ variant }: { variant: HomeVariant; currentPath?: n
   return (
     <section className="mt-14 mb-20">
       <div className="max-w-4xl">
-        <h1 className="mb-6 max-w-4xl text-4xl font-bold tracking-tighter text-[#111111] sm:text-5xl lg:text-[3.7rem]">
-          {content.hero.headline}
+        <h1 className="mb-2 max-w-4xl text-4xl font-bold tracking-tighter text-[#111111] sm:text-5xl lg:text-[3.7rem]">
+          Md Minaruzzaman Shovon
         </h1>
+        <p className="mb-6 max-w-4xl text-xl font-semibold tracking-tight text-[#3d3d3d] sm:text-2xl">
+          {content.hero.headline}
+        </p>
         <p className="mb-5 max-w-3xl text-base leading-8 text-[#3d3d3d] sm:text-lg">{content.hero.intro}</p>
         <p className="mb-8 max-w-3xl text-base leading-8 text-[#5c5c5c] sm:text-lg">{content.hero.support}</p>
         <div className="mb-8 flex flex-wrap gap-2 text-xs text-[#5c5c5c]">
