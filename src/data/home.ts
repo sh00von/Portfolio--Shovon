@@ -65,6 +65,15 @@ export const featured = [
       "Discovered and reported CVE-2026-10749, a high-severity (CVSS 7.2) PHP Object Injection vulnerability in Post Duplicator ≤ 3.0.14. Authenticated Contributors can inject malicious serialized objects via the customMetaData parameter, enabling remote code execution when a gadget chain is present. Patched in version 3.0.15.",
   },
   {
+    href: "/security/cve-2026-57661",
+    title: "CVE-2026-57661 — WPComplete Broken Access Control",
+    outlet: "Patchstack / CVE",
+    section: "Security Research",
+    date: "Jun 2026",
+    description:
+      "Discovered and reported CVE-2026-57661, a medium-severity (CVSS 5.4) Broken Access Control vulnerability in WPComplete ≤ 2.9.5.5. Missing authorization and nonce validation allows Subscriber-level users to perform privileged actions. Patched in version 2.9.5.6.",
+  },
+  {
     href: "https://wordpress.org/plugins/wp-store-locator/#developers",
     title: "WP Store Locator 2.3.1 Security Fix",
     outlet: "WordPress.org",
