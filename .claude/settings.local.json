@@ -6,7 +6,20 @@
       "WebFetch(domain:webcache.googleusercontent.com)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(Get-ChildItem -Path \"D:\\\\work\\\\shovon.bd\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(Format-Table -AutoSize)",
+      "WebFetch(domain:wpscan.com)",
+      "Bash(Remove-Item -Recurse -Force \"D:\\\\work\\\\shovon.bd\\\\src\\\\app\\\\blog\")",
+      "Bash(Remove-Item -Recurse -Force \"D:\\\\work\\\\shovon.bd\\\\src\\\\app\\\\feed.xml\")",
+      "Bash(Remove-Item -Force \"D:\\\\work\\\\shovon.bd\\\\src\\\\components\\\\BlogCard.tsx\")",
+      "Bash(Remove-Item -Force \"D:\\\\work\\\\shovon.bd\\\\src\\\\components\\\\StrapiArticle.tsx\")",
+      "Bash(Remove-Item -Recurse -Force \"D:\\\\work\\\\shovon.bd\\\\src\\\\strapi\")",
+      "Bash(grep -rn \"#[0-9a-fA-F]\\\\{3,6\\\\}\" D:/work/shovon.bd/src --include=\"*.tsx\" --include=\"*.ts\" --include=\"*.css\")",
+      "WebFetch(domain:shovon.bd)",
+      "WebFetch(domain:pagespeed.web.dev)",
+      "Bash(npx tsc *)"
     ]
   }
 }
