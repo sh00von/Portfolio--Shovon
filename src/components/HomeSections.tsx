@@ -90,7 +90,31 @@ export function HeroSection({ variant }: { variant: HomeVariant; currentPath?: n
           {content.hero.headline}
         </p>
         <p className="mb-5 max-w-3xl text-base leading-8 text-[#3d3d3d] sm:text-lg">{content.hero.intro}</p>
-        <p className="mb-8 max-w-3xl text-base leading-8 text-[#5c5c5c] sm:text-lg">{content.hero.support}</p>
+        <p className="mb-5 max-w-3xl text-base leading-8 text-[#5c5c5c] sm:text-lg">{content.hero.support}</p>
+        {content.hero.cveBadges && (
+          <div className="mb-8 flex flex-wrap items-center gap-2">
+            <span className="text-xs text-[#737373]">Security research:</span>
+            {content.hero.cveBadges.map((cve) => (
+              <Link
+                key={cve.label}
+                href={cve.href}
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#e5e5e5] bg-[#f5f5f5] px-3 py-1 text-xs font-medium text-[#111111] transition-colors hover:border-[#d4d4d4] hover:bg-white"
+              >
+                <span className="font-mono">{cve.label}</span>
+                <span
+                  className="rounded px-1 py-0.5 text-[10px] font-semibold leading-none"
+                  style={
+                    cve.severity.startsWith("HIGH")
+                      ? { background: "#fef2f2", color: "#991b1b" }
+                      : { background: "#fffbeb", color: "#92400e" }
+                  }
+                >
+                  {cve.severity}
+                </span>
+              </Link>
+            ))}
+          </div>
+        )}
         <div className="mb-8 flex flex-wrap gap-2 text-xs text-[#5c5c5c]">
           {content.hero.pills.map((pill) => (
             <span key={pill} className="rounded-full border border-[#e5e5e5] bg-[#f5f5f5] px-3 py-1">

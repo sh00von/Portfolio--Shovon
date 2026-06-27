@@ -8,6 +8,7 @@ const defaultNavItems = [
   { anchor: "#experience", label: "Experience" },
   { anchor: "#certifications", label: "Certifications" },
   { href: "/projects", label: "Projects" },
+  { href: "/security", label: "Security" },
   { anchor: "#contact", label: "Connect" },
 ];
 
@@ -16,7 +17,7 @@ export function Navigation({
   homePath = "/dev",
   fromVariant,
 }: {
-  active?: "projects";
+  active?: "projects" | "security";
   homePath?: HomePath;
   fromVariant?: SharedFrom;
 }) {
@@ -63,10 +64,14 @@ export function Navigation({
                 key={href}
                 href={href}
                 aria-current={
-                  active === "projects" && item.label === "Projects" ? "page" : undefined
+                  (active === "projects" && item.label === "Projects") ||
+                  (active === "security" && item.label === "Security")
+                    ? "page"
+                    : undefined
                 }
                 className={
-                  active === "projects" && item.label === "Projects"
+                  (active === "projects" && item.label === "Projects") ||
+                  (active === "security" && item.label === "Security")
                     ? "border-b-2 border-lime-500 pb-px font-semibold text-[#151515]"
                     : "text-[#5c5c5c] transition-colors hover:text-[#111111]"
                 }
@@ -117,7 +122,8 @@ export function Navigation({
                 key={href}
                 href={href}
                 className={
-                  active === "projects" && item.label === "Projects"
+                  (active === "projects" && item.label === "Projects") ||
+                  (active === "security" && item.label === "Security")
                     ? "font-semibold text-[#151515]"
                     : "text-[#5c5c5c] transition-colors hover:text-[#111111]"
                 }
