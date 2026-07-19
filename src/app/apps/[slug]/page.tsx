@@ -20,6 +20,14 @@ export async function generateMetadata({
   return {
     title: app.name,
     description: app.description,
+    keywords: [
+      app.name,
+      "Minaruzzaman Shovon",
+      "Android App",
+      "Play Store",
+      app.category,
+      ...app.tags,
+    ],
     alternates: { canonical: `https://shovon.bd/apps/${slug}` },
     openGraph: {
       url: `https://shovon.bd/apps/${slug}`,
@@ -28,6 +36,7 @@ export async function generateMetadata({
       images: ["/og.png"],
     },
     twitter: {
+      card: "summary_large_image",
       title: `${app.name} | Android App`,
       description: app.tagline,
       images: ["/og.png"],

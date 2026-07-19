@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { apps } from "@/data/apps";
 
 const SITE_UPDATED = new Date("2026-06-27");
+const APPS_PUBLISHED = new Date("2026-07-19");
 const CVE_10749_PUBLISHED = new Date("2026-06-01");
 const CVE_57661_PUBLISHED = new Date("2026-06-26");
 
@@ -45,13 +46,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: "https://shovon.bd/apps",
-      lastModified: SITE_UPDATED,
+      lastModified: APPS_PUBLISHED,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     ...apps.map((app) => ({
       url: `https://shovon.bd/apps/${app.slug}`,
-      lastModified: SITE_UPDATED,
+      lastModified: APPS_PUBLISHED,
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

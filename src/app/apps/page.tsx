@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     images: ["/og.png"],
   },
   twitter: {
+    card: "summary_large_image",
     title: "Android Apps | Minaruzzaman Shovon",
     description:
       "A collection of Android apps built by Minaruzzaman Shovon — minimalist, offline-first tools published on the Play Store.",
