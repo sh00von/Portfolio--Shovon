@@ -110,6 +110,16 @@ button.project-row {
   padding-inline: 0;
 }
 
+a.project-row {
+  display: grid;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.project-row:first-child {
+  border-top: 1px solid var(--border);
+}
+
 button.project-row:first-child {
   border-top: 1px solid var(--border);
 }

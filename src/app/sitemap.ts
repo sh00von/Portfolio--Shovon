@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { apps } from "@/data/apps";
 
 const SITE_UPDATED = new Date("2026-06-27");
 const CVE_10749_PUBLISHED = new Date("2026-06-01");
@@ -42,5 +43,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.7,
     },
+    {
+      url: "https://shovon.bd/apps",
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    ...apps.map((app) => ({
+      url: `https://shovon.bd/apps/${app.slug}`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 }

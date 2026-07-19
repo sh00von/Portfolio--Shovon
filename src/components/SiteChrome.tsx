@@ -8,6 +8,7 @@ const defaultNavItems = [
   { anchor: "#experience", label: "Experience" },
   { anchor: "#certifications", label: "Certifications" },
   { href: "/projects", label: "Projects" },
+  { href: "/apps", label: "Apps" },
   { href: "/security", label: "Security" },
   { anchor: "#contact", label: "Connect" },
 ];
@@ -17,7 +18,7 @@ export function Navigation({
   homePath = "/dev",
   fromVariant,
 }: {
-  active?: "projects" | "security";
+  active?: "projects" | "apps" | "security";
   homePath?: HomePath;
   fromVariant?: SharedFrom;
 }) {
@@ -30,6 +31,7 @@ export function Navigation({
           defaultNavItems[1],
           defaultNavItems[2],
           defaultNavItems[3],
+          defaultNavItems[4],
         ]
       : defaultNavItems;
 
@@ -65,12 +67,14 @@ export function Navigation({
                 href={href}
                 aria-current={
                   (active === "projects" && item.label === "Projects") ||
+                  (active === "apps" && item.label === "Apps") ||
                   (active === "security" && item.label === "Security")
                     ? "page"
                     : undefined
                 }
                 className={
                   (active === "projects" && item.label === "Projects") ||
+                  (active === "apps" && item.label === "Apps") ||
                   (active === "security" && item.label === "Security")
                     ? "border-b-2 border-lime-500 pb-px font-semibold text-[#151515]"
                     : "text-[#5c5c5c] transition-colors hover:text-[#111111]"
@@ -123,6 +127,7 @@ export function Navigation({
                 href={href}
                 className={
                   (active === "projects" && item.label === "Projects") ||
+                  (active === "apps" && item.label === "Apps") ||
                   (active === "security" && item.label === "Security")
                     ? "font-semibold text-[#151515]"
                     : "text-[#5c5c5c] transition-colors hover:text-[#111111]"

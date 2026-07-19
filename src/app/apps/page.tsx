@@ -1,0 +1,110 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Footer, Navigation } from "@/components/SiteChrome";
+import { resolveFromVariant, resolveHomePath } from "@/lib/homeVariants";
+import { apps } from "@/data/apps";
+import { ArrowUpRightIcon } from "@/components/icons";
+
+export const metadata: Metadata = {
+  title: "Android Apps",
+  description:
+    "Android apps built by Minaruzzaman Shovon — including Attendly Tutor, Mono Alarm, NU Assistant BD, and Chalk. Minimalist, offline-first tools for everyday use.",
+  keywords: [
+    "Minaruzzaman Shovon",
+    "Android Apps",
+    "Attendly Tutor",
+    "Mono Alarm",
+    "NU Assistant BD",
+    "Chalk",
+    "Play Store",
+    "Kotlin",
+  ],
+  alternates: {
+    canonical: "https://shovon.bd/apps",
+  },
+  openGraph: {
+    url: "https://shovon.bd/apps",
+    title: "Android Apps | Minaruzzaman Shovon",
+    description:
+      "A collection of Android apps built by Minaruzzaman Shovon — minimalist, offline-first tools published on the Play Store.",
+    images: ["/og.png"],
+  },
+  twitter: {
+    title: "Android Apps | Minaruzzaman Shovon",
+    description:
+      "A collection of Android apps built by Minaruzzaman Shovon — minimalist, offline-first tools published on the Play Store.",
+    images: ["/og.png"],
+  },
+};
+
+const STATUS_STYLES: Record<string, string> = {
+  Live: "bg-[#ecfccb] text-[#365314] border-[#a3e635]",
+  Beta: "bg-[#fef9c3] text-[#713f12] border-[#fde047]",
+  Archived: "bg-[#f5f5f5] text-[#737373] border-[#e5e5e5]",
+};
+
+export default async function AppsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>;
+}) {
+  const { from } = await searchParams;
+  const homePath = resolveHomePath(from);
+  const fromVariant = resolveFromVariant(homePath);
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Navigation active="apps" homePath={homePath} fromVariant={fromVariant} />
+      <main
+        id="main-content"
+        className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]"
+      >
+        <h1 className="sr-only">Android Apps by Minaruzzaman Shovon</h1>
+
+        <div className="mb-8 pt-3">
+          <p className="text-sm text-[#737373]">
+            {apps.length} apps &middot; Android &middot; Google Play Store
+          </p>
+        </div>
+
+        <div>
+          {apps.map((app) => (
+            <article key={app.slug}>
+              <Link
+                href={`/apps/${app.slug}`}
+                className="project-row"
+                aria-label={`View ${app.name}`}
+              >
+                <span className="project-num" aria-hidden="true">
+                  {app.num}
+                </span>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h2 className="project-title" style={{ marginBottom: 0 }}>
+                      {app.name}
+                    </h2>
+                    <span
+                      className={`inline-block rounded-sm border px-1.5 py-px text-[10px] font-semibold uppercase tracking-wide ${STATUS_STYLES[app.status]}`}
+                    >
+                      {app.status}
+                    </span>
+                  </div>
+                  <p className="project-desc">{app.tagline}</p>
+                  <div className="project-tags">
+                    {app.tags.map((tag) => (
+                      <span key={tag} className="tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <ArrowUpRightIcon />
+              </Link>
+            </article>
+          ))}
+        </div>
+      </main>
+      <Footer backHome homePath={homePath} />
+    </div>
+  );
+}
