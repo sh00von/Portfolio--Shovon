@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     "WordPress vulnerabilities",
     "responsible disclosure",
     "Md Minaruzzaman Shovon",
+    "CVE-2026-14322",
     "CVE-2026-10749",
     "CVE-2026-57661",
     "WPScan",
@@ -42,6 +43,17 @@ export const metadata: Metadata = {
 };
 
 const cves = [
+  {
+    id: "CVE-2026-14322",
+    href: "/security/cve-2026-14322",
+    title: "Unauthenticated Booking Auto-Approval in Timetics",
+    plugin: "Timetics",
+    severity: "MEDIUM",
+    cvss: "5.3",
+    disclosed: "Jul 2026",
+    description:
+      "Missing payment method verification and status enforcement allows unauthenticated users to create fully-approved bookings for priced appointments without payment. Patched in 1.0.57.",
+  },
   {
     id: "CVE-2026-10749",
     href: "/security/cve-2026-10749",

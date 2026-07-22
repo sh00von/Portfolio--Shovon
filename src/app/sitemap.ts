@@ -5,6 +5,7 @@ const SITE_UPDATED = new Date("2026-06-27");
 const APPS_PUBLISHED = new Date("2026-07-19");
 const CVE_10749_PUBLISHED = new Date("2026-06-01");
 const CVE_57661_PUBLISHED = new Date("2026-06-26");
+const CVE_14322_PUBLISHED = new Date("2026-07-01");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -28,9 +29,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: "https://shovon.bd/security",
-      lastModified: CVE_57661_PUBLISHED,
+      lastModified: CVE_14322_PUBLISHED,
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: "https://shovon.bd/security/cve-2026-14322",
+      lastModified: CVE_14322_PUBLISHED,
+      changeFrequency: "yearly",
+      priority: 0.7,
     },
     {
       url: "https://shovon.bd/security/cve-2026-10749",

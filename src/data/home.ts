@@ -57,6 +57,15 @@ export const publications = [
 
 export const featured = [
   {
+    href: "/security/cve-2026-14322",
+    title: "CVE-2026-14322 — Timetics Unauthenticated Booking Auto-Approval",
+    outlet: "WPScan / CVE",
+    section: "Security Research",
+    date: "Jul 2026",
+    description:
+      "Discovered and reported CVE-2026-14322, a medium-severity (CVSS 5.3) Broken Access Control vulnerability in Timetics < 1.0.57. Unauthenticated users can create fully-approved bookings for priced appointments without making any payment by manipulating payment_method. Patched in version 1.0.57.",
+  },
+  {
     href: "/security/cve-2026-10749",
     title: "CVE-2026-10749 — Post Duplicator PHP Object Injection",
     outlet: "WPScan / CVE",
