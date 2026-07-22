@@ -84,6 +84,15 @@ export const featured = [
       "Discovered and reported CVE-2026-57661, a medium-severity (CVSS 5.4) Broken Access Control vulnerability in WPComplete ≤ 2.9.5.5. Missing authorization and nonce validation allows Subscriber-level users to perform privileged actions. Patched in version 2.9.5.6.",
   },
   {
+    href: "https://wordpress.org/plugins/mappress-google-maps-for-wordpress/#developers",
+    title: "MapPress Maps 2.97.2 Security Assistance",
+    outlet: "WordPress.org",
+    section: "Security Research",
+    date: "2026",
+    description:
+      "Discovered and reported security vulnerabilities in MapPress Maps for WordPress. Received formal author appreciation and changelog recognition in version 2.97.2 ('Thanks to https://shovon.bd for security assistance in 2.97').",
+  },
+  {
     href: "https://wordpress.org/plugins/wp-store-locator/#developers",
     title: "WP Store Locator 2.3.1 Security Fix",
     outlet: "WordPress.org",

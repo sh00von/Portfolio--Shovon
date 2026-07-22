@@ -187,6 +187,80 @@ export default function SecurityPage() {
             </Link>
           ))}
         </div>
+
+        <section className="mt-14">
+          <h2 className="border-b border-[#e5e5e5] pb-2 text-lg font-semibold tracking-tight text-[#111111]">
+            Vendor Recognitions &amp; Changelog Credits
+          </h2>
+          <p className="mt-2 text-sm text-[#5c5c5c]">
+            Additional security disclosures and contributions recognized in official plugin changelogs and release notes.
+          </p>
+
+          <div className="mt-6 flex flex-col gap-4">
+            <div className="rounded-xl border border-[#e5e5e5] bg-[#f5f5f5] px-5 py-5">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-mono text-xs font-semibold text-[#111111]">MapPress Maps 2.97.2</span>
+                <span className="inline-flex items-center rounded border border-[#bbf7d0] bg-[#f0fdf4] px-2 py-0.5 text-xs font-semibold text-[#166534]">
+                  Changelog Credit
+                </span>
+                <span className="ml-auto text-xs text-[#737373]">2026</span>
+              </div>
+              <p className="mt-2 text-sm font-medium text-[#111111]">
+                Security Assistance Recognition in MapPress Google Maps for WordPress
+              </p>
+              <p className="mt-1 text-sm leading-6 text-[#5c5c5c]">
+                Discovered and reported security issues in MapPress Maps. The plugin author published official changelog appreciation in version 2.97.2:
+                <em className="mt-1 block rounded border border-[#e5e5e5] bg-white p-2 font-mono text-xs text-[#333333]">
+                  &quot;Thanks to https://shovon.bd for security assistance in 2.97&quot;
+                </em>
+              </p>
+              <div className="mt-3 flex items-center gap-4 text-xs text-[#737373]">
+                <Link
+                  href="https://wordpress.org/plugins/mappress-google-maps-for-wordpress/#developers"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#111111] underline underline-offset-4 decoration-[#d4d4d4] hover:decoration-[#111111] transition-colors"
+                >
+                  WordPress.org Changelog →
+                </Link>
+                <Link
+                  href="https://wpm.so/package/mappress-google-maps-for-wordpress"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#111111] underline underline-offset-4 decoration-[#d4d4d4] hover:decoration-[#111111] transition-colors"
+                >
+                  WPM Package Listing →
+                </Link>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-[#e5e5e5] bg-[#f5f5f5] px-5 py-5">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-mono text-xs font-semibold text-[#111111]">WP Store Locator 2.3.1</span>
+                <span className="inline-flex items-center rounded border border-[#bbf7d0] bg-[#f0fdf4] px-2 py-0.5 text-xs font-semibold text-[#166534]">
+                  Patch Release
+                </span>
+                <span className="ml-auto text-xs text-[#737373]">2026</span>
+              </div>
+              <p className="mt-2 text-sm font-medium text-[#111111]">
+                Stored XSS (CVSS 8.1) Coordinated Patch Release
+              </p>
+              <p className="mt-1 text-sm leading-6 text-[#5c5c5c]">
+                Discovered and responsibly disclosed a high-severity Stored XSS vulnerability (CVSS 8.1) in WP Store Locator (&le; 2.3.0). Resulted in a critical patch release in 2.3.1 and changelog acknowledgement.
+              </p>
+              <div className="mt-3 text-xs text-[#737373]">
+                <Link
+                  href="https://wordpress.org/plugins/wp-store-locator/#developers"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#111111] underline underline-offset-4 decoration-[#d4d4d4] hover:decoration-[#111111] transition-colors"
+                >
+                  WordPress.org Changelog →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer backHome homePath="/dev" />
