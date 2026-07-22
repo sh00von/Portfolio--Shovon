@@ -27,14 +27,18 @@ export const metadata: Metadata = {
     title: "Android Apps | Minaruzzaman Shovon",
     description:
       "A collection of Android apps built by Minaruzzaman Shovon — minimalist, offline-first tools published on the Play Store.",
-    images: ["/og.png"],
+    images: [
+      "/api/og?title=Android%20Apps%20by%20Minaruzzaman%20Shovon&subtitle=Minimalist%2C%20offline-first%20Android%20tools%20published%20on%20the%20Google%20Play%20Store&category=ANDROID%20APPS&badge=PLAY%20STORE&badgeColor=%23166534&badgeBg=%23f0fdf4",
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Android Apps | Minaruzzaman Shovon",
     description:
       "A collection of Android apps built by Minaruzzaman Shovon — minimalist, offline-first tools published on the Play Store.",
-    images: ["/og.png"],
+    images: [
+      "/api/og?title=Android%20Apps%20by%20Minaruzzaman%20Shovon&subtitle=Minimalist%2C%20offline-first%20Android%20tools%20published%20on%20the%20Google%20Play%20Store&category=ANDROID%20APPS&badge=PLAY%20STORE&badgeColor=%23166534&badgeBg=%23f0fdf4",
+    ],
   },
 };
 

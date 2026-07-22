@@ -30,7 +30,9 @@ export const metadata: Metadata = {
     title: "Security Research — CVE Advisories | Md Minaruzzaman Shovon",
     description:
       "Security advisories and CVE disclosures by Md Minaruzzaman Shovon. WordPress vulnerability research including PHP Object Injection and Broken Access Control findings.",
-    images: ["/og.png"],
+    images: [
+      "/api/og?title=Security%20Research%20%E2%80%94%20CVE%20Advisories&subtitle=WordPress%20vulnerability%20disclosures%20%26%20security%20research%20by%20Md%20Minaruzzaman%20Shovon&category=SECURITY%20RESEARCH&badge=3%20DISCLOSURES&badgeColor=%232563eb&badgeBg=%23eff6ff",
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -38,7 +40,9 @@ export const metadata: Metadata = {
     title: "Security Research — CVE Advisories | Md Minaruzzaman Shovon",
     description:
       "Security advisories and CVE disclosures by Md Minaruzzaman Shovon. WordPress vulnerability research including PHP Object Injection and Broken Access Control findings.",
-    images: ["/og.png"],
+    images: [
+      "/api/og?title=Security%20Research%20%E2%80%94%20CVE%20Advisories&subtitle=WordPress%20vulnerability%20disclosures%20%26%20security%20research%20by%20Md%20Minaruzzaman%20Shovon&category=SECURITY%20RESEARCH&badge=3%20DISCLOSURES&badgeColor=%232563eb&badgeBg=%23eff6ff",
+    ],
   },
 };
 
@@ -81,30 +85,51 @@ const cves = [
 export default function SecurityPage() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: "Security Research — CVE Advisories | Md Minaruzzaman Shovon",
-    description:
-      "Security advisories and CVE disclosures by Md Minaruzzaman Shovon including vulnerabilities in Timetics, Post Duplicator, and WPComplete.",
-    url: "https://shovon.bd/security",
-    author: {
-      "@type": "Person",
-      name: "Md Minaruzzaman Shovon",
-      url: "https://shovon.bd/dev",
-    },
-    mainEntity: {
-      "@type": "ItemList",
-      itemListElement: cves.map((cve, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        item: {
-          "@type": "TechArticle",
-          name: cve.title,
-          identifier: cve.id,
-          url: `https://shovon.bd${cve.href}`,
-          description: cve.description,
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        name: "Security Research — CVE Advisories | Md Minaruzzaman Shovon",
+        description:
+          "Security advisories and CVE disclosures by Md Minaruzzaman Shovon including vulnerabilities in Timetics, Post Duplicator, and WPComplete.",
+        url: "https://shovon.bd/security",
+        author: {
+          "@type": "Person",
+          name: "Md Minaruzzaman Shovon",
+          url: "https://shovon.bd/dev",
         },
-      })),
-    },
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: cves.map((cve, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+              "@type": "TechArticle",
+              name: cve.title,
+              identifier: cve.id,
+              url: `https://shovon.bd${cve.href}`,
+              description: cve.description,
+            },
+          })),
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://shovon.bd/dev",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Security Research",
+            item: "https://shovon.bd/security",
+          },
+        ],
+      },
+    ],
   };
 
   return (

@@ -65,6 +65,12 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Md Minaruzzaman Shovon — CVE Security Advisories"
+          href="/rss.xml"
+        />
       </head>
       <body className={`${mulish.className} min-h-screen`}>
         <Script

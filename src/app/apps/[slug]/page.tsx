@@ -33,13 +33,17 @@ export async function generateMetadata({
       url: `https://shovon.bd/apps/${slug}`,
       title: `${app.name} | Android App`,
       description: app.tagline,
-      images: ["/og.png"],
+      images: [
+        `/api/og?title=${encodeURIComponent(app.name)}&subtitle=${encodeURIComponent(app.tagline)}&category=${encodeURIComponent("ANDROID APP — " + app.category.toUpperCase())}&badge=${encodeURIComponent(app.status.toUpperCase())}&badgeColor=%23166534&badgeBg=%23f0fdf4`,
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${app.name} | Android App`,
       description: app.tagline,
-      images: ["/og.png"],
+      images: [
+        `/api/og?title=${encodeURIComponent(app.name)}&subtitle=${encodeURIComponent(app.tagline)}&category=${encodeURIComponent("ANDROID APP — " + app.category.toUpperCase())}&badge=${encodeURIComponent(app.status.toUpperCase())}&badgeColor=%23166534&badgeBg=%23f0fdf4`,
+      ],
     },
   };
 }

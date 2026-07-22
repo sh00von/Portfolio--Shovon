@@ -274,7 +274,10 @@ export function getHomeMetadata(variant: HomeVariant, canonicalPath: HomePath): 
       description: meta.ogDescription,
       images: [
         {
-          url: "/og.png",
+          url:
+            variant === "dev"
+              ? "/api/og?title=Md%20Minaruzzaman%20Shovon&subtitle=Full-stack%20developer%20focused%20on%20Next.js%2C%20TypeScript%2C%20AI%2C%20GIS%2C%20and%20WordPress%20security&category=DEVELOPER%20PORTFOLIO&badge=FULL%20STACK&badgeColor=%230284c7&badgeBg=%23f0f9ff"
+              : "/api/og?title=Md%20Minaruzzaman%20Shovon&subtitle=Water%20resources%20engineering%20at%20CUET%20covering%20hydrology%2C%20GIS%2C%20and%20environmental%20modeling&category=WRE%20RESEARCH%20PORTFOLIO&badge=CUET%20WRE&badgeColor=%230d9488&badgeBg=%23f0fdfa",
           alt: variant === "dev" ? "Developer portfolio of Minaruzzaman Shovon" : "Water resources engineering portfolio of Minaruzzaman Shovon",
         },
       ],
@@ -284,7 +287,11 @@ export function getHomeMetadata(variant: HomeVariant, canonicalPath: HomePath): 
       creator: "@sh00von",
       title: meta.ogTitle,
       description: meta.ogDescription,
-      images: ["/og.png"],
+      images: [
+        variant === "dev"
+          ? "/api/og?title=Md%20Minaruzzaman%20Shovon&subtitle=Full-stack%20developer%20focused%20on%20Next.js%2C%20TypeScript%2C%20AI%2C%20GIS%2C%20and%20WordPress%20security&category=DEVELOPER%20PORTFOLIO&badge=FULL%20STACK&badgeColor=%230284c7&badgeBg=%23f0f9ff"
+          : "/api/og?title=Md%20Minaruzzaman%20Shovon&subtitle=Water%20resources%20engineering%20at%20CUET%20covering%20hydrology%2C%20GIS%2C%20and%20environmental%20modeling&category=WRE%20RESEARCH%20PORTFOLIO&badge=CUET%20WRE&badgeColor=%230d9488&badgeBg=%23f0fdfa",
+      ],
     },
   };
 }
@@ -293,7 +300,7 @@ export function getProfileJsonLd(variant: HomeVariant, pagePath: HomePath) {
   const meta = homeVariantContent[variant].metadata;
   const pageUrl = `${siteUrl}${pagePath === "/" ? "/" : pagePath}`;
 
-  return {
+  const profilePage = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     name: meta.title,
@@ -348,6 +355,31 @@ export function getProfileJsonLd(variant: HomeVariant, pagePath: HomePath) {
       ],
     },
   };
+
+  if (variant === "academic") {
+    const scholarlyArticles = publications.map((pub) => ({
+      "@context": "https://schema.org",
+      "@type": "ScholarlyArticle",
+      headline: pub.title,
+      name: pub.title,
+      url: pub.href,
+      author: pub.authors.split(", ").map((authorName) => ({
+        "@type": "Person",
+        name: authorName,
+      })),
+      publisher: {
+        "@type": "Organization",
+        name: pub.label,
+      },
+    }));
+
+    return {
+      "@context": "https://schema.org",
+      "@graph": [profilePage, ...scholarlyArticles],
+    };
+  }
+
+  return profilePage;
 }
 
 export function resolveHomePath(from?: string): Extract<HomePath, "/dev" | "/academic"> {

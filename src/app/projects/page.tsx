@@ -29,13 +29,17 @@ export const metadata: Metadata = {
     title: "Projects & Portfolio | Minaruzzaman Shovon",
     description:
       "A showcase of AI, GIS, and full-stack engineering applications built by Minaruzzaman Shovon.",
-    images: ["/og.png"],
+    images: [
+      "/api/og?title=Projects%20%26%20Portfolio&subtitle=Showcase%20of%20AI%2C%20GIS%20spatial%20modeling%2C%20and%20full-stack%20engineering%20applications&category=PROJECT%20PORTFOLIO&badge=ENGINEERING&badgeColor=%231e293b&badgeBg=%23f1f5f9",
+    ],
   },
   twitter: {
     title: "Projects & Portfolio | Minaruzzaman Shovon",
     description:
       "A showcase of AI, GIS, and full-stack engineering applications built by Minaruzzaman Shovon.",
-    images: ["/og.png"],
+    images: [
+      "/api/og?title=Projects%20%26%20Portfolio&subtitle=Showcase%20of%20AI%2C%20GIS%20spatial%20modeling%2C%20and%20full-stack%20engineering%20applications&category=PROJECT%20PORTFOLIO&badge=ENGINEERING&badgeColor=%231e293b&badgeBg=%23f1f5f9",
+    ],
   },
 };
 
