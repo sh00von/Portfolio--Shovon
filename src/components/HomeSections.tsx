@@ -205,13 +205,20 @@ export function PublicationsSection({
   );
 }
 
-export function FeaturedSection({ items }: { items: readonly (typeof featured)[number][] }) {
+export function FeaturedSection({
+  id = "featured",
+  title = "Featured In",
+  description = "Press coverage and external mentions of work I've contributed to.",
+  items,
+}: {
+  id?: string;
+  title?: string;
+  description?: string;
+  items: readonly (typeof featured)[number][];
+}) {
   return (
-    <section id="featured" className="mb-24 pt-6">
-      <SectionHeader
-        title="Featured In"
-        description="Press coverage and external mentions of work I've contributed to."
-      />
+    <section id={id} className="mb-24 pt-6">
+      <SectionHeader title={title} description={description} />
       <div className="flex flex-col space-y-8">
         {items.map((item) => (
           <Link

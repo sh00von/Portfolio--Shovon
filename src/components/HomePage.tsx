@@ -19,14 +19,38 @@ type HomeSectionKey =
   | "volunteers"
   | "certifications"
   | "achievements"
+  | "securityDisclosures"
+  | "pressCoverage"
   | "featured"
   | "skills"
   | "gallery"
   | "contact";
 
 const sectionOrder: Record<HomeVariant, HomeSectionKey[]> = {
-  dev: ["experience", "skills", "certifications", "achievements", "featured", "volunteers", "education", "gallery", "contact"],
-  academic: ["education", "publications", "skills", "certifications", "achievements", "featured", "volunteers", "gallery", "contact"],
+  dev: [
+    "experience",
+    "securityDisclosures",
+    "pressCoverage",
+    "skills",
+    "certifications",
+    "achievements",
+    "volunteers",
+    "education",
+    "gallery",
+    "contact",
+  ],
+  academic: [
+    "education",
+    "publications",
+    "securityDisclosures",
+    "pressCoverage",
+    "skills",
+    "certifications",
+    "achievements",
+    "volunteers",
+    "gallery",
+    "contact",
+  ],
 };
 
 export function HomePage({ variant, homePath }: { variant: HomeVariant; homePath: HomePath }) {
@@ -68,6 +92,26 @@ export function HomePage({ variant, homePath }: { variant: HomeVariant; homePath
         ) : null;
       case "achievements":
         return homeData.achievements.length ? <AchievementsSection key={section} items={homeData.achievements} /> : null;
+      case "securityDisclosures":
+        return homeData.securityDisclosures.length ? (
+          <FeaturedSection
+            key={section}
+            id="security-disclosures"
+            title="Security Advisories & Disclosures"
+            description="Responsible vulnerability disclosures, CVE advisories, and official vendor changelog credits."
+            items={homeData.securityDisclosures}
+          />
+        ) : null;
+      case "pressCoverage":
+        return homeData.pressCoverage.length ? (
+          <FeaturedSection
+            key={section}
+            id="featured"
+            title="Featured In"
+            description="Press coverage and external mentions of work I've contributed to."
+            items={homeData.pressCoverage}
+          />
+        ) : null;
       case "featured":
         return homeData.featured.length ? <FeaturedSection key={section} items={homeData.featured} /> : null;
       case "skills":

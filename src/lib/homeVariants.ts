@@ -6,7 +6,9 @@ import {
   experience,
   featured,
   gallery,
+  pressCoverage,
   publications,
+  securityDisclosures,
   skills,
   volunteers,
 } from "@/data/home";
@@ -24,6 +26,8 @@ type SkillGroup = readonly [string, ...string[]];
 type GalleryItem = (typeof gallery)[number];
 type AchievementItem = (typeof achievements)[number];
 type FeaturedItem = (typeof featured)[number];
+type SecurityItem = (typeof securityDisclosures)[number];
+type PressItem = (typeof pressCoverage)[number];
 
 type VariantContent = {
   shortLabel: string;
@@ -70,6 +74,8 @@ type HomeVariantData = {
   gallery: readonly GalleryItem[];
   skills: readonly SkillGroup[];
   featured: readonly FeaturedItem[];
+  securityDisclosures: readonly SecurityItem[];
+  pressCoverage: readonly PressItem[];
 };
 
 const academicOnlySkills = [
@@ -224,6 +230,8 @@ export const homeVariantData: Record<HomeVariant, HomeVariantData> = {
     gallery,
     skills: skills.filter(([heading]) => heading !== "GIS/ML Modelling"),
     featured,
+    securityDisclosures,
+    pressCoverage,
   },
   academic: {
     education,
@@ -235,6 +243,8 @@ export const homeVariantData: Record<HomeVariant, HomeVariantData> = {
     gallery,
     skills: [...skills.filter(([heading]) => heading === "GIS/ML Modelling"), ...academicOnlySkills],
     featured,
+    securityDisclosures,
+    pressCoverage,
   },
 };
 

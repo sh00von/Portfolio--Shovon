@@ -55,7 +55,7 @@ export const publications = [
   },
 ] as const;
 
-export const featured = [
+export const securityDisclosures = [
   {
     href: "/security/cve-2026-14322",
     title: "CVE-2026-14322 — Timetics Unauthenticated Booking Auto-Approval",
@@ -101,6 +101,9 @@ export const featured = [
     description:
       "Discovered and reported a high-severity Stored XSS vulnerability (CVSS 8.1) in WP Store Locator (<= 2.3.0). Coordinated a responsible disclosure resulting in a critical patch in version 2.3.1 and formal recognition in the changelog.",
   },
+] as const;
+
+export const pressCoverage = [
   {
     href: "https://www.thedailystar.net/tech-startup/news/digital-resistance-websites-kept-the-revolution-alive-3677231",
     title: "Digital resistance: The websites that kept the revolution alive",
@@ -111,6 +114,8 @@ export const featured = [
       "Featured for co-developing The Inquilab with Daniel Rozario (Varendra University) — an open-source archive of martyrs, stories, and key events of the July 2024 protests, preserved via the Wayback Machine and exposed through a public API.",
   },
 ] as const;
+
+export const featured = [...securityDisclosures, ...pressCoverage] as const;
 
 export const certifications = [
   ["CISSP by InfoSec", "InfoSEC, Jun 2025"],
