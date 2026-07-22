@@ -7,7 +7,7 @@ export function proxy(request: NextRequest) {
 
   // RFC 8288 Link headers for Agent Discovery
   const linkHeader =
-    '</llms.txt>; rel="describedby"; type="text/plain", </.well-known/security.txt>; rel="author", </rss.xml>; rel="alternate"; type="application/rss+xml"';
+    '</llms.txt>; rel="describedby"; type="text/plain", </.well-known/ai.txt>; rel="service-doc", </.well-known/security.txt>; rel="author", </rss.xml>; rel="alternate"; type="application/rss+xml"';
 
   // Skip static assets, favicon, icon, etc.
   if (

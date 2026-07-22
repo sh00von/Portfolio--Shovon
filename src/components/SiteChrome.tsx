@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { resolveFromVariant, withFromParam, type HomePath, type SharedFrom } from "@/lib/homeVariants";
+import { CommandPalette, CommandPaletteTrigger } from "./CommandPalette";
 
 const defaultNavItems = [
   { anchor: "#experience", label: "Experience" },
@@ -23,6 +24,7 @@ export function Navigation({
   fromVariant?: SharedFrom;
 }) {
   const [open, setOpen] = useState(false);
+  const [cmdPaletteOpen, setCmdPaletteOpen] = useState(false);
   const currentVariant = fromVariant ?? resolveFromVariant(homePath);
   const navItems =
     currentVariant === "academic"
@@ -36,58 +38,62 @@ export function Navigation({
       : defaultNavItems;
 
   return (
-    <nav
-      className="sticky top-0 z-40 mx-auto w-full max-w-2xl border-b border-[#e5e5e5] bg-white/90 px-4 py-4 backdrop-blur-md lg:max-w-[60vw] lg:py-5"
-      aria-label="Main navigation"
-    >
-      {/* Issue #8: Skip-to-content link for keyboard/screen reader users */}
-      <a
-        href="#main-content"
-        className="absolute -top-full left-4 z-50 rounded-md bg-white px-4 py-2 text-sm font-medium text-[#111111] shadow focus:top-4 transition-[top]"
+    <>
+      <nav
+        className="sticky top-0 z-40 mx-auto w-full max-w-2xl border-b border-[#e5e5e5] bg-white/90 px-4 py-4 backdrop-blur-md lg:max-w-[60vw] lg:py-5"
+        aria-label="Main navigation"
       >
-        Skip to main content
-      </a>
-      <div className="flex items-center justify-between">
-        <Link
-          href={homePath}
-          className="font-medium tracking-tight text-[#111111] transition-colors hover:text-[#5c5c5c]"
-          aria-label="Home"
+        {/* Issue #8: Skip-to-content link for keyboard/screen reader users */}
+        <a
+          href="#main-content"
+          className="absolute -top-full left-4 z-50 rounded-md bg-white px-4 py-2 text-sm font-medium text-[#111111] shadow focus:top-4 transition-[top]"
         >
-          Minaruzzaman Shovon
-        </Link>
+          Skip to main content
+        </a>
+        <div className="flex items-center justify-between">
+          <Link
+            href={homePath}
+            className="font-medium tracking-tight text-[#111111] transition-colors hover:text-[#5c5c5c]"
+            aria-label="Home"
+          >
+            Minaruzzaman Shovon
+          </Link>
 
-        <div className="hidden items-center gap-6 text-sm font-medium md:flex">
-          {navItems.map((item) => {
-            const href =
-              "anchor" in item ? `${homePath}${item.anchor}` : withFromParam(item.href, currentVariant);
+          <div className="hidden items-center gap-5 text-sm font-medium md:flex">
+            {navItems.map((item) => {
+              const href =
+                "anchor" in item ? `${homePath}${item.anchor}` : withFromParam(item.href, currentVariant);
 
-            return (
-              <Link
-                key={href}
-                href={href}
-                aria-current={
-                  (active === "projects" && item.label === "Projects") ||
-                  (active === "apps" && item.label === "Apps") ||
-                  (active === "security" && item.label === "Security")
-                    ? "page"
-                    : undefined
-                }
-                className={
-                  (active === "projects" && item.label === "Projects") ||
-                  (active === "apps" && item.label === "Apps") ||
-                  (active === "security" && item.label === "Security")
-                    ? "border-b-2 border-lime-500 pb-px font-semibold text-[#151515]"
-                    : "text-[#5c5c5c] transition-colors hover:text-[#111111]"
-                }
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </div>
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  aria-current={
+                    (active === "projects" && item.label === "Projects") ||
+                    (active === "apps" && item.label === "Apps") ||
+                    (active === "security" && item.label === "Security")
+                      ? "page"
+                      : undefined
+                  }
+                  className={
+                    (active === "projects" && item.label === "Projects") ||
+                    (active === "apps" && item.label === "Apps") ||
+                    (active === "security" && item.label === "Security")
+                      ? "border-b-2 border-lime-500 pb-px font-semibold text-[#151515]"
+                      : "text-[#5c5c5c] transition-colors hover:text-[#111111]"
+                  }
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
 
-        <div className="flex items-center gap-2 md:hidden">
-          <button
+            <CommandPaletteTrigger onClick={() => setCmdPaletteOpen(true)} />
+          </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <CommandPaletteTrigger onClick={() => setCmdPaletteOpen(true)} />
+            <button
             type="button"
             className="theme-toggle inline-flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-md border transition-colors"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -141,6 +147,8 @@ export function Navigation({
         </div>
       </div>
     </nav>
+    <CommandPalette isOpen={cmdPaletteOpen} onClose={() => setCmdPaletteOpen(false)} />
+    </>
   );
 }
 

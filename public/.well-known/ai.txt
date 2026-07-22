@@ -1,0 +1,12 @@
+# AI Agent Policy & Context Declaration for shovon.bd
+User-agent: *
+Allow: /
+
+Context-Document: https://shovon.bd/llms.txt
+Full-Context-Document: https://shovon.bd/llms-full.txt
+Security-Contact: https://shovon.bd/.well-known/security.txt
+RSS-Feed: https://shovon.bd/rss.xml
+
+Author: Md Minaruzzaman Shovon
+Title: Full Stack Developer & Security Researcher
+Website: https://shovon.bd
