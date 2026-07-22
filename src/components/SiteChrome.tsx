@@ -157,6 +157,14 @@ export function Footer({ backHome = false, homePath = "/dev" }: { backHome?: boo
     <footer className="mx-auto flex w-full max-w-2xl flex-col items-center justify-between px-4 pb-10 text-sm text-[#737373] sm:flex-row lg:max-w-[60vw]">
       <span>&copy; 2026 Minaruzzaman Shovon</span>
       <div className="flex items-center gap-4">
+        <a
+          href="https://github.com/sh00von/nextjs-developer-portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="back-link"
+        >
+          Source / Template
+        </a>
         <Link href="/sitemap.xml" className="back-link">
           Sitemap
         </Link>
