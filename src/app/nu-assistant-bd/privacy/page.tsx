@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Footer, Navigation } from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   title: "Privacy Policy — NU Assistant BD",
   description:
     "Privacy policy for NU Assistant BD, the companion app for National University students. This policy explains what data the app handles, including advertising via Google AdMob.",

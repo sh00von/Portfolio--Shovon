@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Footer, Navigation } from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   title: "Privacy Policy — Attendly Tutor",
   description:
     "Privacy policy for Attendly Tutor, the offline attendance tracker for private tutors. Attendly Tutor stores all data locally on your device and collects no personal information.",

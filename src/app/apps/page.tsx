@@ -53,18 +53,53 @@ export default async function AppsPage({
   const homePath = resolveHomePath(from);
   const fromVariant = resolveFromVariant(homePath);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Android Apps by Md Minaruzzaman Shovon",
+    description:
+      "A collection of Android apps built by Minaruzzaman Shovon — minimalist, offline-first tools published on the Play Store.",
+    url: "https://shovon.bd/apps",
+    author: {
+      "@type": "Person",
+      name: "Md Minaruzzaman Shovon",
+      url: "https://shovon.bd/dev",
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: apps.map((app, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "SoftwareApplication",
+          name: app.name,
+          operatingSystem: "Android",
+          applicationCategory: app.category,
+          description: app.description,
+          url: `https://shovon.bd/apps/${app.slug}`,
+          sameAs: app.playStoreUrl || undefined,
+        },
+      })),
+    },
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navigation active="apps" homePath={homePath} fromVariant={fromVariant} />
       <main
         id="main-content"
         className="mx-auto w-full max-w-2xl flex-grow px-4 pb-24 lg:max-w-[60vw]"
       >
-        <h1 className="sr-only">Android Apps by Minaruzzaman Shovon</h1>
-
-        <div className="mb-8 pt-3">
-          <p className="text-sm text-[#737373]">
-            {apps.length} apps &middot; Android &middot; Google Play Store
+        <div className="mb-6 pt-6">
+          <h1 className="text-2xl font-bold tracking-tight text-[#111111] sm:text-3xl">
+            Android Apps
+          </h1>
+          <p className="mt-1 text-sm text-[#737373]">
+            {apps.length} minimalist, offline-first tools for Android &middot; Google Play Store
           </p>
         </div>
 

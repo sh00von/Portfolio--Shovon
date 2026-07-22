@@ -59,8 +59,34 @@ export default async function AppDetailPage({
   const app = apps.find((a) => a.slug === slug);
   if (!app) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: app.name,
+    operatingSystem: "Android",
+    applicationCategory: app.category,
+    description: app.description,
+    url: `https://shovon.bd/apps/${app.slug}`,
+    sameAs: app.playStoreUrl || undefined,
+    author: {
+      "@type": "Person",
+      name: "Md Minaruzzaman Shovon",
+      url: "https://shovon.bd/dev",
+    },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    featureList: app.features.join(", "),
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navigation active="apps" />
       <main
         id="main-content"

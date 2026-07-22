@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Footer, Navigation } from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   title: "Privacy Policy — Chalk",
   description:
     "Privacy policy for Chalk, the infinite blackboard note-taking and mind-mapping app. Chalk stores all data locally on your device and collects no personal information.",

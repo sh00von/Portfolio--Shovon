@@ -63,5 +63,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    ...apps
+      .filter((app) => app.privacyUrl)
+      .map((app) => ({
+        url: `https://shovon.bd${app.privacyUrl}`,
+        lastModified: APPS_PUBLISHED,
+        changeFrequency: "yearly" as const,
+        priority: 0.5,
+      })),
   ];
 }
