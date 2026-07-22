@@ -82,14 +82,28 @@ export default function SecurityPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Security Research — CVE Advisories",
+    name: "Security Research — CVE Advisories | Md Minaruzzaman Shovon",
     description:
-      "Security advisories and CVE disclosures by Md Minaruzzaman Shovon.",
+      "Security advisories and CVE disclosures by Md Minaruzzaman Shovon including vulnerabilities in Timetics, Post Duplicator, and WPComplete.",
     url: "https://shovon.bd/security",
     author: {
       "@type": "Person",
       name: "Md Minaruzzaman Shovon",
       url: "https://shovon.bd/dev",
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: cves.map((cve, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "TechArticle",
+          name: cve.title,
+          identifier: cve.id,
+          url: `https://shovon.bd${cve.href}`,
+          description: cve.description,
+        },
+      })),
     },
   };
 

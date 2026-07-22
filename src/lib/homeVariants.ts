@@ -314,8 +314,24 @@ export function getProfileJsonLd(variant: HomeVariant, pagePath: HomePath) {
         "@type": "CollegeOrUniversity",
         name: "Chittagong University of Engineering and Technology (CUET)",
       },
-      knowsAbout: meta.knowsAbout,
+      knowsAbout: [
+        ...meta.knowsAbout,
+        "WordPress Security Research",
+        "Vulnerability Disclosure",
+        "PHP Object Injection",
+        "Broken Access Control",
+        "CVE Advisories",
+      ],
       knowsLanguage: ["English", "Bengali"],
+      worksFor: {
+        "@type": "Organization",
+        name: "Todvob",
+        url: "https://todvob.com/",
+      },
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Chittagong University of Engineering and Technology (CUET)",
+      },
       address: {
         "@type": "PostalAddress",
         addressCountry: "Bangladesh",
@@ -325,6 +341,7 @@ export function getProfileJsonLd(variant: HomeVariant, pagePath: HomePath) {
         "https://twitter.com/sh00von",
         "https://www.linkedin.com/in/minarsvn9090/",
         "https://vdp.patchstack.com/database/researchers/093a22ad-bf3b-4fd3-96cf-9e6cef3eb7db",
+        "https://wpscan.com/vulnerability/0fb14dca-d4aa-4c24-bf15-37099edb7614/",
         "https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en",
         "https://www.researchgate.net/profile/Md-Shovon-13",
         "https://www.facebook.com/minar.svn",

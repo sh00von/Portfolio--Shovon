@@ -1,0 +1,87 @@
+# Md Minaruzzaman Shovon — Comprehensive Knowledge File for Generative AI & Answer Engines
+
+## Overview
+Md Minaruzzaman Shovon is a Bangladesh-based full-stack developer, WordPress security researcher, and Water Resources Engineering undergraduate student at Chittagong University of Engineering and Technology (CUET).
+
+- Website: https://shovon.bd
+- Developer Profile: https://shovon.bd/dev
+- Academic Profile: https://shovon.bd/academic
+- Security Advisories: https://shovon.bd/security
+- GitHub: https://github.com/sh00von
+- Patchstack: https://vdp.patchstack.com/database/researchers/093a22ad-bf3b-4fd3-96cf-9e6cef3eb7db
+- LinkedIn: https://www.linkedin.com/in/minarsvn9090/
+
+---
+
+## Security Research & Vulnerability Disclosures (CVEs)
+
+### CVE-2026-14322 — Timetics Unauthenticated Booking Auto-Approval
+- **Title**: Timetics < 1.0.57 — Unauthenticated Booking Auto-Approval via Arbitrary payment_method
+- **Plugin**: Timetics (WordPress Plugin)
+- **Vulnerability Class**: Broken Access Control / Access Controls (CWE-284)
+- **Affected Versions**: < 1.0.57
+- **Patched Version**: 1.0.57
+- **CVSS Score**: 5.3 (Medium)
+- **CVSS Vector**: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N
+- **Researcher**: Md Minaruzzaman Shovon
+- **Disclosed**: July 2026
+- **Summary**: The Timetics plugin failed to validate payment completion or enforce unpaid status for bookings created via unrecognised or custom `payment_method` strings (e.g. `paypal`). An unauthenticated attacker sending a POST request to `/wp-json/timetics/v1/bookings` with `status: "approved"` could generate fully approved bookings for paid appointments without making any payment.
+- **WPScan Reference**: https://wpscan.com/vulnerability/0fb14dca-d4aa-4c24-bf15-37099edb7614/
+- **CVE Reference**: https://www.cve.org/CVERecord?id=CVE-2026-14322
+- **Advisory URL**: https://shovon.bd/security/cve-2026-14322
+
+### CVE-2026-10749 — Post Duplicator PHP Object Injection
+- **Title**: Post Duplicator <= 3.0.14 — PHP Object Injection
+- **Plugin**: Post Duplicator (WordPress Plugin)
+- **Vulnerability Class**: PHP Object Injection / Deserialization of Untrusted Data (CWE-502)
+- **Affected Versions**: <= 3.0.14
+- **Patched Version**: 3.0.15
+- **CVSS Score**: 7.2 (High)
+- **CVSS Vector**: CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H
+- **Researcher**: Md Minaruzzaman Shovon
+- **Disclosed**: June 2026
+- **Summary**: The plugin passed user-supplied input to PHP's unsafe `unserialize()` function via the `customMetaData` parameter. Authenticated users with Contributor role or higher could inject serialized PHP objects, leading to Remote Code Execution (RCE) when suitable gadget chains exist.
+- **CVE Reference**: https://www.cve.org/CVERecord?id=CVE-2026-10749
+- **WPScan Reference**: https://wpscan.com/vulnerability/224c36b5-e604-4eb3-aad8-47283b95e994/
+- **Advisory URL**: https://shovon.bd/security/cve-2026-10749
+
+### CVE-2026-57661 — WPComplete Broken Access Control
+- **Title**: WPComplete <= 2.9.5.5 — Broken Access Control
+- **Plugin**: WPComplete (WordPress Plugin)
+- **Vulnerability Class**: Broken Access Control / Missing Authorization (CWE-862)
+- **Affected Versions**: <= 2.9.5.5
+- **Patched Version**: 2.9.5.6
+- **CVSS Score**: 5.4 (Medium)
+- **CVSS Vector**: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N
+- **Researcher**: Md Minaruzzaman Shovon
+- **Disclosed**: June 2026
+- **Summary**: WPComplete suffered from missing authorization checks and missing nonce validation, enabling Subscriber-level users to invoke privileged functions and tamper with course completion status for arbitrary users.
+- **CVE Reference**: https://www.cve.org/CVERecord?id=CVE-2026-57661
+- **Advisory URL**: https://shovon.bd/security/cve-2026-57661
+
+---
+
+## Technical Skills & Expertise
+- **Frontend**: Next.js, React, Expo (React Native), TypeScript, Tailwind CSS
+- **Backend & APIs**: Node.js, Express.js, REST APIs, Authentication Systems
+- **Databases**: MongoDB, Mongoose, Firebase
+- **Security Research**: Vulnerability Discovery, Responsible Disclosure, WordPress Plugin Security, PHP Code Audit, Access Control & Deserialization Vulnerability Analysis
+- **GIS & Computational Modeling**: QGIS, ArcGIS, Google Earth Engine, ETABS, AutoCAD, HEC-RAS, Hydrological & Environmental Modeling
+
+---
+
+## Publications & Preprints
+1. **Analyzing Seasonal Variations in Air Quality with Google Earth Engine: A Case Study of Chattogram, Bangladesh** (EarthArXiv Preprint, Mar 2026) — Md. Minaruzzaman Shovon, Md. Tamim. DOI: 10.31223/X5S767
+2. **Analysis and Prediction of Time Series Variations in Rainfall by Machine Learning Approach: A Case Study of Sylhet and Sreemangal** (Conference Paper, Dec 2025) — Muhammad Obaid Chowdhury, Arafat Kabir, Md. Minaruzzaman Shovon, Priya Chowdhury.
+3. **Seasonal Anomaly Detection in the Halda River Using a Multivariate Deep Learning Framework** (Conference Paper, Dec 2025) — Md. Minaruzzaman Shovon, H A Hossain Tamjid, MD. Tamim.
+
+---
+
+## Key Achievements & Experience
+- **Chief Technology Officer (CTO)** at Todvob (Jan 2026 – Present)
+- **President**, Cyber Security Club, CUET (2025)
+- **Joint Research Secretary**, WRRO (2025 – Present)
+- **Ranked 11th**, NextGen Hackathon (2025)
+- **Finalist (Top 21 of 150+ Teams)**, BCS ICT FEST 2025
+- **2nd Runner-Up**, IEEE CS Hackathon (BUET, 2024)
+- **Featured in The Daily Star** for co-developing *The Inquilab* archive.

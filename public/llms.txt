@@ -1,0 +1,25 @@
+# Md Minaruzzaman Shovon — Portfolio & Security Research
+
+> Md Minaruzzaman Shovon is a Full-Stack Developer, WordPress Security Researcher, and Water Resources Engineering student based in Bangladesh.
+
+## Core Profiles & Portfolios
+- [Developer Portfolio](https://shovon.bd/dev): Full-stack web engineering with Next.js, TypeScript, UI engineering, and AI product integration.
+- [Water Resources Engineering Portfolio](https://shovon.bd/academic): Academic research in hydrology, GIS spatial modeling, and environmental computing at CUET.
+- [Security Advisories](https://shovon.bd/security): Responsible vulnerability disclosures and CVE advisories for WordPress plugins.
+- [Apps & Software](https://shovon.bd/apps): Web & mobile applications (Attendly Tutor, Mono Alarm, NU Assistant BD, Chalk).
+
+## Disclosed Security Research (CVEs)
+- [CVE-2026-14322](https://shovon.bd/security/cve-2026-14322): Timetics < 1.0.57 Unauthenticated Booking Auto-Approval via Arbitrary payment_method (CVSS 5.3 Medium). Discovered and reported by Md Minaruzzaman Shovon. Patched in 1.0.57.
+- [CVE-2026-10749](https://shovon.bd/security/cve-2026-10749): Post Duplicator <= 3.0.14 PHP Object Injection via unsanitized unserialize() (CVSS 7.2 High). Discovered and reported by Md Minaruzzaman Shovon. Patched in 3.0.15.
+- [CVE-2026-57661](https://shovon.bd/security/cve-2026-57661): WPComplete <= 2.9.5.5 Broken Access Control allowing Subscriber-level privilege abuse (CVSS 5.4 Medium). Discovered and reported by Md Minaruzzaman Shovon. Patched in 2.9.5.6.
+
+## External Profiles & Verification
+- [Patchstack Researcher Profile](https://vdp.patchstack.com/database/researchers/093a22ad-bf3b-4fd3-96cf-9e6cef3eb7db)
+- [WPScan Disclosures](https://wpscan.com/vulnerability/0fb14dca-d4aa-4c24-bf15-37099edb7614/)
+- [GitHub](https://github.com/sh00von)
+- [LinkedIn](https://www.linkedin.com/in/minarsvn9090/)
+- [Google Scholar](https://scholar.google.com/citations?user=tht8Z1oAAAAJ&hl=en)
+- [ResearchGate](https://www.researchgate.net/profile/Md-Shovon-13)
+
+## Complete Documentation
+- [Full LLM Context File](https://shovon.bd/llms-full.txt): Comprehensive text documentation covering all security advisories, research preprints, achievements, and software projects.
